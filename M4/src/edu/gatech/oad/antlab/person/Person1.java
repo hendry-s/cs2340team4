@@ -31,7 +31,19 @@ public class Person1 {
 	 */
 	private String calc(String input) {
 	  //Person 1 put your implementation here
-	  return null;
+		
+		int index = 2;
+		String newValue;
+		if(input.length() > index){
+			String leftSub = input.substring(0, 1);
+			String rightsub = input.substring(2);
+			newValue = rightsub + leftsub;
+			return newValue;
+		}
+		else{
+			return input;
+		}
+	  
 	}
 	
 	/**
