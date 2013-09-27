@@ -36,8 +36,8 @@ public class Person1 {
 		String newValue;
 		if(input.length() > index){
 			String leftSub = input.substring(0, 1);
-			String rightsub = input.substring(2);
-			newValue = rightsub + leftsub;
+			String rightSub = input.substring(2);
+			newValue = rightSub + leftSub;
 			return newValue;
 		}
 		else{
