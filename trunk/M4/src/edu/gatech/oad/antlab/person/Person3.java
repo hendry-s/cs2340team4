@@ -43,6 +43,17 @@ public class Person3 {
 	 */
 	private String calc(String input) {
 	  //Person 3 put your implementation here
-	  return null;
+		char[] tmp = input.toCharArray();
+		for(int i=0; i<input.length()/2; i++) {
+			swap(i, input.length()-i-1, tmp);
+		}
+			
+		return new String(tmp);
+	}
+
+	private void swap(int i, int j, char[] str) {
+		char tmp = str[i];
+		str[i] = str[j];
+		str[j] = tmp;
 	}
 }
