@@ -37,7 +37,7 @@ public class Person2 {
 	private String calc(String input) {
 	  //Person 2 put your implementation here
 
-		ArrayList<Character> letters = new ArrayList<>();
+		ArrayList<Character> letters = new ArrayList<Character>();
 		for (int i = 0; i < input.length(); i++)
 			letters.add(input.charAt(i));
 		
