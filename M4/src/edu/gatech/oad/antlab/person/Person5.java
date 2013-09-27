@@ -30,8 +30,18 @@ public class Person5 {
 	 * @return the modified string
 	 */
 	private String calc(String input) {
-	  //Person 5 put your implementation here
-	  return null;
+	 
+	  if(input.length() == 2) {
+		  return input.substring(1) + input.substring(0);
+	  }
+	  else if(input.length() > 3) {
+		  String leftSub = input.substring(0,2);
+		  String rightSub = input.substring(3);
+		  return rightSub.concat(leftSub);
+	  }
+	  else
+		  return input;
+
 	}
 	
 	/**
