@@ -61,10 +61,4 @@ public class Person2 {
 	  return name + calc(input);
 	}
 	
-	public static void main(String[] args)
-	{
-		String name = "Omar";
-		Person2 p = new Person2(name);
-		System.out.println(p.calc(name));
-	}
 }
