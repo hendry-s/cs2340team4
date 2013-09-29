@@ -14,11 +14,4 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>M4/src/hsugianto3.xml</name>
-			<type>1</type>
-			<location>F:/JavaSource/M4/src/hsugianto3.xml</location>
-		</link>
-	</linkedResources>
 </projectDescription>
