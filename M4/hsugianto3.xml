@@ -41,19 +41,19 @@
   
     <!-- JAR: This will package the compiled classes (excluding the resources.jar) as a JAR titled "AntLabRun.jar". The JAR must use a mainfest and should only include the compiled classes and the manifest. Your manifest file may be manually created or generated automatically by your ant task. -->
   <target name="jar" depends="compile">  
-  	  	<jar destfile="${jar.dir}\${jar-name}" basedir=".">
-            <fileset dir="${build.dir}"/>
-            <zipfileset includes="**/*.class" src="lib/resources.jar"/>
+  	  	<jar destfile="${lib.dir}\${ant.project.name}.jar" basedir="${build.dir}">
+           
+            
             <manifest>                 
-                <attribute name="Class-Path" value="$resources.jar"/>
-            	<attribute name="Main-Class" value="main-class"/>
+                <attribute name="Class-Path" value="resources.jar"/>
+            	<attribute name="Main-Class" value="${main-class}"/>
             </manifest> 
         </jar> 
   </target>
 
     <!-- Run -->
     <target name="run" depends="jar">
-        <java jar="${jar.dir}/${jar-name}" fork="true" />
+        <java jar="${lib.dir}/${ant.project.name}.jar" fork="true" />
     </target>
    
     <!-- All: This should perform all of the above tasks (but NOT clean). -->
