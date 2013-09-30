@@ -27,12 +27,12 @@
 	
 	
 	<!-- This will compile all java classes in the 'src' directory tree to the 'build' directory. -->
-    <target name="compile" depends="javadoc" description="Compiles the Task">
-       	<javac srcdir="${src.dir}"  destdir="${build.dir}" classpathref="classpath" includeantruntime="false"/>
+    <target name="compile" depends="prepare" description="Compiles the Task">
+       	<javac srcdir="${src.dir}"  destdir="${build.dir}" classpathref="classpath" includeantruntime="yes"/>
     </target>
     
 	<!-- Generate javadocs for current project into ${doc.dir} -->
-  <target name="javadoc" depends="prepare" description="generate documentation">
+  <target name="javadoc" depends="compile" description="generate documentation">
     <javadoc destdir="${api.dir}" >
             <fileset dir="${src.dir}/" includes="**/*.java" />
         </javadoc>
@@ -44,7 +44,8 @@
             <fileset dir="${build.dir}"/>
             <zipfileset includes="**/*.class" src="lib/resources.jar"/>
             <manifest>                 
-                <attribute name="Main-Class" value="${main-class}" />
+                <attribute name="Class-Path" value="$resources.jar"/>
+            	<attribute name="Main-Class" value="main-class"/>
             </manifest> 
         </jar> 
   </target>
