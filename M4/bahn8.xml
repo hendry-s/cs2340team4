@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- CS2340 - Brendan Ahn -->
+
+<project name="Ant M4" basedir="." default="all">
+
+	<!-- set the path -->
+	<path id="classpath">
+	
+        <fileset dir="lib" >
+            <include name="**/*.jar"/>
+        </fileset>
+        
+        <fileset dir="build">
+            <include name="*.class" /> 
+        </fileset> 
+        
+    </path>
+    
+	<!-- init -->
+	<target name="init">	
+		<property name="src.dir" value="src"/>
+		<property name="build.dir" value="build"/>
+		<property name="api.dir" location="apidoc"/>
+		<property name="lib.dir" value="lib" />
+		<property name="main-class" value="edu.gatech.oad.antlab.pkg1.AntLabMain" />
+		<property name="jar-name" value="AntLabRun.jar"/>
+	</target>
+
+	<!-- prepare -->
+    <target name="prepare" depends="init">
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${api.dir}"/>
+		<mkdir dir="${lib.dir}"/>
+	</target>
+	
+	<!-- compile -->
+    <target name="compile" depends="prepare" description="Compile tasks">
+       	<javac srcdir="${src.dir}"  destdir="${build.dir}" classpathref="classpath" includeantruntime="yes"/>
+    </target>
+    
+    <!-- javadoc -->
+  <target name="javadoc" depends="compile" description="creates project documentation">
+    <javadoc destdir="${api.dir}" >
+            <fileset dir="${src.dir}/" includes="**/*.java" />
+    </javadoc>
+  </target>
+  
+    <!-- jar -->
+  <target name="jar" depends="compile">  
+  	  	<jar destfile="${lib.dir}\${ant.project.name}.jar" basedir="${build.dir}">
+            <manifest>                 
+                <attribute name="Class-Path" value="resources.jar"/>
+            	<attribute name="Main-Class" value="${main-class}"/>
+            </manifest> 
+        </jar> 
+  </target>
+
+    <!-- run -->
+    <target name="run" depends="jar">
+        <java jar="${lib.dir}/${ant.project.name}.jar" fork="true" />
+    </target>
+   
+    <!-- all (except clean) -->
+    <target name="all" depends="run" />
+   
+    <!-- clean -->
+    <target name="clean" depends="init" >
+        <delete dir="${build.dir}" />
+        <delete dir="${api.dir}" />
+    </target>
+  
+</project>
