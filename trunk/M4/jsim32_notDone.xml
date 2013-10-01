@@ -1,0 +1,77 @@
+<!-- CS 2340 - Jin Yong Sim -->
+
+<!-- NOT DONE YET, as of 7:01pm, Tuesday 10/01 -->
+
+<project name="Ant Lab" basedir="." default="all">
+
+	<!-- init	Set up all properties -->
+	<target name="init">
+		<property name="src.dir"		location="src"/>
+		<property name="build.dir"		location="build"/>
+		<property name="apidoc.dir"		location="apidoc"/>
+		<property name="lib.dir"		location="lib"/>
+		<property name="jar-file"		value="AntLabRun.jar"/>
+		<property name="main-class" 	location="${src.dir}.edu.gatech.oad.antlab.pkg1.AntLabMain"/>
+	</target>
+	
+	<!-- prepare	Make all required directories -->
+	<target name="prepare" depends="init">
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${apidoc.dir}"/>
+	</target>
+	
+	<!-- compile	Compile all java classes in the 'src.dir'
+					to the 'build.dir' -->
+	<target name="compile" depends="prepare">
+		<javac srcdir="${src.dir}" destdir="${build.dir}" classpath="${lib.dir}"/>
+	</target>
+	
+	<!-- javadoc	Generate javadoc for all java classes in
+					'src.dir', store in the 'apidoc.dir' -->
+	<target name="javadoc" depends="compile">
+		<javadoc sourcepath="${src.dir}" access="public" destdir="${apidoc.dir}" packagenames="**/*.*">
+    		<fileset dir="${src.dir}"> <include name="**/*.java"/> </fileset>
+	    	<bottom> <![CDATA[<i>Copyright &#169; 2013 Team Aim4C++ CS2340. All Rights Reserved.</i>]]> </bottom>
+		</javadoc>
+	</target>
+	
+	<!-- jar	Package the compiled classes as a JAR
+				titled "AntLabRun.jar"
+				Must use manifest,
+				and only include the compiled classes + the manifest
+				Manifest file may be manually created or generated
+				automatically by your ant task -->
+	<target name="jar" depends="compile" basedir="${build.dir}">
+		<jar destfile="${jar-file}" >
+			<include name="**/*.class"/>
+			
+			<manifest>
+				<attribute name="Main-Class" value="edu.gatech.cs2340.lab2.LabMain"/>
+				<attribute name="Class-Path" value="resources.jar" />
+			</manifest>
+		
+		</jar>
+	</target>
+	
+	<!-- run	Run jar file created in the 'jar' task
+				A simple printout with the team name and some
+				computation results should occur when run  -->
+	<target name="run" depends="jar">
+		<java jar="${lib.dir}/${ant.project.name}.jar" fork="true" />
+	</target>
+
+	<target name="all">
+		<antcall target="init"/>
+		<antcall target="prepare"/>
+		<antcall target="compile"/>
+		<antcall target="jar"/>
+		<antcall target="run"/>
+	</target>
+	
+	
+	<!-- remove any compiled classes, JAR and javadoc created -->
+	<target name="clean" depends="init">
+		
+	</target>
+	
+</project>
