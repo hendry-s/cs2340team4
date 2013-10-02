@@ -1,0 +1,80 @@
+<!-- CS2340 - Omar Khan -->
+
+<project name="Ant Lab" basedir="." default = "all">
+
+	<path id="classpath">
+	    
+    	<fileset dir="lib">	<include name="**/*.jar" /> </fileset>
+        <fileset dir="build"> <include name="*.class" /> </fileset> 
+        
+    </path>
+    
+    <!-- Init -->
+	<target name="init">
+	    
+		<property name="src.dir" value="src" />
+		<property name="build.dir" value="build" />
+		<property name="api.dir" location="apidoc" />
+		<property name="lib.dir" value="lib" />
+		<property name="main-class" value="edu.gatech.oad.antlab.pkg1.AntLabMain" />
+		<property name="jar-file" value="AntLabRun.jar" />
+		
+	</target>
+	
+	<!-- Prepare -->
+	<target name="prepare" depends="init">
+	    
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${api.dir}" />
+		<mkdir dir="${lib.dir}" />
+		
+	</target>
+	
+	
+	<!-- Compile -->
+	<target name="compile" depends="prepare" description="Compiles java classes">
+	    
+		<javac srcdir="${src.dir}"  destdir="${build.dir}" classpathref="classpath" includeantruntime="yes" />
+		
+	</target>
+    
+	<!-- Javadoc -->
+	<target name="javadoc" depends="compile" description="generate javadocs">
+	    
+		<javadoc destdir="${api.dir}">
+			<fileset dir="${src.dir}/" includes="**/*.java" />
+ 		</javadoc>
+ 		
+	</target>
+  
+	<!-- Jar -->
+	<target name="jar" depends="compile">  
+	    
+  		<jar destfile="${lib.dir}\${ant.project.name}.jar" basedir="${build.dir}">
+            <manifest>                 
+                <attribute name="Class-Path" value="resources.jar" />
+            	<attribute name="Main-Class" value="${main-class}" />
+            </manifest> 
+        </jar> 
+        
+	</target>
+
+    <!-- Run -->
+    <target name="run" depends="jar">
+        
+        <java jar="${lib.dir}/${ant.project.name}.jar" fork="true" />
+        
+    </target>
+   
+    <!-- All -->
+    <target name="all" depends="run" />
+   
+    <!-- Clean -->
+    <target name="clean" depends="init"> 
+        
+        <delete dir="${build.dir}" />
+        <delete dir="${api.dir}" />
+        
+    </target>
+    
+</project>
