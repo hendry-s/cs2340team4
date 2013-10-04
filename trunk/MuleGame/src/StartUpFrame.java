@@ -15,6 +15,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import java.awt.FlowLayout;
 
 
 public class StartUpFrame extends JFrame {
@@ -41,8 +43,9 @@ public class StartUpFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public StartUpFrame() {
+		setTitle("ATARI MULE");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 636, 365);
+		setBounds(100, 100, 743, 539);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -64,10 +67,12 @@ public class StartUpFrame extends JFrame {
 		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) panel.getLayout();
 		panel.setBackground(Color.GREEN);
 		contentPane.add(panel, BorderLayout.CENTER);
 		
 		JLabel lblMule = new JLabel("MULE");
+		lblMule.setIcon(new ImageIcon(StartUpFrame.class.getResource("/MULEIMAGE/resources/Mule.jpg")));
 		lblMule.setForeground(Color.BLUE);
 		lblMule.setFont(new Font("Showcard Gothic", Font.BOLD, 60));
 		panel.add(lblMule);
