@@ -13,12 +13,13 @@ import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
+import javax.swing.JLabel;
 
 
 public class StartUpFrame extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtMule;
 
 	/**
 	 * Launch the application.
@@ -53,7 +54,7 @@ public class StartUpFrame extends JFrame {
 		mntmExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				System.exit(0);
+				
 			}
 		});
 		mnFile.add(mntmExit);
@@ -66,14 +67,10 @@ public class StartUpFrame extends JFrame {
 		panel.setBackground(Color.GREEN);
 		contentPane.add(panel, BorderLayout.CENTER);
 		
-		txtMule = new JTextField();
-		txtMule.setBackground(Color.GREEN);
-		txtMule.setForeground(Color.BLUE);
-		txtMule.setHorizontalAlignment(SwingConstants.CENTER);
-		txtMule.setFont(new Font("Showcard Gothic", Font.BOLD, 60));
-		txtMule.setText("MULE");
-		panel.add(txtMule);
-		txtMule.setColumns(10);
+		JLabel lblMule = new JLabel("MULE");
+		lblMule.setForeground(Color.BLUE);
+		lblMule.setFont(new Font("Showcard Gothic", Font.BOLD, 60));
+		panel.add(lblMule);
 	}
 
 }
