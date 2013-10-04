@@ -17,6 +17,7 @@ import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.FlowLayout;
+import javax.swing.JList;
 
 
 public class StartUpFrame extends JFrame {
@@ -43,9 +44,9 @@ public class StartUpFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public StartUpFrame() {
-		setTitle("ATARI MULE");
+		setTitle("Aim4C++ MULE GAME");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 743, 539);
+		setBounds(100, 100, 783, 559);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -62,20 +63,39 @@ public class StartUpFrame extends JFrame {
 		});
 		mnFile.add(mntmExit);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 727, 73);
 		FlowLayout flowLayout = (FlowLayout) panel.getLayout();
-		panel.setBackground(Color.GREEN);
-		contentPane.add(panel, BorderLayout.CENTER);
+		panel.setBackground(Color.WHITE);
+		contentPane.add(panel);
 		
 		JLabel lblMule = new JLabel("MULE");
-		lblMule.setIcon(new ImageIcon(StartUpFrame.class.getResource("/MULEIMAGE/resources/Mule.jpg")));
-		lblMule.setForeground(Color.BLUE);
+		lblMule.setIcon(null);
+		lblMule.setForeground(Color.GREEN);
 		lblMule.setFont(new Font("Showcard Gothic", Font.BOLD, 60));
 		panel.add(lblMule);
+		
+		JLabel lblNewLabel_1 = new JLabel("LEVEL");
+		lblNewLabel_1.setForeground(Color.BLUE);
+		lblNewLabel_1.setFont(new Font("Showcard Gothic", Font.PLAIN, 30));
+		lblNewLabel_1.setBounds(10, 359, 98, 38);
+		contentPane.add(lblNewLabel_1);
+		
+		JLabel lblSelectMap = new JLabel("MAP");
+		lblSelectMap.setForeground(Color.BLUE);
+		lblSelectMap.setFont(new Font("Showcard Gothic", Font.PLAIN, 30));
+		lblSelectMap.setBounds(10, 402, 207, 46);
+		contentPane.add(lblSelectMap);
+		
+		JLabel lblSelectNumberOf = new JLabel("NUMBER OF PLAYERS");
+		lblSelectNumberOf.setForeground(Color.BLUE);
+		lblSelectNumberOf.setFont(new Font("Showcard Gothic", Font.PLAIN, 30));
+		lblSelectNumberOf.setBounds(10, 437, 444, 62);
+		contentPane.add(lblSelectNumberOf);
 	}
-
 }
