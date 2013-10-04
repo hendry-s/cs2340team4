@@ -43,10 +43,11 @@ public class StartUpFrame extends JFrame {
 		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(Color.GREEN);
 		contentPane.add(panel, BorderLayout.CENTER);
 		
 		txtMule = new JTextField();
-		txtMule.setBackground(Color.LIGHT_GRAY);
+		txtMule.setBackground(Color.GREEN);
 		txtMule.setForeground(Color.BLUE);
 		txtMule.setHorizontalAlignment(SwingConstants.CENTER);
 		txtMule.setFont(new Font("Showcard Gothic", Font.BOLD, 60));
