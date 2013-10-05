@@ -129,7 +129,7 @@ public class StartUpFrame extends JFrame {
 		label.setBackground(Color.WHITE);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setIcon(new ImageIcon(StartUpFrame.class.getResource("/MULEIMAGE/resources/Mule.jpg")));
-		label.setBounds(216, 96, 351, 303);
+		label.setBounds(216, 96, 345, 297);
 		contentPane.add(label);
 		
 		JButton btnContinue = new JButton("Continue");
@@ -137,13 +137,13 @@ public class StartUpFrame extends JFrame {
 		contentPane.add(btnContinue);
 		
 		JLabel lblAimc = new JLabel("Aim4C++");
-		lblAimc.setFont(new Font("Cambria", Font.BOLD, 12));
-		lblAimc.setBounds(667, 433, 56, 24);
+		lblAimc.setFont(new Font("Cambria", Font.BOLD, 14));
+		lblAimc.setBounds(642, 406, 89, 24);
 		contentPane.add(lblAimc);
 		
 		JLabel label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon(StartUpFrame.class.getResource("/MULEIMAGE/resources/0_0_0_0_107_67_csupload_56573750.jpg")));
-		label_1.setBounds(617, 411, 140, 99);
+		label_1.setBounds(542, 382, 215, 128);
 		contentPane.add(label_1);
 	}
 }
