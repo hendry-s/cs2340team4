@@ -60,7 +60,7 @@ public class StartUpFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 767, 62);
+		panel.setBounds(0, 0, 767, 85);
 		panel.setBackground(Color.WHITE);
 		contentPane.add(panel);
 		panel.setLayout(null);
@@ -68,10 +68,10 @@ public class StartUpFrame extends JFrame {
 		JLabel lblMule = new JLabel("MULE");
 		lblMule.setBackground(Color.WHITE);
 		lblMule.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMule.setBounds(303, 0, 168, 75);
+		lblMule.setBounds(267, 11, 247, 75);
 		lblMule.setIcon(null);
 		lblMule.setForeground(Color.GREEN);
-		lblMule.setFont(new Font("Showcard Gothic", Font.BOLD, 60));
+		lblMule.setFont(new Font("Showcard Gothic", Font.BOLD, 70));
 		panel.add(lblMule);
 		
 		JLabel lblNewLabel_1 = new JLabel("LEVEL");
@@ -100,7 +100,7 @@ public class StartUpFrame extends JFrame {
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Beginner", "Standard", "Tournament"}));
 		comboBox.setSelectedIndex(0);
 		comboBox.setToolTipText("");
-		comboBox.setBounds(118, 367, 139, 20);
+		comboBox.setBounds(118, 367, 106, 20);
 		comboBox.addActionListener(comboBox);
 		contentPane.add(comboBox);
 		
@@ -108,7 +108,7 @@ public class StartUpFrame extends JFrame {
 		comboBox_1.setToolTipText("");
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Beginner Map", "Standard Map", "Tournament Map"}));
 		comboBox_1.setSelectedIndex(0);
-		comboBox_1.setBounds(118, 419, 139, 20);
+		comboBox_1.setBounds(118, 419, 106, 20);
 		comboBox.addActionListener(comboBox_1);
 		contentPane.add(comboBox_1);
 		
@@ -118,7 +118,7 @@ public class StartUpFrame extends JFrame {
 		comboBox_2.setToolTipText("");
 		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"2", "3", "4"}));
 		comboBox_2.setSelectedIndex(0);
-		comboBox_2.setBounds(340, 477, 139, 20);
+		comboBox_2.setBounds(340, 477, 40, 20);
 		comboBox.addActionListener(comboBox_2);
 		contentPane.add(comboBox_2);
 		
@@ -126,7 +126,11 @@ public class StartUpFrame extends JFrame {
 		label.setBackground(Color.WHITE);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setIcon(new ImageIcon(StartUpFrame.class.getResource("/MULEIMAGE/resources/Mule.jpg")));
-		label.setBounds(216, 73, 351, 303);
+		label.setBounds(216, 96, 351, 303);
 		contentPane.add(label);
+		
+		JButton btnContinue = new JButton("Continue");
+		btnContinue.setBounds(647, 476, 89, 23);
+		contentPane.add(btnContinue);
 	}
 }
