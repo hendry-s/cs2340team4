@@ -23,6 +23,8 @@ import java.awt.Window.Type;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.LineBorder;
 
 
 public class StartUpFrame extends JFrame {
@@ -55,11 +57,12 @@ public class StartUpFrame extends JFrame {
 		setBounds(100, 100, 783, 559);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new LineBorder(new Color(0, 0, 0), 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
+		panel.setBorder(new LineBorder(new Color(0, 0, 0), 5));
 		panel.setBounds(0, 0, 767, 85);
 		panel.setBackground(Color.WHITE);
 		contentPane.add(panel);
@@ -77,19 +80,19 @@ public class StartUpFrame extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("LEVEL");
 		lblNewLabel_1.setForeground(Color.BLUE);
 		lblNewLabel_1.setFont(new Font("Showcard Gothic", Font.PLAIN, 30));
-		lblNewLabel_1.setBounds(10, 361, 98, 38);
+		lblNewLabel_1.setBounds(10, 307, 98, 38);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblSelectMap = new JLabel("MAP");
 		lblSelectMap.setForeground(Color.BLUE);
 		lblSelectMap.setFont(new Font("Showcard Gothic", Font.PLAIN, 30));
-		lblSelectMap.setBounds(10, 410, 70, 46);
+		lblSelectMap.setBounds(10, 353, 70, 46);
 		contentPane.add(lblSelectMap);
 		
 		JLabel lblSelectNumberOf = new JLabel("NUMBER OF PLAYERS");
 		lblSelectNumberOf.setForeground(Color.BLUE);
 		lblSelectNumberOf.setFont(new Font("Showcard Gothic", Font.PLAIN, 30));
-		lblSelectNumberOf.setBounds(10, 459, 308, 62);
+		lblSelectNumberOf.setBounds(10, 399, 308, 62);
 		contentPane.add(lblSelectNumberOf);
 		
 		String[] level = {"Beginner", "Standard", "Tournament"};
@@ -100,7 +103,7 @@ public class StartUpFrame extends JFrame {
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Beginner", "Standard", "Tournament"}));
 		comboBox.setSelectedIndex(0);
 		comboBox.setToolTipText("");
-		comboBox.setBounds(118, 367, 106, 20);
+		comboBox.setBounds(118, 315, 106, 20);
 		comboBox.addActionListener(comboBox);
 		contentPane.add(comboBox);
 		
@@ -108,7 +111,7 @@ public class StartUpFrame extends JFrame {
 		comboBox_1.setToolTipText("");
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Beginner Map", "Standard Map", "Tournament Map"}));
 		comboBox_1.setSelectedIndex(0);
-		comboBox_1.setBounds(118, 419, 106, 20);
+		comboBox_1.setBounds(118, 364, 106, 20);
 		comboBox.addActionListener(comboBox_1);
 		contentPane.add(comboBox_1);
 		
@@ -118,7 +121,7 @@ public class StartUpFrame extends JFrame {
 		comboBox_2.setToolTipText("");
 		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"2", "3", "4"}));
 		comboBox_2.setSelectedIndex(0);
-		comboBox_2.setBounds(340, 477, 40, 20);
+		comboBox_2.setBounds(330, 418, 40, 20);
 		comboBox.addActionListener(comboBox_2);
 		contentPane.add(comboBox_2);
 		
@@ -130,7 +133,17 @@ public class StartUpFrame extends JFrame {
 		contentPane.add(label);
 		
 		JButton btnContinue = new JButton("Continue");
-		btnContinue.setBounds(647, 476, 89, 23);
+		btnContinue.setBounds(431, 417, 89, 23);
 		contentPane.add(btnContinue);
+		
+		JLabel lblAimc = new JLabel("Aim4C++");
+		lblAimc.setFont(new Font("Cambria", Font.BOLD, 12));
+		lblAimc.setBounds(667, 433, 56, 24);
+		contentPane.add(lblAimc);
+		
+		JLabel label_1 = new JLabel("");
+		label_1.setIcon(new ImageIcon(StartUpFrame.class.getResource("/MULEIMAGE/resources/0_0_0_0_107_67_csupload_56573750.jpg")));
+		label_1.setBounds(617, 411, 140, 99);
+		contentPane.add(label_1);
 	}
 }
