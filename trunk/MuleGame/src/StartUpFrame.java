@@ -30,7 +30,11 @@ import javax.swing.border.LineBorder;
 public class StartUpFrame extends JFrame {
 
 	private JPanel contentPane;
+	private JPanel screen2;
+	private JPanel panel;
+	private JPanel panel2;
 	private JComboBox comboBox;
+	private static StartUpFrame frame;
 
 	/**
 	 * Launch the application.
@@ -39,7 +43,7 @@ public class StartUpFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					StartUpFrame frame = new StartUpFrame();
+					frame = new StartUpFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -61,12 +65,19 @@ public class StartUpFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0), 5));
 		panel.setBounds(0, 0, 767, 85);
 		panel.setBackground(Color.WHITE);
 		contentPane.add(panel);
 		panel.setLayout(null);
+		
+		panel2 = new JPanel();
+		panel2.setBorder(new LineBorder(new Color(0, 0, 0), 5));
+		panel2.setBounds(0, 80, 767, 441);
+		panel2.setBackground(Color.WHITE);
+		contentPane.add(panel2);
+		panel2.setLayout(null);
 		
 		JLabel lblMule = new JLabel("MULE");
 		lblMule.setBackground(Color.WHITE);
@@ -80,70 +91,82 @@ public class StartUpFrame extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("LEVEL");
 		lblNewLabel_1.setForeground(Color.BLUE);
 		lblNewLabel_1.setFont(new Font("Showcard Gothic", Font.PLAIN, 30));
-		lblNewLabel_1.setBounds(10, 307, 98, 38);
-		contentPane.add(lblNewLabel_1);
+		lblNewLabel_1.setBounds(10, 195, 98, 38);
+		panel2.add(lblNewLabel_1);
 		
 		JLabel lblSelectMap = new JLabel("MAP");
 		lblSelectMap.setForeground(Color.BLUE);
 		lblSelectMap.setFont(new Font("Showcard Gothic", Font.PLAIN, 30));
-		lblSelectMap.setBounds(10, 353, 70, 46);
-		contentPane.add(lblSelectMap);
+		lblSelectMap.setBounds(10, 262, 70, 46);
+		panel2.add(lblSelectMap);
 		
 		JLabel lblSelectNumberOf = new JLabel("NUMBER OF PLAYERS");
 		lblSelectNumberOf.setForeground(Color.BLUE);
 		lblSelectNumberOf.setFont(new Font("Showcard Gothic", Font.PLAIN, 30));
-		lblSelectNumberOf.setBounds(10, 399, 308, 62);
-		contentPane.add(lblSelectNumberOf);
-		
-		String[] level = {"Beginner", "Standard", "Tournament"};
+		lblSelectNumberOf.setBounds(10, 329, 308, 62);
+		panel2.add(lblSelectNumberOf);
 		
 		comboBox = new JComboBox();
-		comboBox.setLightWeightPopupEnabled(false);
-		comboBox.setName("");
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Beginner", "Standard", "Tournament"}));
-		comboBox.setSelectedIndex(0);
-		comboBox.setToolTipText("");
-		comboBox.setBounds(118, 315, 106, 20);
-		comboBox.addActionListener(comboBox);
-		contentPane.add(comboBox);
+		
+		JComboBox comboBox_0 = new JComboBox();
+		comboBox_0.setToolTipText("");
+		comboBox_0.setModel(new DefaultComboBoxModel(new String[] {"Beginner", "Standard", "Tournament"}));
+		comboBox_0.setSelectedIndex(0);
+		comboBox_0.setBounds(118, 201, 98, 20);
+		comboBox.addActionListener(comboBox_0);
+		panel2.add(comboBox_0);
 		
 		JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setToolTipText("");
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Beginner Map", "Standard Map", "Tournament Map"}));
 		comboBox_1.setSelectedIndex(0);
-		comboBox_1.setBounds(118, 364, 106, 20);
+		comboBox_1.setBounds(118, 272, 129, 20);
 		comboBox.addActionListener(comboBox_1);
-		contentPane.add(comboBox_1);
-		
-		String[] player = {"2", "3", "4"};
+		panel2.add(comboBox_1);
 		
 		JComboBox comboBox_2 = new JComboBox();
 		comboBox_2.setToolTipText("");
 		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"2", "3", "4"}));
 		comboBox_2.setSelectedIndex(0);
-		comboBox_2.setBounds(330, 418, 40, 20);
+		comboBox_2.setBounds(328, 347, 40, 20);
 		comboBox.addActionListener(comboBox_2);
-		contentPane.add(comboBox_2);
+		panel2.add(comboBox_2);
 		
 		JLabel label = new JLabel("");
 		label.setBackground(Color.WHITE);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setIcon(new ImageIcon(StartUpFrame.class.getResource("/MULEIMAGE/resources/Mule.jpg")));
-		label.setBounds(216, 96, 345, 297);
-		contentPane.add(label);
+		label.setBounds(202, 10, 345, 308);
+		panel2.add(label);
 		
 		JButton btnContinue = new JButton("Continue");
-		btnContinue.setBounds(431, 417, 89, 23);
-		contentPane.add(btnContinue);
+		btnContinue.setBounds(415, 347, 89, 23);
+		panel2.add(btnContinue);
 		
 		JLabel lblAimc = new JLabel("Aim4C++");
 		lblAimc.setFont(new Font("Cambria", Font.BOLD, 14));
-		lblAimc.setBounds(642, 406, 89, 24);
-		contentPane.add(lblAimc);
+		lblAimc.setBounds(633, 329, 64, 20);
+		panel2.add(lblAimc);
 		
-		JLabel label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon(StartUpFrame.class.getResource("/MULEIMAGE/resources/0_0_0_0_107_67_csupload_56573750.jpg")));
-		label_1.setBounds(542, 382, 215, 128);
-		contentPane.add(label_1);
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(StartUpFrame.class.getResource("/MULEIMAGE/resources/0_0_0_0_107_67_csupload_56573750.jpg")));
+		lblNewLabel.setBounds(533, 303, 224, 127);
+		panel2.add(lblNewLabel);
+		
+		screen2 = new JPanel();
+		screen2.setBounds(0, 0, 767, 521);
+		screen2.setBackground(Color.WHITE);
+		screen2.setBorder(new LineBorder(new Color(0, 0, 0), 5));
+		contentPane.add(screen2);
+		screen2.setLayout(null);
+		
+		btnContinue.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	        	
+	        	frame.setContentPane(screen2);
+	        	frame.invalidate();
+	        	frame.validate();
+	        }
+	    });
 	}
 }
