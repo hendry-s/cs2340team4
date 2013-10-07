@@ -5,21 +5,32 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
+
 import java.awt.Font;
+
 import javax.swing.SwingConstants;
+
 import java.awt.Color;
+
+import javax.swing.JColorChooser;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+
 import java.awt.FlowLayout;
+
 import javax.swing.JList;
+
 import java.awt.List;
 import java.awt.Window.Type;
+
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
@@ -35,6 +46,7 @@ public class StartUpFrame extends JFrame {
 	private JPanel panel2;
 	private JComboBox comboBox;
 	private static StartUpFrame frame;
+	private JButton btnSelectColor;
 
 	/**
 	 * Launch the application.
@@ -65,12 +77,7 @@ public class StartUpFrame extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 0, 0), 5));
-		panel.setBounds(0, 0, 767, 85);
-		panel.setBackground(Color.WHITE);
-		contentPane.add(panel);
-		panel.setLayout(null);
+		comboBox = new JComboBox();
 		
 		panel2 = new JPanel();
 		panel2.setBorder(new LineBorder(new Color(0, 0, 0), 5));
@@ -78,15 +85,6 @@ public class StartUpFrame extends JFrame {
 		panel2.setBackground(Color.WHITE);
 		contentPane.add(panel2);
 		panel2.setLayout(null);
-		
-		JLabel lblMule = new JLabel("MULE");
-		lblMule.setBackground(Color.WHITE);
-		lblMule.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMule.setBounds(267, 11, 247, 75);
-		lblMule.setIcon(null);
-		lblMule.setForeground(Color.GREEN);
-		lblMule.setFont(new Font("Showcard Gothic", Font.BOLD, 70));
-		panel.add(lblMule);
 		
 		JLabel lblNewLabel_1 = new JLabel("LEVEL");
 		lblNewLabel_1.setForeground(Color.BLUE);
@@ -105,8 +103,6 @@ public class StartUpFrame extends JFrame {
 		lblSelectNumberOf.setFont(new Font("Showcard Gothic", Font.PLAIN, 30));
 		lblSelectNumberOf.setBounds(10, 329, 308, 62);
 		panel2.add(lblSelectNumberOf);
-		
-		comboBox = new JComboBox();
 		
 		JComboBox comboBox_0 = new JComboBox();
 		comboBox_0.setToolTipText("");
@@ -153,20 +149,78 @@ public class StartUpFrame extends JFrame {
 		lblNewLabel.setBounds(533, 303, 224, 127);
 		panel2.add(lblNewLabel);
 		
-		screen2 = new JPanel();
-		screen2.setBounds(0, 0, 767, 521);
-		screen2.setBackground(Color.WHITE);
-		screen2.setBorder(new LineBorder(new Color(0, 0, 0), 5));
-		contentPane.add(screen2);
-		screen2.setLayout(null);
+		panel = new JPanel();
+		panel.setBorder(new LineBorder(new Color(0, 0, 0), 5));
+		panel.setBounds(0, 0, 767, 85);
+		panel.setBackground(Color.WHITE);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblMule = new JLabel("MULE");
+		lblMule.setBackground(Color.WHITE);
+		lblMule.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMule.setBounds(267, 11, 247, 75);
+		lblMule.setIcon(null);
+		lblMule.setForeground(Color.GREEN);
+		lblMule.setFont(new Font("Showcard Gothic", Font.BOLD, 70));
+		panel.add(lblMule);
 		
 		btnContinue.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
+	        	
+	        	screen2 = new JPanel();
+	    		screen2.setBounds(0, 0, 767, 521);
+	    		screen2.setBackground(Color.WHITE);
+	    		screen2.setBorder(new LineBorder(new Color(0, 0, 0), 5));
+	    		contentPane.add(screen2);
+	    		screen2.setLayout(null);
+	    		
+	    		JComboBox comboBox_3 = new JComboBox();
+	    		comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"Human", "Flapper", "Bonzoid", "Ugaite", "Buzzite"}));
+	    		comboBox_3.setBounds(290, 145, 89, 20);
+	    		screen2.add(comboBox_3);
+	    		
+	    		JComboBox comboBox_4 = new JComboBox();
+	    		comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"Player 1", "Player 2"}));
+	    		comboBox_4.setBounds(290, 77, 89, 20);
+	    		screen2.add(comboBox_4);
+	    		
+	    		btnSelectColor = new JButton("Select Color");
+	    		btnSelectColor.setBounds(288, 220, 122, 23);
+	    		screen2.add(btnSelectColor);
+	    		
+	    		btnSelectColor.addActionListener(new ActionListener() {
+	    			
+	    			public void actionPerformed(ActionEvent e) {
+	    				
+	    				JColorChooser clr = new JColorChooser();
+	    				Color color = clr.showDialog(screen2, "Pick a Color", Color.black);
+	    			}
+	    		});
+	    		
+	    		JLabel lblPlayerRace = new JLabel("PLAYER RACE");
+	    		lblPlayerRace.setForeground(Color.BLUE);
+	    		lblPlayerRace.setFont(new Font("Showcard Gothic", Font.PLAIN, 30));
+	    		lblPlayerRace.setBounds(38, 137, 209, 38);
+	    		screen2.add(lblPlayerRace);
+	    		
+	    		JLabel lblPlayer = new JLabel("PLAYER NAME");
+	    		lblPlayer.setForeground(Color.BLUE);
+	    		lblPlayer.setFont(new Font("Showcard Gothic", Font.PLAIN, 30));
+	    		lblPlayer.setBounds(38, 68, 209, 38);
+	    		screen2.add(lblPlayer);
+	    		
+	    		JLabel lblPlayerColor = new JLabel("PLAYER COLOR");
+	    		lblPlayerColor.setForeground(Color.BLUE);
+	    		lblPlayerColor.setFont(new Font("Showcard Gothic", Font.PLAIN, 30));
+	    		lblPlayerColor.setBounds(38, 207, 222, 38);
+	    		screen2.add(lblPlayerColor);
 	        	
 	        	frame.setContentPane(screen2);
 	        	frame.invalidate();
 	        	frame.validate();
 	        }
 	    });
+		
 	}
 }
