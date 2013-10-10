@@ -42,11 +42,14 @@ public class StartUpFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel screen2;
+	private JPanel screen3;
 	private JPanel panel;
 	private JPanel panel2;
+	private JPanel colorPanel;
 	private JComboBox comboBox;
 	private static StartUpFrame frame;
 	private JButton btnSelectColor;
+	private JButton startGame;
 
 	/**
 	 * Launch the application.
@@ -132,7 +135,7 @@ public class StartUpFrame extends JFrame {
 		label.setBackground(Color.WHITE);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setIcon(new ImageIcon(StartUpFrame.class.getResource("/MULEIMAGE/resources/Mule.jpg")));
-		label.setBounds(202, 10, 345, 308);
+		label.setBounds(215, 11, 345, 308);
 		panel2.add(label);
 		
 		JButton btnContinue = new JButton("Continue");
@@ -141,13 +144,8 @@ public class StartUpFrame extends JFrame {
 		
 		JLabel lblAimc = new JLabel("Aim4C++");
 		lblAimc.setFont(new Font("Cambria", Font.BOLD, 14));
-		lblAimc.setBounds(633, 329, 64, 20);
+		lblAimc.setBounds(655, 398, 64, 20);
 		panel2.add(lblAimc);
-		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(StartUpFrame.class.getResource("/MULEIMAGE/resources/0_0_0_0_107_67_csupload_56573750.jpg")));
-		lblNewLabel.setBounds(533, 303, 224, 127);
-		panel2.add(lblNewLabel);
 		
 		panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0), 5));
@@ -159,7 +157,7 @@ public class StartUpFrame extends JFrame {
 		JLabel lblMule = new JLabel("MULE");
 		lblMule.setBackground(Color.WHITE);
 		lblMule.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMule.setBounds(267, 11, 247, 75);
+		lblMule.setBounds(271, 11, 247, 75);
 		lblMule.setIcon(null);
 		lblMule.setForeground(Color.GREEN);
 		lblMule.setFont(new Font("Showcard Gothic", Font.BOLD, 70));
@@ -181,12 +179,19 @@ public class StartUpFrame extends JFrame {
 	    		screen2.add(comboBox_3);
 	    		
 	    		JComboBox comboBox_4 = new JComboBox();
-	    		comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"Player 1", "Player 2"}));
+	    		comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"Player 1", "Player 2", "Player 3", "Player4"}));
 	    		comboBox_4.setBounds(290, 77, 89, 20);
 	    		screen2.add(comboBox_4);
 	    		
+	    		colorPanel = new JPanel();
+	    		colorPanel.setBorder(new LineBorder(new Color(0, 0, 0), 5));
+	    		colorPanel.setBounds(420, 209, 30, 30);
+	    		colorPanel.setBackground(Color.WHITE);
+	    		screen2.add(colorPanel);
+	    		colorPanel.setLayout(null);
+	    		
 	    		btnSelectColor = new JButton("Select Color");
-	    		btnSelectColor.setBounds(288, 220, 122, 23);
+	    		btnSelectColor.setBounds(288, 213, 122, 23);
 	    		screen2.add(btnSelectColor);
 	    		
 	    		btnSelectColor.addActionListener(new ActionListener() {
@@ -195,6 +200,11 @@ public class StartUpFrame extends JFrame {
 	    				
 	    				JColorChooser clr = new JColorChooser();
 	    				Color color = clr.showDialog(screen2, "Pick a Color", Color.black);
+	    				
+	    				 if (color != null) {
+	    					 
+	    				      colorPanel.setBackground(color);
+	    				 }
 	    			}
 	    		});
 	    		
@@ -215,6 +225,27 @@ public class StartUpFrame extends JFrame {
 	    		lblPlayerColor.setFont(new Font("Showcard Gothic", Font.PLAIN, 30));
 	    		lblPlayerColor.setBounds(38, 207, 222, 38);
 	    		screen2.add(lblPlayerColor);
+	    		
+	    		startGame = new JButton("Start Game");
+	    		startGame.setBounds(288, 295, 122, 23);
+	    		screen2.add(startGame);	    		
+	    		
+	    		startGame.addActionListener(new ActionListener() {
+	    			
+	    			public void actionPerformed(ActionEvent e) {
+	    				
+	    				screen3 = new JPanel();
+	    	    		screen3.setBounds(0, 0, 767, 521);
+	    	    		screen3.setBackground(Color.WHITE);
+	    	    		screen3.setBorder(new LineBorder(new Color(0, 0, 0), 5));
+	    	    		contentPane.add(screen3);
+	    	    		screen3.setLayout(null);
+	    	    		
+	    	    		frame.setContentPane(screen3);
+	    	    		frame.invalidate();
+	    	    		frame.validate();
+	    			}
+	    		});
 	        	
 	        	frame.setContentPane(screen2);
 	        	frame.invalidate();
