@@ -111,7 +111,7 @@ public class StartUpFrame extends JFrame {
 		comboBox_0.setToolTipText("");
 		comboBox_0.setModel(new DefaultComboBoxModel(new String[] {"Beginner", "Standard", "Tournament"}));
 		comboBox_0.setSelectedIndex(0);
-		comboBox_0.setBounds(118, 201, 98, 20);
+		comboBox_0.setBounds(118, 201, 138, 20);
 		comboBox.addActionListener(comboBox_0);
 		panel2.add(comboBox_0);
 		
@@ -119,7 +119,7 @@ public class StartUpFrame extends JFrame {
 		comboBox_1.setToolTipText("");
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Beginner Map", "Standard Map", "Tournament Map"}));
 		comboBox_1.setSelectedIndex(0);
-		comboBox_1.setBounds(118, 272, 129, 20);
+		comboBox_1.setBounds(118, 272, 169, 20);
 		comboBox.addActionListener(comboBox_1);
 		panel2.add(comboBox_1);
 		
@@ -127,7 +127,7 @@ public class StartUpFrame extends JFrame {
 		comboBox_2.setToolTipText("");
 		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"2", "3", "4"}));
 		comboBox_2.setSelectedIndex(0);
-		comboBox_2.setBounds(328, 347, 40, 20);
+		comboBox_2.setBounds(328, 347, 60, 20);
 		comboBox.addActionListener(comboBox_2);
 		panel2.add(comboBox_2);
 		
@@ -175,12 +175,12 @@ public class StartUpFrame extends JFrame {
 	    		
 	    		JComboBox comboBox_3 = new JComboBox();
 	    		comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"Human", "Flapper", "Bonzoid", "Ugaite", "Buzzite"}));
-	    		comboBox_3.setBounds(290, 145, 89, 20);
+	    		comboBox_3.setBounds(290, 145, 109, 20);
 	    		screen2.add(comboBox_3);
 	    		
 	    		JComboBox comboBox_4 = new JComboBox();
-	    		comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"Player 1", "Player 2", "Player 3", "Player4"}));
-	    		comboBox_4.setBounds(290, 77, 89, 20);
+	    		comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"Player 1", "Player 2", "Player 3", "Player 4"}));
+	    		comboBox_4.setBounds(290, 77, 109, 20);
 	    		screen2.add(comboBox_4);
 	    		
 	    		colorPanel = new JPanel();
