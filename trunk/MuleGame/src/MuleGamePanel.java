@@ -30,7 +30,7 @@ public class MuleGamePanel extends JPanel {
 	
 	public MuleGamePanel() {
 		
-		controller();
+		screen1();
 	}
 	
 	public void screen1() {
@@ -39,6 +39,7 @@ public class MuleGamePanel extends JPanel {
 		screen1.setBackground(Color.WHITE);
 		screen1.setBorder(new LineBorder(new Color(0, 0, 0), 5));
 		screen1.setLayout(null);
+		add(screen1);
 		
 		panel1 = new JPanel();
 		panel1.setBorder(new LineBorder(new Color(0, 0, 0), 5));
@@ -118,6 +119,13 @@ public class MuleGamePanel extends JPanel {
 		btnContinue.setBounds(435, 347, 89, 23);
 		panel2.add(btnContinue);
 		
+		btnContinue.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+		        screen2();
+		        
+		    }
+		});
+			
 		JLabel lblAimc = new JLabel("Aim4C++");
 		lblAimc.setFont(new Font("Cambria", Font.BOLD, 14));
 		lblAimc.setBounds(655, 398, 64, 20);
@@ -131,6 +139,7 @@ public class MuleGamePanel extends JPanel {
 		screen2.setBackground(Color.WHITE);
 		screen2.setBorder(new LineBorder(new Color(0, 0, 0), 5));
 		screen2.setLayout(null);
+		add(screen2);
 		
 		JComboBox comboBox_3 = new JComboBox();
 		comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"Human", "Flapper", "Bonzoid", "Ugaite", "Buzzite"}));
@@ -162,6 +171,31 @@ public class MuleGamePanel extends JPanel {
 		btnSelectColor1 = new JButton("Select Color");
 		btnSelectColor1.setBounds(288, 352, 122, 23);
 		screen2.add(btnSelectColor1);
+		
+		btnSelectColor1.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				JColorChooser clr = new JColorChooser();
+				Color color = clr.showDialog(screen2, "Pick a Color", Color.black);
+				
+				 if (color != null) {
+					 
+				      colorPanel1.setBackground(color);
+				 }
+			}
+		});
+		
+		colorPanel2 = new JPanel();
+		colorPanel2.setBorder(new LineBorder(new Color(0, 0, 0), 5));
+		colorPanel2.setBounds(420, 416, 30, 30);
+		colorPanel2.setBackground(Color.WHITE);
+		screen2.add(colorPanel2);
+		colorPanel2.setLayout(null);
+		
+		btnSelectColor2 = new JButton("Select Color");
+		btnSelectColor2.setBounds(288, 421, 122, 23);
+		screen2.add(btnSelectColor2);
 		
 		btnSelectColor2.addActionListener(new ActionListener() {
 			
@@ -215,7 +249,14 @@ public class MuleGamePanel extends JPanel {
 		
 		startGame = new JButton("Start Game");
 		startGame.setBounds(550, 421, 122, 23);
-		screen2.add(startGame);	    		
+		screen2.add(startGame);	    
+		
+		startGame.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	        	
+	        	screen3();
+	        }
+		});
 	}
 	
 	public void screen3() {
@@ -225,24 +266,7 @@ public class MuleGamePanel extends JPanel {
 		screen3.setBackground(Color.WHITE);
 		screen3.setBorder(new LineBorder(new Color(0, 0, 0), 5));
 		screen3.setLayout(null);
-	}
-	
-	public void controller() {
+		add(screen3);
 		
-		screen1();
-		
-		btnContinue.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent e) {
-	        	
-	        	screen2();
-	        }
-		});
-		
-		startGame.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent e) {
-	        	
-	        	screen3();
-	        }
-		});
 	}
 }
