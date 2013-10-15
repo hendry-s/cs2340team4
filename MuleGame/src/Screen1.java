@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-public class MuleGamePanel extends JPanel {
+public class Screen1 extends JPanel {
 
 	private JPanel panel1;
 	private JPanel panel2;
@@ -23,7 +23,7 @@ public class MuleGamePanel extends JPanel {
 	private JButton btnContinue;
 	private Screen2 sc2;
 	
-	public MuleGamePanel() {
+	public Screen1() {
 
 		setBackground(Color.WHITE);
 		setBorder(new LineBorder(new Color(0, 0, 0), 5));
@@ -96,7 +96,7 @@ public class MuleGamePanel extends JPanel {
 		JLabel label = new JLabel("");
 		label.setBackground(Color.WHITE);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setIcon(new ImageIcon(MuleGamePanel.class.getResource("/MULEIMAGE/resources/Mule.jpg")));
+		label.setIcon(new ImageIcon(Screen1.class.getResource("/MULEIMAGE/resources/Mule.jpg")));
 		label.setBounds(215, 11, 345, 308);
 		panel2.add(label);
 		

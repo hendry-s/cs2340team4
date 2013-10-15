@@ -9,7 +9,7 @@ public class MuleGame {
 
 	private static JFrame frame;
 	private static Screen2 sc2;
-	private static MuleGamePanel mgp;
+	private static Screen1 mgp;
 	private static Screen3 sc3;
 	
 	public static void main(String[] args) {
@@ -17,7 +17,7 @@ public class MuleGame {
 		frame = new JFrame("Aim4C++ MULE GAME");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		mgp = new MuleGamePanel();
+		mgp = new Screen1();
 		sc2 = new Screen2();
 		sc3 = new Screen3();
 
