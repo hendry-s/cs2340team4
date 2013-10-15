@@ -8,8 +8,9 @@ import javax.swing.JFrame;
 public class MuleGame {
 
 	private static JFrame frame;
-	static Screen2 sc2;
-	static MuleGamePanel mgp;
+	private static Screen2 sc2;
+	private static MuleGamePanel mgp;
+	private static Screen3 sc3;
 	
 	public static void main(String[] args) {
 		
@@ -17,6 +18,9 @@ public class MuleGame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		mgp = new MuleGamePanel();
+		sc2 = new Screen2();
+		sc3 = new Screen3();
+
 		frame.add(mgp);
 		
 		mgp.getButton().addActionListener(new ActionListener() {
@@ -26,8 +30,18 @@ public class MuleGame {
 				mgp.setVisible(false);
 				frame.remove(mgp);
 				
-				sc2 = new Screen2();
 				frame.add(sc2);
+			}
+		});
+		
+		sc2.getButton().addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				
+				sc2.setVisible(false);
+				frame.remove(sc2);
+				
+				frame.add(sc3);
 			}
 		});
 		
