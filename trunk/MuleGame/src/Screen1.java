@@ -1,8 +1,11 @@
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -10,7 +13,10 @@ import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.ListCellRenderer;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
@@ -71,27 +77,75 @@ public class Screen1 extends JPanel {
 		lblSelectNumberOf.setBounds(30, 329, 308, 62);
 		panel2.add(lblSelectNumberOf);
 		
-		
-		JComboBox comboBox_0 = new JComboBox();
+		final JComboBox comboBox_0 = new JComboBox();
 		comboBox_0.setToolTipText("");
 		comboBox_0.setModel(new DefaultComboBoxModel(new String[] {"Beginner", "Standard", "Tournament"}));
 		comboBox_0.setSelectedIndex(0);
 		comboBox_0.setBounds(138, 201, 98, 20);
 		panel2.add(comboBox_0);
 		
-		JComboBox comboBox_1 = new JComboBox();
+		comboBox_0.addItemListener(new ItemListener() {
+        
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+
+		    	if (e.getStateChange() == ItemEvent.SELECTED) {
+		    		
+		    		comboBox_0.setSelectedIndex(0);
+		    		JOptionPane.showMessageDialog(comboBox_0,
+		    			    "You can only select Beginner level type!",
+		    			    "Error",
+		    			    JOptionPane.ERROR_MESSAGE);
+		    	}
+			}
+		});
+		
+		
+		final JComboBox comboBox_1 = new JComboBox();
 		comboBox_1.setToolTipText("");
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Beginner Map", "Standard Map", "Tournament Map"}));
 		comboBox_1.setSelectedIndex(0);
 		comboBox_1.setBounds(138, 272, 129, 20);
 		panel2.add(comboBox_1);
 		
-		JComboBox comboBox_2 = new JComboBox();
+		comboBox_1.addItemListener(new ItemListener() {
+	        
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				
+		    	if (e.getStateChange() == ItemEvent.SELECTED) {
+		    		
+		    		comboBox_1.setSelectedIndex(0);
+		    		JOptionPane.showMessageDialog(comboBox_1,
+		    			    "You can only select Beginner Map type!",
+		    			    "Error",
+		    			    JOptionPane.ERROR_MESSAGE);
+		    	}
+			}
+		});
+		
+		final JComboBox comboBox_2 = new JComboBox();
 		comboBox_2.setToolTipText("");
 		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"2", "3", "4"}));
 		comboBox_2.setSelectedIndex(0);
 		comboBox_2.setBounds(348, 347, 40, 20);
 		panel2.add(comboBox_2);
+		
+		comboBox_2.addItemListener(new ItemListener() {
+	        
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+
+		    	if (e.getStateChange() == ItemEvent.SELECTED) {
+		    		
+		    		comboBox_2.setSelectedIndex(0);
+		    		JOptionPane.showMessageDialog(comboBox_2,
+		    			    "You can only select 2 players!",
+		    			    "Error",
+		    			    JOptionPane.ERROR_MESSAGE);
+		    	}
+			}
+		});
 		
 		JLabel label = new JLabel("");
 		label.setBackground(Color.WHITE);

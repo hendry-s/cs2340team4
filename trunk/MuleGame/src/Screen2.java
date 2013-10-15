@@ -9,6 +9,7 @@ import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 public class Screen2 extends JPanel {
@@ -32,20 +33,18 @@ public class Screen2 extends JPanel {
 		comboBox_3.setBounds(290, 214, 89, 20);
 		add(comboBox_3);
 
-		JComboBox comboBox_4 = new JComboBox();
-		comboBox_4.setModel(new DefaultComboBoxModel(new String[] {"Player 1", "Player 2"}));
-		comboBox_4.setBounds(290, 77, 89, 20);
-		add(comboBox_4);
+		JTextField field1 = new JTextField(20);
+		field1.setBounds(290, 77, 89, 20);
+		add(field1);
 
 		JComboBox comboBox_5 = new JComboBox();
 		comboBox_5.setModel(new DefaultComboBoxModel(new String[] {"Human", "Flapper", "Bonzoid", "Ugaite", "Buzzite"}));
 		comboBox_5.setBounds(290, 283, 89, 20);
 		add(comboBox_5);
 
-		JComboBox comboBox_6 = new JComboBox();
-		comboBox_6.setModel(new DefaultComboBoxModel(new String[] {"Player 1", "Player 2"}));
-		comboBox_6.setBounds(290, 145, 89, 20);
-		add(comboBox_6);
+		JTextField field2 = new JTextField(20);
+		field2.setBounds(290, 145, 89, 20);
+		add(field2);
 
 		colorPanel1 = new JPanel();
 		colorPanel1.setBorder(new LineBorder(new Color(0, 0, 0), 5));
