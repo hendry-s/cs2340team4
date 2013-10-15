@@ -140,8 +140,13 @@ public class Screen2 extends JPanel {
 		startGame.addActionListener(new ActionListener() {	
 			public void actionPerformed(ActionEvent e) {
 
-
+				
 			}
 		});
+	}
+	
+	public JButton getButton() {
+		
+		return startGame;
 	}
 }
