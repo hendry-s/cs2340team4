@@ -1,3 +1,4 @@
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -102,15 +103,10 @@ public class MuleGamePanel extends JPanel {
 		btnContinue = new JButton("Continue");
 		btnContinue.setBounds(435, 347, 89, 23);
 		panel2.add(btnContinue);
+	}	
+	
+	public JButton getButton() {
 		
-		btnContinue.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-		        
-				setVisible(false);
-				sc2 = new Screen2();
-				sc2.setVisible(true);
-				revalidate();
-			}
-		});
-	}		
+		return btnContinue;
+	}
 }
