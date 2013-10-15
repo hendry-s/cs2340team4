@@ -103,6 +103,11 @@ public class Screen1 extends JPanel {
 		btnContinue = new JButton("Continue");
 		btnContinue.setBounds(435, 347, 89, 23);
 		panel2.add(btnContinue);
+		
+		JLabel lblAimc = new JLabel("Aim4C++");
+		lblAimc.setFont(new Font("Cambria", Font.BOLD, 14));
+		lblAimc.setBounds(655, 398, 64, 20);
+		panel2.add(lblAimc);
 	}	
 	
 	public JButton getButton() {
