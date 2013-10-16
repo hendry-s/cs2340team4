@@ -4,8 +4,6 @@ import gfx.Auction;
 import gfx.Map;
 import gfx.Town;
 
-import java.awt.event.KeyEvent;
-
 public class Player extends Character {
 
 	private String name;
@@ -21,6 +19,7 @@ public class Player extends Character {
 	private Auction auction;
 	
 	public Player(int x, int y, Map map, Town town, Auction auction) {
+		
 		super.x = x;
 		super.y = y;
 		super.map = map;
