@@ -1,10 +1,33 @@
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
+import turn.Turn;
+import gfx.ImageManager;
+import gfx.ImageLoader;
+import entities.Player;
 
-public class Screen3 extends JPanel {
-
+public class Screen3 extends JPanel implements Runnable {
+	
+//    static final Dimension dim = new Dimension(Width,Height);
+//	Map nm;
+	
+	
+	public static final int WIDTH = 767, HEIGHT = 521, SCALE=1;
+	public static boolean running = false;
+	public Thread gameThread;
+	private Turn t1; // to add up to t8
+	private int turnCount = 0;
+	
+	private ImageManager im;
+	
+	private static Player player1, player2;
+	
+/*
 	public Screen3() {
 		
 		setBounds(0, 0, 767, 521);
@@ -13,4 +36,56 @@ public class Screen3 extends JPanel {
 		setLayout(null);
 		setVisible(true);
 	}
+*/
+	
+	public void init() {
+		ImageLoader loader = new ImageLoader();
+		
+		im = new ImageManager(ss);
+		
+		player = new Player(0,0,im);
+		
+		this.addKeyListener(new KeyManager());
+	}
+	
+	@Override
+	public void run() {
+		init();
+		long lastTime = System.nanoTime();
+		final double amountOfTicks = 60D; // tick per second
+		double ns = 1000000000 / amountOfTicks;
+		double delta = 0;
+		
+		while(running){
+			long now = System.nanoTime();
+			delta += (now-lastTime) / ns;
+			lastTime = now;
+			if(delta >= 1) {
+				tick();
+				delta--;
+			}
+			render();
+		}
+		stop();
+	}
+
+	
+	private void tick() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	private void render() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+	
+	private void stop() {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }
