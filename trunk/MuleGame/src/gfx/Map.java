@@ -1,16 +1,14 @@
 package gfx;
 
-import java.awt.Graphics;
-import java.awt.Image;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
+
+
 
 public class Map
 {
+	ImageManager im = new ImageManager();
 	
 	private enum Tile {
 		P, R, M1, M2, M3, T
@@ -26,6 +24,9 @@ public class Map
     private Tile[][] tileMap;
     private final int COL = 9;
     private final int ROW = 5;
+    private final int MAPULX = 24; /* X-coordinate of upper left corner of MAP*/
+    private final int MAPULY = 60; /* Y-coordinate of upper left corner of MAP*/
+    private final int TILESIZE = 80;
 
     
     public Map() {
@@ -38,24 +39,23 @@ public class Map
     	};
     }
 
-
-    
-/*    
-    public void draw(Graphics g)
-        {
-            int ix=0;
-            int iy=0;
-            for(int row=0;row<height;row++)
-            {
-                for(int col=0;col<height;col++)
-                {
-                    if(tileMap[row][col]==0)
-                    {
-                         g.drawImage(BLOCK, ix, iy, null);
-                         ix=ix+16;
-                    }
-                }
-            }
-        }
-*/
+	public void render(Graphics g) throws IOException {
+		
+		int r, c;
+		BufferedImage currTile = null;
+		
+		for (r=0; r<ROW; r++) {
+			for (c=0; c<COL; c++) {
+				switch (tileMap[r][c]) {
+					case M1: currTile = im.getM1TileImage(); break;
+					case M2: currTile = im.getM2TileImage(); break;
+					case M3: currTile = im.getM3TileImage(); break;
+					case P:  currTile = im.getPlainTileImage(); break;
+					case R:  currTile = im.getRiverTileImage(); break;
+					case T:  currTile = im.getTownTileImage(); break;
+				}
+				g.drawImage(currTile, MAPULX+c*TILESIZE, MAPULY+r*TILESIZE, TILESIZE, TILESIZE, null);
+			}
+		}
+	}
 }
