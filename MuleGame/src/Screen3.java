@@ -11,23 +11,10 @@ import gfx.ImageManager;
 import gfx.ImageLoader;
 import entities.Player;
 
-public class Screen3 extends JPanel implements Runnable {
+import gfx.Map;
+
+public class Screen3 extends JPanel {
 	
-//    static final Dimension dim = new Dimension(Width,Height);
-//	Map nm;
-	
-	
-	public static final int WIDTH = 767, HEIGHT = 521, SCALE=1;
-	public static boolean running = false;
-	public Thread gameThread;
-	private Turn t1; // to add up to t8
-	private int turnCount = 0;
-	
-	private ImageManager im;
-	
-	private static Player player1, player2;
-	
-/*
 	public Screen3() {
 		
 		setBounds(0, 0, 767, 521);
@@ -36,8 +23,24 @@ public class Screen3 extends JPanel implements Runnable {
 		setLayout(null);
 		setVisible(true);
 	}
-*/
 	
+	
+//    static final Dimension dim = new Dimension(Width,Height);
+//	Map nm;
+	
+	
+//	public static final int WIDTH = 767, HEIGHT = 521, SCALE=1;
+//	public static boolean running = false;
+//	public Thread gameThread;
+//	private Turn t1; // to add up to t8
+//	private int turnCount = 0;
+	
+//	private ImageManager im;
+	
+//	private static Player player1, player2;
+	
+
+/*	
 	public void init() {
 		ImageLoader loader = new ImageLoader();
 		
@@ -87,5 +90,7 @@ public class Screen3 extends JPanel implements Runnable {
 		// TODO Auto-generated method stub
 		
 	}
+	*/
+	
 	
 }
