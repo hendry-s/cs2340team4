@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
+import entities.Player;
+
 public class Screen2 extends JPanel {
 	
 	private JPanel colorPanel1;
@@ -19,6 +21,14 @@ public class Screen2 extends JPanel {
 	private JButton btnSelectColor1;
 	private JButton btnSelectColor2;
 	private JButton startGame;
+	private Player p1;
+	private Player p2;
+	private JTextField field1;
+	private JTextField field2;
+	private Color color1;
+	private Color color2;
+	private JComboBox comboBox_1;
+	private JComboBox comboBox_2;
 
 	public Screen2() {
 		
@@ -28,21 +38,21 @@ public class Screen2 extends JPanel {
 		setLayout(null);
 		setVisible(true);
 
-		JComboBox comboBox_3 = new JComboBox();
-		comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"Human", "Flapper", "Bonzoid", "Ugaite", "Buzzite"}));
-		comboBox_3.setBounds(290, 214, 89, 20);
-		add(comboBox_3);
+		comboBox_1 = new JComboBox();
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Human", "Flapper", "Bonzoid", "Ugaite", "Buzzite"}));
+		comboBox_1.setBounds(290, 214, 89, 20);
+		add(comboBox_1);
 
-		JTextField field1 = new JTextField(20);
+		field1 = new JTextField(20);
 		field1.setBounds(290, 77, 89, 20);
 		add(field1);
 
-		JComboBox comboBox_5 = new JComboBox();
-		comboBox_5.setModel(new DefaultComboBoxModel(new String[] {"Human", "Flapper", "Bonzoid", "Ugaite", "Buzzite"}));
-		comboBox_5.setBounds(290, 283, 89, 20);
-		add(comboBox_5);
+		comboBox_2 = new JComboBox();
+		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"Human", "Flapper", "Bonzoid", "Ugaite", "Buzzite"}));
+		comboBox_2.setBounds(290, 283, 89, 20);
+		add(comboBox_2);
 
-		JTextField field2 = new JTextField(20);
+		field2 = new JTextField(20);
 		field2.setBounds(290, 145, 89, 20);
 		add(field2);
 
@@ -62,11 +72,11 @@ public class Screen2 extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				JColorChooser clr = new JColorChooser();
-				Color color = clr.showDialog(colorPanel1, "Pick a Color", Color.black);
+				color1 = clr.showDialog(colorPanel1, "Pick a Color", Color.black);
 
-				if (color != null) {
+				if (color1 != null) {
 
-					colorPanel1.setBackground(color);
+					colorPanel1.setBackground(color1);
 				}
 			}
 		});
@@ -87,11 +97,11 @@ public class Screen2 extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				JColorChooser clr = new JColorChooser();
-				Color color = clr.showDialog(colorPanel2, "Pick a Color", Color.black);
+				color2 = clr.showDialog(colorPanel2, "Pick a Color", Color.black);
 
-				if (color != null) {
+				if (color2 != null) {
 
-					colorPanel2.setBackground(color);
+					colorPanel2.setBackground(color2);
 				}
 			}
 		});
@@ -139,8 +149,14 @@ public class Screen2 extends JPanel {
 		startGame.addActionListener(new ActionListener() {	
 			public void actionPerformed(ActionEvent e) {
 
+				p1 = new Player(field1.getText(), color1, comboBox_1.getSelectedItem().toString());
+				p2 = new Player(field2.getText(), color2, comboBox_2.getSelectedItem().toString());
 				
+//				System.out.print(p1.getName() + p1.getColor() + p1.getRace());
+//				System.out.print(p2.getName() + p2.getColor() + p2.getRace());
+
 			}
+			
 		});
 	}
 	
