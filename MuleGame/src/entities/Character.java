@@ -27,7 +27,7 @@ public class Character implements KeyListener {
 	}
 	
 	public void render(Graphics g) {
-
+		
 	}
 	
 	@Override
