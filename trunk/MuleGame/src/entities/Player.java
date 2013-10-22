@@ -1,5 +1,7 @@
 package entities;
 
+import java.awt.Color;
+
 import gfx.Auction;
 import gfx.Map;
 import gfx.Town;
@@ -7,7 +9,7 @@ import gfx.Town;
 public class Player extends Character {
 
 	private String name;
-//	private Color color;
+	private Color color;
 	
 	private int money;
 	private int energy;
@@ -18,13 +20,15 @@ public class Player extends Character {
 	
 	private Auction auction;
 	
-	public Player(int x, int y, Map map, Town town, Auction auction) {
+	public Player(String name, Color color, int x, int y, Map map, Town town, Auction auction) {
 		
 		super.x = x;
 		super.y = y;
 		super.map = map;
 		super.town = town;
 		this.auction = auction;
+		this.name = name;
+		this.color = color;
 	}
 	
 }
