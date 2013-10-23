@@ -13,12 +13,12 @@ public class M2Tile extends Tile {
 		// TODO Auto-generated method stub
 		
 	}
-
+/*
 	@Override
 	public void render(Graphics g) {
 		g.drawImage(im.getM2TileImage(), x, y, null);
 	}
-	
+*/	
 	public void setCoord(int x, int y) {
 		
 		super.x = x;
