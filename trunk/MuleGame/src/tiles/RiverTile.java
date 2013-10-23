@@ -3,7 +3,7 @@ package tiles;
 import java.awt.Graphics;
 
 public class RiverTile extends Tile {
-
+	
 	public RiverTile() {
 		
 	}
@@ -16,7 +16,14 @@ public class RiverTile extends Tile {
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(im.getRiverTileImage(), x, y, null);
+		
+		g.drawImage(, x, y, null);
+	}
+	
+	public void setCoord(int x, int y) {
+		
+		super.x = x;
+		super.y = y;
 	}
 
 }

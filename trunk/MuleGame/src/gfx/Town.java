@@ -1,7 +1,5 @@
 package gfx;
 
-import java.awt.image.BufferedImage;
-
 public class Town {
 	private BufferedImage town;
 	
