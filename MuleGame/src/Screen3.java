@@ -19,6 +19,8 @@ public class Screen3 extends Canvas implements Runnable {
 	
 	public static boolean running = false;
 	public Thread gameThread;
+	private Player p1;
+	private Player p2;
 	
 	private Map map;
 	
@@ -100,6 +102,12 @@ public class Screen3 extends Canvas implements Runnable {
 		bs.show();
 	}
 	
+	
+	public void setPlayers(Player p1, Player p2)
+	{
+		this.p1 = p1;
+		this.p2 = p2;
+	}
 	
 	
 	

@@ -41,6 +41,8 @@ public class MuleGame {
 				sc2.setVisible(false);
 				frame.remove(sc2);
 				
+				sc3.setPlayers(sc2.getPlayer1(), sc2.getPlayer2());
+				
 				frame.add(sc3);
 			}
 		});

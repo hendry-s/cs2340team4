@@ -160,6 +160,16 @@ public class Screen2 extends JPanel {
 		});
 	}
 	
+	public Player getPlayer1()
+	{
+		return p1;
+	}
+	
+	public Player getPlayer2()
+	{
+		return p2;
+	}
+
 	public JButton getButton() {
 		
 		return startGame;
