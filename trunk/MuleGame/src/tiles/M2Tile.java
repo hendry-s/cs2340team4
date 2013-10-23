@@ -2,13 +2,10 @@ package tiles;
 
 import java.awt.Graphics;
 
-import gfx.ImageManager;
-
 public class M2Tile extends Tile {
 
-	public M2Tile(ImageManager im) {
-		super(im);
-		// TODO Auto-generated constructor stub
+	public M2Tile() {
+		
 	}
 
 	@Override

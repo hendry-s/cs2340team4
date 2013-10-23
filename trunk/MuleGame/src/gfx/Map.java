@@ -8,18 +8,8 @@ import java.io.IOException;
 
 public class Map
 {
-	ImageManager im = new ImageManager();
 	
-	private enum Tile {
-		P, R, M1, M2, M3, T
-		/*	P = Plain
-		 	R = River
-		 	M1 = Mountain 1
-		 	M2 = Mountain 2
-		 	M3 = Mountain 3
-		 	T = Town
-		 */
-	}
+	private char P, R, M1, M2, M3, T;
 
     private Tile[][] tileMap;
     private final int COL = 9;

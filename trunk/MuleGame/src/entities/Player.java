@@ -58,7 +58,8 @@ public class Player extends Character {
 		return color;
 	}
 	
-	public String getRace(){
+	public String getRace() {
+		
 		return race;
 	}
 }

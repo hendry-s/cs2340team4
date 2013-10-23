@@ -2,13 +2,10 @@ package tiles;
 
 import java.awt.Graphics;
 
-import gfx.ImageManager;
-
 public class PlainTile extends Tile {
 
-	public PlainTile(ImageManager im) {
-		super(im);
-		// TODO Auto-generated constructor stub
+	public PlainTile() {
+		
 	}
 
 	@Override
