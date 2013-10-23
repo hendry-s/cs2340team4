@@ -19,4 +19,9 @@ public class M3Tile extends Tile {
 		g.drawImage(im.getM3TileImage(), x, y, null);
 	}
 
+	public void setCoord(int x, int y) {
+		
+		super.x = x;
+		super.y = y;
+	}
 }

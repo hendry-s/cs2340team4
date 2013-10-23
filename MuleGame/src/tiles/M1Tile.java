@@ -19,5 +19,11 @@ public class M1Tile extends Tile implements Purchasable {
 		g.drawImage(im.getM1TileImage(), x, y, null);
 		
 	}
+	
+	public void setCoord(int x, int y) {
+		
+		super.x = x;
+		super.y = y;
+	}
 
 }
