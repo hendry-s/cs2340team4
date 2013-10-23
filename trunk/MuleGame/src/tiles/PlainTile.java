@@ -15,12 +15,13 @@ public class PlainTile extends Tile {
 		
 	}
 
+	/*
 	@Override
 	public void render(Graphics g) {
 		
 		g.drawImage(im.getPlainTileImage(), x, y, null);
 	}
-	
+	*/
 	public void setCoord(int x, int y) {
 		
 		super.x = x;

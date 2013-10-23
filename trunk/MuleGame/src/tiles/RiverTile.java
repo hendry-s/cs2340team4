@@ -14,11 +14,13 @@ public class RiverTile extends Tile {
 		
 	}
 
+	/*
 	@Override
 	public void render(Graphics g) {
 		
 		g.drawImage(, x, y, null);
 	}
+	*/
 	
 	public void setCoord(int x, int y) {
 		

@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 import tiles.M1Tile;
@@ -59,7 +61,10 @@ public class Map
 					case 4:  currTile = new ImageIcon(getClass().getClassLoader().getResource("**res/icon_plain.png**")); break;
 					case 5:  currTile = new ImageIcon(getClass().getClassLoader().getResource("**res/icon_river.png**")); break;
 				}
-				g.drawImage(currTile, MAPULX+c*TILESIZE, MAPULY+r*TILESIZE, TILESIZE, TILESIZE, null);
+				
+				
+				//g.drawImage(currTile, MAPULX+c*TILESIZE, MAPULY+r*TILESIZE, TILESIZE, TILESIZE, null);
+				currTile.paintIcon(arg0, arg1, arg2, arg3);
 			}
 		}
 	}

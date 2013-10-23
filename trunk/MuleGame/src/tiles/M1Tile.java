@@ -1,6 +1,7 @@
 package tiles;
 
 import java.awt.Graphics;
+import java.awt.Image;
 
 public class M1Tile extends Tile implements Purchasable {
 
@@ -14,11 +15,13 @@ public class M1Tile extends Tile implements Purchasable {
 		
 	}
 
+	/*
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(im.getM1TileImage(), x, y, null);
 		
+		g.drawImage(, x, y, null);
 	}
+	*/
 	
 	public void setCoord(int x, int y) {
 		
