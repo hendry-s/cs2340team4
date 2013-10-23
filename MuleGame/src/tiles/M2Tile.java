@@ -5,7 +5,7 @@ import java.awt.Graphics;
 public class M2Tile extends Tile {
 
 	public M2Tile() {
-		
+		key = 2;
 	}
 
 	@Override
