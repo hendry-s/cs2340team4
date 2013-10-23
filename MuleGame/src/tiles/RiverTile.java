@@ -2,13 +2,10 @@ package tiles;
 
 import java.awt.Graphics;
 
-import gfx.ImageManager;
-
 public class RiverTile extends Tile {
 
-	public RiverTile(ImageManager im) {
-		super(im);
-		// TODO Auto-generated constructor stub
+	public RiverTile() {
+		
 	}
 
 	@Override
