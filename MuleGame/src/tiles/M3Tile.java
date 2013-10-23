@@ -5,7 +5,7 @@ import java.awt.Graphics;
 public class M3Tile extends Tile {
 
 	public M3Tile() {
-		key = 3;
+		
 	}
 
 	@Override
@@ -23,5 +23,11 @@ public class M3Tile extends Tile {
 		
 		super.x = x;
 		super.y = y;
+	}
+
+	@Override
+	public void render(Graphics g) {
+		// TODO Auto-generated method stub
+		
 	}
 }

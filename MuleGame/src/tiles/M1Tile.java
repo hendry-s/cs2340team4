@@ -6,7 +6,7 @@ import java.awt.Image;
 public class M1Tile extends Tile implements Purchasable {
 
 	public M1Tile() {
-		key = 1;
+		
 	}
 
 	@Override
@@ -27,6 +27,12 @@ public class M1Tile extends Tile implements Purchasable {
 		
 		super.x = x;
 		super.y = y;
+	}
+
+	@Override
+	public void render(Graphics g) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
