@@ -47,24 +47,40 @@ public class Map
     	};
     }
 
-	public void render(Graphics g) throws IOException {
+	public void render(Graphics g) {
 		
 		int r, c;
-		ImageIcon currTile = null;
+		Image currTile = null;
 		
 		for (r = 0; r < ROW; r++) {
 			for (c = 0; c < COL; c++) {
-				switch (tileMap[r][c].getKey()) {
-					case 1: currTile = new ImageIcon(getClass().getClassLoader().getResource("**res/icon_mountain1.png**")); break;
-					case 2: currTile = new ImageIcon(getClass().getClassLoader().getResource("**res/icon_mountain2.png**")); break;
-					case 3: new ImageIcon(getClass().getClassLoader().getResource("**res/icon_mountain3.png**")); break;
-					case 4:  currTile = new ImageIcon(getClass().getClassLoader().getResource("**res/icon_plain.png**")); break;
-					case 5:  currTile = new ImageIcon(getClass().getClassLoader().getResource("**res/icon_river.png**")); break;
-				}
 				
+				    if(tileMap[r][c] == M1) {
+				    	
+				    	currTile = new ImageIcon("/icon_mountain1.png").getImage();
+				    }
+				    
+				    if(tileMap[r][c] == M2) {
+				    	
+				    	currTile = new ImageIcon("/icon_mountain2.png").getImage();
+				    }
+				    
+				    if(tileMap[r][c] == M3) {
+				    	
+				    	currTile = new ImageIcon("/icon_mountain3.png").getImage();
+				    }
+				    
+				    if(tileMap[r][c] == P) {
+				    	
+				    	currTile = new ImageIcon("/icon_plain.png").getImage();
+				    }
+				    
+				    if(tileMap[r][c] == R) {
+				    	
+				    	currTile = new ImageIcon("/icon_river.png").getImage();
+				    }
 				
 				//g.drawImage(currTile, MAPULX+c*TILESIZE, MAPULY+r*TILESIZE, TILESIZE, TILESIZE, null);
-				currTile.paintIcon(arg0, arg1, arg2, arg3);
 			}
 		}
 	}

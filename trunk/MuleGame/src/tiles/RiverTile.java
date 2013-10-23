@@ -5,7 +5,7 @@ import java.awt.Graphics;
 public class RiverTile extends Tile {
 	
 	public RiverTile() {
-		key = 5;
+		
 	}
 
 	@Override
@@ -26,6 +26,12 @@ public class RiverTile extends Tile {
 		
 		super.x = x;
 		super.y = y;
+	}
+
+	@Override
+	public void render(Graphics g) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

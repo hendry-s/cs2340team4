@@ -6,7 +6,7 @@ public class PlainTile extends Tile {
 
 	public PlainTile() {
 		
-		key = 4;
+		
 	}
 
 	@Override
@@ -26,6 +26,12 @@ public class PlainTile extends Tile {
 		
 		super.x = x;
 		super.y = y;
+	}
+
+	@Override
+	public void render(Graphics g) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -2,6 +2,7 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.image.BufferStrategy;
 import java.io.IOException;
@@ -16,7 +17,6 @@ import gfx.Map;
 public class Screen3 extends JPanel {
 	
 	public static boolean running = false;
-	public Thread gameThread;
 	private Player p1;
 	private Player p2;
 	
@@ -30,6 +30,13 @@ public class Screen3 extends JPanel {
 		setLayout(null);
 		setVisible(true);
 		
+		JPanel gridPanel = new JPanel();
+		gridPanel.setBounds(15, 10, 744, 460);
+		gridPanel.setBackground(Color.WHITE);
+		gridPanel.setLayout(new GridLayout());
+		
+		add(gridPanel);
+		//map = new Map();
 	}
 
 	public void render() throws IOException {
@@ -37,7 +44,11 @@ public class Screen3 extends JPanel {
 		
 	}
 	
-	
+/*	public void paintComponent(Graphics g) {
+		
+		map.render(g);
+	}
+*/	
 	public void setPlayers(Player p1, Player p2)
 	{
 		this.p1 = p1;
