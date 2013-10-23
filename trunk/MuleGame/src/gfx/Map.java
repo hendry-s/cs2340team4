@@ -52,12 +52,12 @@ public class Map
 		
 		for (r = 0; r < ROW; r++) {
 			for (c = 0; c < COL; c++) {
-				switch (tileMap[r][c]) {
-					case M1: currTile = new ImageIcon(getClass().getClassLoader().getResource("**res/icon_mountain1.png**")); break;
-					case M2: currTile = new ImageIcon(getClass().getClassLoader().getResource("**res/icon_mountain2.png**")); break;
-					case M3: new ImageIcon(getClass().getClassLoader().getResource("**res/icon_mountain3.png**")); break;
-					case P:  currTile = new ImageIcon(getClass().getClassLoader().getResource("**res/icon_plain.png**")); break;
-					case R:  currTile = new ImageIcon(getClass().getClassLoader().getResource("**res/icon_river.png**")); break;
+				switch (tileMap[r][c].getKey()) {
+					case 1: currTile = new ImageIcon(getClass().getClassLoader().getResource("**res/icon_mountain1.png**")); break;
+					case 2: currTile = new ImageIcon(getClass().getClassLoader().getResource("**res/icon_mountain2.png**")); break;
+					case 3: new ImageIcon(getClass().getClassLoader().getResource("**res/icon_mountain3.png**")); break;
+					case 4:  currTile = new ImageIcon(getClass().getClassLoader().getResource("**res/icon_plain.png**")); break;
+					case 5:  currTile = new ImageIcon(getClass().getClassLoader().getResource("**res/icon_river.png**")); break;
 				}
 				g.drawImage(currTile, MAPULX+c*TILESIZE, MAPULY+r*TILESIZE, TILESIZE, TILESIZE, null);
 			}

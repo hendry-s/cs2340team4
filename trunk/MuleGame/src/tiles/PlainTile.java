@@ -6,7 +6,7 @@ public class PlainTile extends Tile {
 
 	public PlainTile() {
 		
-		
+		key = 4;
 	}
 
 	@Override

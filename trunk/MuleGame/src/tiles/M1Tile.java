@@ -5,7 +5,7 @@ import java.awt.Graphics;
 public class M1Tile extends Tile implements Purchasable {
 
 	public M1Tile() {
-		
+		key = 1;
 	}
 
 	@Override
