@@ -8,11 +8,11 @@ public class Ugaite extends Player {
 		super(name, color, race);
 
 		money = 1000;
-		energy = ;
-		food;
-		private int ore;
-		private boolean hasMuleInMap;
-		private boolean hasEmptyLand;
+		energy = 4;	// beginner default
+		food = 8;	// beginner default
+		ore = 0;	// beginner default
+		hasMuleInMap = false;
+		hasEmptyLand = true;
 	}
 
 }
