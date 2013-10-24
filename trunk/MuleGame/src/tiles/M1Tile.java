@@ -1,7 +1,5 @@
 package tiles;
-
 import java.awt.Graphics;
-import java.awt.Image;
 
 public class M1Tile extends Tile implements Purchasable {
 
