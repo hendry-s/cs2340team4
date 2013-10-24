@@ -9,17 +9,15 @@ import gfx.Town;
 
 public class Player extends Character {
 
-	private String name;
-	private Color color;
-	private String race;
-	private int money;
-	private int energy;
-	private int food;
-	private int ore;
-	private boolean hasMuleInMap;
-	private boolean hasEmptyLand;	
-	
-	private Auction auction;
+	protected String name;
+	protected Color color;
+	protected String race;
+	protected int money;
+	protected int energy;
+	protected int food;
+	protected int ore;
+	protected boolean hasMuleInMap;
+	protected boolean hasEmptyLand;
 	
 	public Player(String name, Color color, String race) {
 		
