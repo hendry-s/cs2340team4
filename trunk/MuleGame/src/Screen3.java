@@ -30,18 +30,12 @@ public class Screen3 extends JPanel {
 		setLayout(null);
 		setVisible(true);
 		
-		JPanel gridPanel = new JPanel();
-		gridPanel.setBounds(15, 10, 744, 460);
-		gridPanel.setBackground(Color.WHITE);
-		gridPanel.setLayout(new GridLayout());
-		
-		add(gridPanel);
-		//map = new Map();
+		map = new Map();
 	}
 
-	public void render() throws IOException {
+	public void render() {
 		
-		
+		add(map.render());
 	}
 	
 /*	public void paintComponent(Graphics g) {
@@ -54,7 +48,6 @@ public class Screen3 extends JPanel {
 		this.p1 = p1;
 		this.p2 = p2;
 	}
-	
 	
 	
 	

@@ -8,8 +8,8 @@ import javax.swing.JFrame;
 public class MuleGame {
 
 	private static JFrame frame;
+	private static Screen1 sc1;
 	private static Screen2 sc2;
-	private static Screen1 mgp;
 	private static Screen3 sc3;
 	
 	public static void main(String[] args) {
@@ -17,18 +17,18 @@ public class MuleGame {
 		frame = new JFrame("Aim4C++ MULE GAME");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		mgp = new Screen1();
+		sc1 = new Screen1();
 		sc2 = new Screen2();
 		sc3 = new Screen3();
 
-		frame.add(mgp);
+		frame.add(sc1);
 		
-		mgp.getButton().addActionListener(new ActionListener() {
+		sc1.getButton().addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				
-				mgp.setVisible(false);
-				frame.remove(mgp);
+				sc1.setVisible(false);
+				frame.remove(sc1);
 				
 				frame.add(sc2);
 			}
@@ -41,8 +41,8 @@ public class MuleGame {
 				sc2.setVisible(false);
 				frame.remove(sc2);
 				
+				sc3.render();
 				sc3.setPlayers(sc2.getPlayer1(), sc2.getPlayer2());
-				
 				frame.add(sc3);
 			}
 		});
