@@ -37,6 +37,7 @@ public class Screen3 extends JPanel {
 		
 		map = new Map();
 		add(map.render());
+//		add(p1.render());
 	}
 	
 /*	public void paintComponent(Graphics g) {
