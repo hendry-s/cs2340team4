@@ -1,5 +1,4 @@
 package gfx;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -16,7 +15,7 @@ import tiles.M3Tile;
 import tiles.PlainTile;
 import tiles.RiverTile;
 import tiles.Tile;
-
+import tiles.TownTile;
 
 public class Map
 {
@@ -26,8 +25,8 @@ public class Map
     private Tile[][] tileMap;
     private final int COL = 9;
     private final int ROW = 5;
-    private final int MAPULX = 15; /* X-coordinate of upper left corner of MAP*/
-    private final int MAPULY = 10; /* Y-coordinate of upper left corner of MAP*/
+    private final int MAPULX = 25; /* X-coordinate of upper left corner of MAP*/
+    private final int MAPULY = 60; /* Y-coordinate of upper left corner of MAP*/
     private final int TILESIZE = 80;
 
     
@@ -38,6 +37,7 @@ public class Map
     	M1 = new M1Tile();
     	M2 = new M2Tile();
     	M3 = new M3Tile();
+    	T = new TownTile();
     	
     	tileMap = new Tile[][] {
     		{M1, P,  P,  P,  R,  P,  P,  M3, P},
@@ -51,9 +51,10 @@ public class Map
 	public JPanel render() {
 		
 		gridPanel = new JPanel();
-		gridPanel.setBounds(MAPULX, MAPULY, 744, 460);
+		gridPanel.setBounds(MAPULX, MAPULY, 724, 404);
 		gridPanel.setBackground(Color.WHITE);
-		gridPanel.setLayout(new GridLayout(ROW, COL));
+		gridPanel.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
 		
 		int r, c;
 		ImageIcon currTile = null;
@@ -61,6 +62,9 @@ public class Map
 		
 		for (r = 0; r < ROW; r++) {
 			for (c = 0; c < COL; c++) {
+				
+				gbc.gridy = r;
+				gbc.gridx = c;
 				
 				    if(tileMap[r][c] == M1) {
 				    	
@@ -80,6 +84,12 @@ public class Map
 				    	label = new JLabel(currTile);
 				    }
 				    
+				    if(tileMap[r][c] == T) {
+				    	
+				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/town.png"));
+				    	label = new JLabel(currTile);
+				    }
+				    
 				    if(tileMap[r][c] == P) {
 				    	
 				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/icon_plain.png"));
@@ -92,7 +102,7 @@ public class Map
 				    	label = new JLabel(currTile);
 				    }
 				    
-				    gridPanel.add(label);
+				    gridPanel.add(label, gbc);
 			}
 		}
 		

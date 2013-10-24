@@ -1,9 +1,8 @@
 package gfx;
+import java.awt.Graphics;
+
+import tiles.Tile;
 
 public class Town {
-	private BufferedImage town;
-	
-	public Town(BufferedImage town) {
-		this.town = town;
-	}
+
 }
