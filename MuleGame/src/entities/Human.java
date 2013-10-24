@@ -6,7 +6,13 @@ public class Human extends Player {
 
 	public Human(String name, Color color, String race) {
 		super(name, color, race);
-		// TODO Auto-generated constructor stub
+		
+		money = 600;
+		energy = 4;	// beginner default
+		food = 8;	// beginner default
+		ore = 0;	// beginner default
+		hasMuleInMap = false;
+		hasEmptyLand = true;
 	}
 
 	
