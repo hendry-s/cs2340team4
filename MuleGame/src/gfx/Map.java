@@ -35,7 +35,8 @@ public class Map
     private final int MAPULX = 25; /* X-coordinate of upper left corner of MAP*/
     private final int MAPULY = 60; /* Y-coordinate of upper left corner of MAP*/
     private final int TILESIZE = 80;
-    private JLabel[][] lArray;
+    private JLabel[] lArray;
+    private int i;
 
     
     public Map() {
@@ -68,6 +69,7 @@ public class Map
 		currTile = null;
 		label = null;
 		border = BorderFactory.createLineBorder(Color.BLUE, 5);;
+		lArray = new JLabel[45];
 		
 		for (r = 0; r < ROW; r++) {
 			for (c = 0; c < COL; c++) {
@@ -80,7 +82,6 @@ public class Map
 				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/icon_mountain1.png"));
 				    	label = new JLabel(currTile);
 				    	label.setPreferredSize(new Dimension(80, 80));
-				    	lArray[r][c].add(label);
 				    }
 				    
 				    else if(tileMap[r][c] == M2) {
@@ -88,7 +89,6 @@ public class Map
 				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/icon_mountain2.png"));
 				    	label = new JLabel(currTile);
 				    	label.setPreferredSize(new Dimension(80, 80));
-				    	lArray[r][c].add(label);
 				    }
 				    
 				    else if(tileMap[r][c] == M3) {
@@ -96,7 +96,6 @@ public class Map
 				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/icon_mountain3.png"));
 				    	label = new JLabel(currTile);
 				    	label.setPreferredSize(new Dimension(80, 80));
-				    	lArray[r][c].add(label);
 				    }
 				    
 				    else if(tileMap[r][c] == T) {
@@ -104,7 +103,6 @@ public class Map
 				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/town.png"));
 				    	label = new JLabel(currTile);
 				    	label.setPreferredSize(new Dimension(80, 80));
-				    	lArray[r][c].add(label);
 				    }
 				    
 				    else if(tileMap[r][c] == P) {
@@ -112,7 +110,6 @@ public class Map
 				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/icon_plain.png"));
 				    	label = new JLabel(currTile);
 				    	label.setPreferredSize(new Dimension(80, 80));
-				    	lArray[r][c].add(label);
 				    }
 				    
 				    else if(tileMap[r][c] == R) {
@@ -120,14 +117,11 @@ public class Map
 				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/icon_river.png"));
 				    	label = new JLabel(currTile);
 				    	label.setPreferredSize(new Dimension(80, 80));
-				    	lArray[r][c].add(label);
 				    }
 				    
 				    gridPanel.add(label, gbc);
 			}
 		}
-		
-		lArray = new JLabel[5][9];
 		
 		return gridPanel;
 	}
@@ -135,13 +129,3 @@ public class Map
 
 
 
-//label.addMouseListener(new MouseAdapter() {
-//	
-//	public void mouseClicked(MouseEvent e) {
-//		
-//		if(e.getComponent() == label) {
-//			
-//			label.setBorder(border);
-//		}
-//	}
-//});
