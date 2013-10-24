@@ -1,6 +1,10 @@
 package entities;
 
+import gfx.Map;
+
 import java.awt.Color;
+
+import javax.swing.ImageIcon;
 
 public class Bonzoid extends Player {
 
@@ -12,6 +16,8 @@ public class Bonzoid extends Player {
 		ore = 0;	// beginner default
 		hasMuleInMap = false;
 		hasEmptyLand = true;
+		
+		icon = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/CharacterIcon_Bonzoid.png"));
 	}
 
 }
