@@ -30,11 +30,12 @@ public class Screen3 extends JPanel {
 		setLayout(null);
 		setVisible(true);
 		
-		map = new Map();
+		
 	}
 
 	public void render() {
 		
+		map = new Map();
 		add(map.render());
 	}
 	
