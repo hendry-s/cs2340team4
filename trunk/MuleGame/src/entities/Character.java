@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.ImageIcon;
+
 import gfx.Map;
 import gfx.Town;
 
@@ -13,6 +15,7 @@ public class Character implements KeyListener {
 	protected Map map;
 	protected Town town;
 
+	protected ImageIcon icon;
 	
 	private boolean up=false, dn=false, lt=false, rt=false;
 	private final int SPEED = 3;
@@ -52,5 +55,8 @@ public class Character implements KeyListener {
 		
 	}
 	
+	public ImageIcon getCharacterIcon() {
+		return icon;
+	}
 	
 }
