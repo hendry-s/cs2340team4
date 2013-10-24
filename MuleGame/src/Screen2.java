@@ -12,7 +12,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
+import entities.Bonzoid;
+import entities.Buzzite;
+import entities.Flapper;
+import entities.Human;
 import entities.Player;
+import entities.Ugaite;
 
 public class Screen2 extends JPanel {
 	
@@ -149,12 +154,58 @@ public class Screen2 extends JPanel {
 		startGame.addActionListener(new ActionListener() {	
 			public void actionPerformed(ActionEvent e) {
 
-				p1 = new Player(field1.getText(), color1, comboBox_1.getSelectedItem().toString());
-				p2 = new Player(field2.getText(), color2, comboBox_2.getSelectedItem().toString());
+				if(comboBox_1.getSelectedItem().toString() == "Human") {
+					
+					p1 = new Human(field1.getText(), color1, comboBox_1.getSelectedItem().toString());
+				}
+				
+				else if(comboBox_1.getSelectedItem().toString() == "Flapper") {
+					
+					p1 = new Flapper(field1.getText(), color1, comboBox_1.getSelectedItem().toString());
+				}
+				
+				else if(comboBox_1.getSelectedItem().toString() == "Ugaite") {
+					
+					p1 = new Ugaite(field1.getText(), color1, comboBox_1.getSelectedItem().toString());
+				}
+				
+				else if(comboBox_1.getSelectedItem().toString() == "Buzzite") {
+					
+					p1 = new Buzzite(field1.getText(), color1, comboBox_1.getSelectedItem().toString());
+				}
+				
+				else if(comboBox_1.getSelectedItem().toString() == "Bonzoid") {
+					
+					p1 = new Bonzoid(field1.getText(), color1, comboBox_1.getSelectedItem().toString());
+				}
+				
+				if(comboBox_2.getSelectedItem().toString() == "Human") {
+					
+					p2 = new Human(field1.getText(), color1, comboBox_2.getSelectedItem().toString());
+				}
+				
+				else if(comboBox_2.getSelectedItem().toString() == "Flapper") {
+					
+					p2 = new Flapper(field1.getText(), color1, comboBox_2.getSelectedItem().toString());
+				}
+				
+				else if(comboBox_2.getSelectedItem().toString() == "Ugaite") {
+					
+					p2 = new Ugaite(field1.getText(), color1, comboBox_2.getSelectedItem().toString());
+				}
+				
+				else if(comboBox_2.getSelectedItem().toString() == "Buzzite") {
+					
+					p2 = new Buzzite(field1.getText(), color1, comboBox_2.getSelectedItem().toString());
+				}
+				
+				else if(comboBox_2.getSelectedItem().toString() == "Bonzoid") {
+					
+					p2 = new Bonzoid(field1.getText(), color1, comboBox_2.getSelectedItem().toString());
+				}
 				
 //				System.out.print(p1.getName() + p1.getColor() + p1.getRace());
 //				System.out.print(p2.getName() + p2.getColor() + p2.getRace());
-
 			}
 			
 		});
