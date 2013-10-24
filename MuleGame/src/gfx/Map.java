@@ -40,21 +40,42 @@ public class Map
 
     
     public Map() {
-    	
-    	P = new PlainTile();
-    	R = new RiverTile();
-    	M1 = new M1Tile();
-    	M2 = new M2Tile();
-    	M3 = new M3Tile();
-    	T = new TownTile();
-    	
-    	tileMap = new Tile[][] {
-    		{P,  P,  M1, P,  R,  P,  M3, P,  P},
-    		{P,  M1, P,  P,  R,  P,  P,  P,  M3},
-    		{M3, P,  P,  P,  T,  P,  P,  P,  M1},
-    		{P,  M2, P,  P,  R,  P,  M2, P,  P},
-    		{P,  P,  M2, P,  R,  P,  P,  P,  M2}
-    	};
+    	tileMap = new Tile[5][9];
+//    	P = new PlainTile();
+//    	R = new RiverTile();
+//    	M1 = new M1Tile();
+//    	M2 = new M2Tile();
+//    	M3 = new M3Tile();
+//    	T = new TownTile();
+    	for(int i = 0; i < tileMap.length; i++) {
+    		for(int j = 0; j < tileMap[i].length; j++) {
+    			//create M1 tiles
+    			if((i == 0 && j == 2) || (i == 1 && j ==1) || (i == 2 && j == 8))
+    				tileMap[i][j] = new M1Tile();
+    			//create M2 tiles
+    			else if((i == 3 && j == 1) || (i == 3 && j == 6) || (i == 4 && j == 2) || (i == 4 && j == 8))
+    				tileMap[i][j] = new M2Tile();
+    			//create M3 tiles
+    			else if((i == 0 && j == 6) || (i == 1 && j == 8) || (i == 2 && j == 0))
+    				tileMap[i][j] = new M3Tile();
+    			//create River tiles
+    			else if((i == 0 && j == 4) || (i == 1 && j == 4) || (i == 3 && j == 4) || (i == 4 && j == 4))
+    				tileMap[i][j] = new RiverTile();
+    			//create the Town tile
+    			else if(i == 2 && j == 4)
+    				tileMap[i][j] = new TownTile();
+    			//else all other are Plain tiles
+    			else
+    				tileMap[i][j] = new PlainTile();
+    		}
+    	}
+//    	tileMap = new Tile[][] {
+//    		{P,  P,  M1, P,  R,  P,  M3, P,  P},
+//    		{P,  M1, P,  P,  R,  P,  P,  P,  M3},
+//    		{M3, P,  P,  P,  T,  P,  P,  P,  M1},
+//    		{P,  M2, P,  P,  R,  P,  M2, P,  P},
+//    		{P,  P,  M2, P,  R,  P,  P,  P,  M2}
+//    	};
     }
 
 	public JPanel render() {
@@ -77,42 +98,42 @@ public class Map
 				gbc.gridy = r;
 				gbc.gridx = c;
 				
-				    if(tileMap[r][c] == M1) {
+				    if(tileMap[r][c] instanceof M1Tile) {
 				    	
 				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/icon_mountain1.png"));
 				    	label = new JLabel(currTile);
 				    	label.setPreferredSize(new Dimension(80, 80));
 				    }
 				    
-				    else if(tileMap[r][c] == M2) {
+				    else if(tileMap[r][c] instanceof M2Tile) {
 				    	
 				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/icon_mountain2.png"));
 				    	label = new JLabel(currTile);
 				    	label.setPreferredSize(new Dimension(80, 80));
 				    }
 				    
-				    else if(tileMap[r][c] == M3) {
+				    else if(tileMap[r][c] instanceof M3Tile) {
 				    	
 				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/icon_mountain3.png"));
 				    	label = new JLabel(currTile);
 				    	label.setPreferredSize(new Dimension(80, 80));
 				    }
 				    
-				    else if(tileMap[r][c] == T) {
+				    else if(tileMap[r][c] instanceof TownTile) {
 				    	
 				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/town.png"));
 				    	label = new JLabel(currTile);
 				    	label.setPreferredSize(new Dimension(80, 80));
 				    }
 				    
-				    else if(tileMap[r][c] == P) {
+				    else if(tileMap[r][c] instanceof PlainTile) {
 				    	
 				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/icon_plain.png"));
 				    	label = new JLabel(currTile);
 				    	label.setPreferredSize(new Dimension(80, 80));
 				    }
 				    
-				    else if(tileMap[r][c] == R) {
+				    else if(tileMap[r][c] instanceof RiverTile) {
 				    	
 				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/icon_river.png"));
 				    	label = new JLabel(currTile);

@@ -3,9 +3,9 @@ package tiles;
 import java.awt.Graphics;
 
 public class PlainTile extends Tile {
+	public PlainTile(){}
+	public PlainTile(int x, int y) {
 
-	public PlainTile() {
-		
 		
 	}
 
