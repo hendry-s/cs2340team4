@@ -11,6 +11,7 @@ public class MuleGame {
 	private static Screen1 sc1;
 	private static Screen2 sc2;
 	private static Screen3 sc3;
+	private static Screen4 sc4;
 	
 	public static void main(String[] args) {
 		
@@ -20,6 +21,7 @@ public class MuleGame {
 		sc1 = new Screen1();
 		sc2 = new Screen2();
 		sc3 = new Screen3();
+		sc4 = new Screen4();
 
 		frame.add(sc1);
 		
@@ -44,6 +46,8 @@ public class MuleGame {
 				sc3.render();
 				sc3.setPlayers(sc2.getPlayer1(), sc2.getPlayer2());
 				frame.add(sc3);
+
+				
 			}
 		});
 		
