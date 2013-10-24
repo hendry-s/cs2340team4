@@ -90,7 +90,6 @@ public class Map
 		currTile = null;
 		label = null;
 		border = BorderFactory.createLineBorder(Color.BLUE, 5);;
-		lArray = new JLabel[45];
 		
 		for (r = 0; r < ROW; r++) {
 			for (c = 0; c < COL; c++) {
@@ -103,6 +102,16 @@ public class Map
 				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/icon_mountain1.png"));
 				    	label = new JLabel(currTile);
 				    	label.setPreferredSize(new Dimension(80, 80));
+				    	label.addMouseListener(new MouseAdapter() {
+				    		
+				    		public void mouseClicked(MouseEvent e) {
+				    			
+				    			if(e.getComponent() == label) {
+				    				
+				    				label.setBorder(border);
+				    			}
+				    		}
+				    	});
 				    }
 				    
 				    else if(tileMap[r][c] instanceof M2Tile) {
@@ -110,6 +119,16 @@ public class Map
 				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/icon_mountain2.png"));
 				    	label = new JLabel(currTile);
 				    	label.setPreferredSize(new Dimension(80, 80));
+				    	label.addMouseListener(new MouseAdapter() {
+				    		
+				    		public void mouseClicked(MouseEvent e) {
+				    			
+				    			if(e.getComponent() == label) {
+				    				
+				    				label.setBorder(border);
+				    			}
+				    		}
+				    	});
 				    }
 				    
 				    else if(tileMap[r][c] instanceof M3Tile) {
@@ -117,6 +136,16 @@ public class Map
 				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/icon_mountain3.png"));
 				    	label = new JLabel(currTile);
 				    	label.setPreferredSize(new Dimension(80, 80));
+				    	label.addMouseListener(new MouseAdapter() {
+				    		
+				    		public void mouseClicked(MouseEvent e) {
+				    			
+				    			if(e.getComponent() == label) {
+				    				
+				    				label.setBorder(border);
+				    			}
+				    		}
+				    	});
 				    }
 				    
 				    else if(tileMap[r][c] instanceof TownTile) {
@@ -124,6 +153,16 @@ public class Map
 				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/town.png"));
 				    	label = new JLabel(currTile);
 				    	label.setPreferredSize(new Dimension(80, 80));
+				    	label.addMouseListener(new MouseAdapter() {
+				    		
+				    		public void mouseClicked(MouseEvent e) {
+				    			
+				    			if(e.getComponent() == label) {
+				    				
+				    				label.setBorder(border);
+				    			}
+				    		}
+				    	});
 				    }
 				    
 				    else if(tileMap[r][c] instanceof PlainTile) {
@@ -131,6 +170,16 @@ public class Map
 				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/icon_plain.png"));
 				    	label = new JLabel(currTile);
 				    	label.setPreferredSize(new Dimension(80, 80));
+				    	label.addMouseListener(new MouseAdapter() {
+				    		
+				    		public void mouseClicked(MouseEvent e) {
+				    			
+				    			if(e.getComponent() == label) {
+				    				
+				    				label.setBorder(border);
+				    			}
+				    		}
+				    	});
 				    }
 				    
 				    else if(tileMap[r][c] instanceof RiverTile) {
@@ -138,6 +187,16 @@ public class Map
 				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/icon_river.png"));
 				    	label = new JLabel(currTile);
 				    	label.setPreferredSize(new Dimension(80, 80));
+				    	label.addMouseListener(new MouseAdapter() {
+				    		
+				    		public void mouseClicked(MouseEvent e) {
+				    			
+				    			if(e.getComponent() == label) {
+				    				
+				    				label.setBorder(border);
+				    			}
+				    		}
+				    	});
 				    }
 				    
 				    gridPanel.add(label, gbc);
