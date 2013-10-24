@@ -7,6 +7,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import tiles.M1Tile;
 import tiles.M2Tile;
@@ -16,17 +18,16 @@ import tiles.RiverTile;
 import tiles.Tile;
 
 
-
 public class Map
 {
-	
+	private JPanel gridPanel;
 	private Tile P, R, M1, M2, M3, T;
 
     private Tile[][] tileMap;
     private final int COL = 9;
     private final int ROW = 5;
-    private final int MAPULX = 24; /* X-coordinate of upper left corner of MAP*/
-    private final int MAPULY = 60; /* Y-coordinate of upper left corner of MAP*/
+    private final int MAPULX = 15; /* X-coordinate of upper left corner of MAP*/
+    private final int MAPULY = 10; /* Y-coordinate of upper left corner of MAP*/
     private final int TILESIZE = 80;
 
     
@@ -47,41 +48,54 @@ public class Map
     	};
     }
 
-	public void render(Graphics g) {
+	public JPanel render() {
+		
+		gridPanel = new JPanel();
+		gridPanel.setBounds(MAPULX, MAPULY, 744, 460);
+		gridPanel.setBackground(Color.WHITE);
+		gridPanel.setLayout(new GridLayout(ROW, COL));
 		
 		int r, c;
-		Image currTile = null;
+		ImageIcon currTile = null;
+		JLabel label = null;
 		
 		for (r = 0; r < ROW; r++) {
 			for (c = 0; c < COL; c++) {
 				
 				    if(tileMap[r][c] == M1) {
 				    	
-				    	currTile = new ImageIcon("/icon_mountain1.png").getImage();
+				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/icon_mountain1.png"));
+				    	label = new JLabel(currTile);
 				    }
 				    
-				    if(tileMap[r][c] == M2) {
+				    else if(tileMap[r][c] == M2) {
 				    	
-				    	currTile = new ImageIcon("/icon_mountain2.png").getImage();
+				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/icon_mountain2.png"));
+				    	label = new JLabel(currTile);
 				    }
 				    
 				    if(tileMap[r][c] == M3) {
 				    	
-				    	currTile = new ImageIcon("/icon_mountain3.png").getImage();
+				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/icon_mountain3.png"));
+				    	label = new JLabel(currTile);
 				    }
 				    
 				    if(tileMap[r][c] == P) {
 				    	
-				    	currTile = new ImageIcon("/icon_plain.png").getImage();
+				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/icon_plain.png"));
+				    	label = new JLabel(currTile);
 				    }
 				    
 				    if(tileMap[r][c] == R) {
 				    	
-				    	currTile = new ImageIcon("/icon_river.png").getImage();
+				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/icon_river.png"));
+				    	label = new JLabel(currTile);
 				    }
-				
-				//g.drawImage(currTile, MAPULX+c*TILESIZE, MAPULY+r*TILESIZE, TILESIZE, TILESIZE, null);
+				    
+				    gridPanel.add(label);
 			}
 		}
+		
+		return gridPanel;
 	}
 }
