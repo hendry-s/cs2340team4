@@ -102,10 +102,7 @@ public class Map
     }
 
     public void landSelect(JButton but, Border border)
-    {    	
-    	//turnCount = turn.getTurnCount();
-    	
-    		
+    {    	 	
     	if (selectCount == 0)
 		{
 			border = BorderFactory.createLineBorder(players[0].getColor(), 5);
