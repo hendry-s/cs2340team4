@@ -128,6 +128,7 @@ public class Town {
 				
 				if(e.getSource() instanceof JButton) {
 					
+					Map.noRenderTown();
 					MuleGame.exitToMap();
 				}
 			}
@@ -138,6 +139,16 @@ public class Town {
 		townPanel.add(buyOre);
 		townPanel.add(buyMule);
 		townPanel.add(exit);
+		
+		
+		JButton store = new JButton("Store");
+		townPanel.add(store);
+		JButton assay = new JButton("Assay");
+		townPanel.add(assay);
+		JButton pub = new JButton("Pub");
+		townPanel.add(pub);
+		JButton landOffice = new JButton("Land Offices");
+		townPanel.add(landOffice);
     }
 	
 	public void buyProduct(JButton but, String product)
@@ -165,6 +176,7 @@ public class Town {
 					}
 					else	// p2's turn
 					{
+						System.out.println(players[1].getName() + " money: " + players[1].getMoney() + " foodPrice: " + foodPrice);
 						if (players[1].getMoney() >= foodPrice)
 						{
 							players[1].purchase(foodPrice);
@@ -195,14 +207,17 @@ public class Town {
 					}
 					else	// p2's turn
 					{
+						System.out.println(players[1].getName() + " money: " + players[1].getMoney() + " energyPrice: " + energyPrice);
 						if (players[1].getMoney() >= energyPrice)
 						{
 							players[1].purchase(energyPrice);
-							foodQuantity--;
+							energyQuantity--;
 							but.setText("Buy Energy (Stock: " + energyQuantity + ")");
 						}
 						else
 							System.out.println("Not enough money");
+						
+						System.out.println(players[1].getName() + " money after: " + players[1].getMoney());
 					}
 				}
 				break;
@@ -225,6 +240,7 @@ public class Town {
 					}
 					else	// p2's turn
 					{
+						System.out.println(players[1].getName() + " money: " + players[1].getMoney() + " orePrice: " + orePrice);
 						if (players[1].getMoney() >= orePrice)
 						{
 							players[1].purchase(orePrice);
@@ -233,6 +249,8 @@ public class Town {
 						}
 						else
 							System.out.println("Not enough money");
+						
+						System.out.println(players[1].getName() + " money after: " + players[1].getMoney());
 					}
 				}
 				break;
@@ -255,6 +273,7 @@ public class Town {
 					}
 					else	// p2's turn
 					{
+						System.out.println(players[1].getName() + " money: " + players[1].getMoney() + " mulePrice: " + mulePrice);
 						if (players[1].getMoney() >= mulePrice)
 						{
 							players[1].purchase(mulePrice);
@@ -263,6 +282,8 @@ public class Town {
 						}
 						else
 							System.out.println("Not enough money");
+						
+						System.out.println(players[1].getName() + " money after: " + players[1].getMoney());
 					}
 				}
 				break;

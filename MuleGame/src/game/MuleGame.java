@@ -52,6 +52,7 @@ public class MuleGame {
 				frame.add(sc3);
 			}
 		});*/
+
 		
 		frame.setVisible(true);
 		frame.pack();
@@ -75,6 +76,12 @@ public class MuleGame {
 		
 		sc4.render();
 		frame.add(sc4);
+	}
+	
+	public static void noRenderTownScreen()
+	{
+		sc3.setVisible(false);
+		sc4.setVisible(true);
 	}
 	
 	public static void exitToMap()
