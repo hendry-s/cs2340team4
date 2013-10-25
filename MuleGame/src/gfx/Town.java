@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import entities.Player;
+import game.MuleGame;
 import game.Screen3;
 import tiles.M1Tile;
 import tiles.M2Tile;
@@ -127,7 +128,7 @@ public class Town {
 				
 				if(e.getSource() instanceof JButton) {
 					
-					
+					MuleGame.exitToMap();
 				}
 			}
     	});
@@ -136,6 +137,7 @@ public class Town {
 		townPanel.add(buyEnergy);
 		townPanel.add(buyOre);
 		townPanel.add(buyMule);
+		townPanel.add(exit);
     }
 	
 	public void buyProduct(JButton but, String product)
