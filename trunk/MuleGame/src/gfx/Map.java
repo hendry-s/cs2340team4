@@ -6,6 +6,8 @@ import game.Screen3;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -45,7 +47,8 @@ public class Map
     private final int TILESIZE = 80;
 
     private Player[] players;
-    private int selectCount = 0; // 0 = p1's landSelect, 1 = p2's landSelect, 2 = start round.
+    private static int selectCount = 0; // 0 = p1's landSelect, 1 = p2's landSelect, 2 = start round.
+    private int prevRound = 1;
     
     private Turn turn;
     
@@ -92,15 +95,44 @@ public class Map
 //    	};
     }
    
-    
     public void startRound()
     {
     	// To draw onto Screen3 JPanel
     	Screen3 sc3 = MuleGame.getSC3();
     	Graphics g = sc3.getGraphics();
+    	
+    	// Start new round!
+		g.setColor(Color.green);
+    	g.setFont(new Font("TimesRoman", Font.PLAIN, 20));  
+    	g.drawString("Land grant: Round " + turn.getRoundCount(), 20, 20);
+		selectCount = 0;
+    }
+    
+    public void startTurn()
+    {
+    	// Start new turn
+    	turn.nextTurn();
+    	
+    	// To draw onto Screen3 JPanel
+    	Screen3 sc3 = MuleGame.getSC3();
+    	Graphics g = sc3.getGraphics();
+    	
+//    	// Start new round!
+//    	if (prevRound < turn.getRoundCount()) 
+//    	{
+//    		g.setColor(Color.green);
+//        	g.setFont(new Font("TimesRoman", Font.PLAIN, 20));  
+//        	g.drawString("Land grant: Round " + turn.getRoundCount(), 20, 20);
+//    		selectCount = 0;
+//    		prevRound = turn.getRoundCount();
+//    		return;
+//    	}
+    	
+    	
     	g.setColor(Color.green);
     	g.setFont(new Font("TimesRoman", Font.PLAIN, 20));  
     	g.drawString(turn.toString() + "   Enter town to start", 20, 20);
+    	
     	
     	// Display which player's turn it is.
     	if (turn.getTurnCount()%2 == 1)
@@ -116,8 +148,7 @@ public class Map
     	}
     	
     	
-    	
-    	
+    	System.out.println("Master Turn: " + turn.getTurnCount());
     }
 
     public void landSelect(JButton but, Border border)
@@ -131,13 +162,13 @@ public class Map
 		{
 			border = BorderFactory.createLineBorder(players[1].getColor(), 5);
 			selectCount++;
-			startRound();
+			startTurn();
 		}
 		else
 			return;
 		
 		but.setBorder(border);
-		but.setEnabled(false);
+		but.setEnabled(false);	// Now tile is not clickable.
     }
     
 	public JPanel render() {
@@ -147,6 +178,7 @@ public class Map
 		gridPanel.setBackground(Color.WHITE);
 		gridPanel.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
+		
 		
 		int r, c;
 		currTile = null;
@@ -221,8 +253,10 @@ public class Map
 
 								if(e.getSource() instanceof JButton) {
 									
-									if (selectCount == 2)
+									if (selectCount == 2 && turn.getRoundCount() == 1)
 										MuleGame.townScreen();
+									else
+										MuleGame.noRenderTownScreen();
 								}
 							}
 				    	});
@@ -267,5 +301,11 @@ public class Map
 		}
 		
 		return gridPanel;
+	}
+	
+	
+	public static void noRenderTown()
+	{
+		selectCount = 3;
 	}
 }

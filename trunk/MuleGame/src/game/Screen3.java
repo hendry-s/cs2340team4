@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.image.BufferStrategy;
 import java.io.IOException;
 
@@ -31,6 +33,43 @@ public class Screen3 extends JPanel {
 		setBorder(new LineBorder(new Color(0, 0, 0), 5));
 		setLayout(null);
 		setVisible(true);
+		
+		/**
+		 * Component Listener
+		 */
+		addComponentListener(new ComponentListener() {
+			@Override
+			public void componentHidden(ComponentEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void componentMoved(ComponentEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void componentResized(ComponentEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void componentShown(ComponentEvent arg0) {
+				// TODO Auto-generated method stub
+				System.out.println("Woah dude");
+				if (turn.getTurnCount()%2 == 0)
+				{
+					System.out.println("Should not go through");
+					map.startRound();
+				}
+				else				
+					map.startTurn();
+			}
+		});
+		
 		
 		turn = new Turn();
 	}
