@@ -2,8 +2,10 @@ package tiles;
 
 
 /**
- * Getter for player's current money
- * @return the amount of money that the player has
+ * Purchasable represents a purchasable property of a tile,
+ * which applies to all other tile than "Town" tile
+ * 
+ * NOTE: Unimplemented for now.
  **/
 public interface Purchasable {
 	boolean alreadyPurchased = false;
