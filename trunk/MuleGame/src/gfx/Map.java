@@ -1,4 +1,6 @@
 package gfx;
+import game.MuleGame;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -154,6 +156,16 @@ public class Map
 				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/town.png"));
 				    	button = new JButton(currTile);
 				    	button.setPreferredSize(new Dimension(80, 80));
+				    	button.addActionListener(new ActionListener() {   // Omar's code
+
+							public void actionPerformed(ActionEvent e) { 
+
+								if(e.getSource() instanceof JButton) {
+									
+									MuleGame.townScreen();
+								}
+							}
+				    	});
 				    }
 				    
 				    else if(tileMap[r][c] instanceof PlainTile) {
