@@ -91,7 +91,7 @@ public class Map
 //    	};
     }
     
-    public void landSelectComplete()
+    public void startRound()
     {
     	Graphics g = gridPanel.getGraphics();
     	g.setFont(new Font("TimesRoman", Font.PLAIN, 20));  
@@ -112,7 +112,7 @@ public class Map
 		{
 			border = BorderFactory.createLineBorder(players[1].getColor(), 5);
 			selectCount++;
-			landSelectComplete();
+			startRound();
 		}
 		else
 			return;
