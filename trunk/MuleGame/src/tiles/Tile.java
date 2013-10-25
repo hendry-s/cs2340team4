@@ -11,6 +11,7 @@ public abstract class Tile {
 		this.y = y;
 	}
 	
+	
 	public abstract void tick();
 	public abstract void render(Graphics g);
 	
