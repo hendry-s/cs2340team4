@@ -40,23 +40,33 @@ public class MuleGame {
 			}
 		});
 		
-		sc2.getButton().addActionListener(new ActionListener() {
+		/*sc2.getButton().addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				
 				sc2.setVisible(false);
 				frame.remove(sc2);
 				
-				sc3.render();
 				sc3.setPlayers(sc2.getPlayer1(), sc2.getPlayer2());
+				sc3.render();
 				frame.add(sc3);
 			}
-		});
+		});*/
 		
 		frame.setVisible(true);
 		frame.pack();
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 783, 559);
+	}
+	
+	public static void screen3()
+	{
+		sc2.setVisible(false);
+		frame.remove(sc2);
+		
+		sc3.setPlayers(sc2.getPlayer1(), sc2.getPlayer2());
+		sc3.render();
+		frame.add(sc3);
 	}
 	
 	public static void townScreen()
