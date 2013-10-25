@@ -96,7 +96,7 @@ public class Map
     	Graphics g = gridPanel.getGraphics();
     	g.setFont(new Font("TimesRoman", Font.PLAIN, 20));  
     	g.setColor(Color.blue);
-    	g.drawString(turn.toString(), 150, 20);		// Status message just for now. Will change.
+    	g.drawString(turn.toString() + "   Enter town to start", 150, 20);		// Status message just for now. Will change.
     	
     	
     }
