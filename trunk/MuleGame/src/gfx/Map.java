@@ -49,10 +49,10 @@ public class Map
     
     private Turn turn;
     
-    public Map(Player[] players) {
+    public Map() {
     	
-    	this.players = players;
-    	turn = new Turn();
+    	this.players = Screen3.getPlayers();
+    	turn = Screen3.getTurn();
     	
     	tileMap = new Tile[5][9];
 //    	P = new PlainTile();
@@ -91,25 +91,33 @@ public class Map
 //    		{P,  P,  M2, P,  R,  P,  P,  P,  M2}
 //    	};
     }
+   
     
     public void startRound()
     {
+    	// To draw onto Screen3 JPanel
     	Screen3 sc3 = MuleGame.getSC3();
     	Graphics g = sc3.getGraphics();
     	g.setColor(Color.green);
     	g.setFont(new Font("TimesRoman", Font.PLAIN, 20));  
     	g.drawString(turn.toString() + "   Enter town to start", 20, 20);
     	
+    	// Display which player's turn it is.
     	if (turn.getTurnCount()%2 == 1)
     	{
+    		g.setColor(players[0].getColor());
     		g.drawString(players[0].getName() + "'s turn", 20, 40);
     		System.out.println("1");
     	}
     	else
-    	{	
+    	{	g.setColor(players[1].getColor());
     		g.drawString(players[1].getName() + "'s turn", 20, 40);
     		System.out.println("0");
     	}
+    	
+    	
+    	
+    	
     }
 
     public void landSelect(JButton but, Border border)
