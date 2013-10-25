@@ -1,3 +1,4 @@
+package game;
 import gfx.Map;
 
 import java.awt.CardLayout;
@@ -56,5 +57,14 @@ public class MuleGame {
 		frame.pack();
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 783, 559);
+	}
+	
+	public static void townScreen()
+	{
+		sc3.setVisible(false);
+		frame.remove(sc3);
+		
+		sc4.render();
+		frame.add(sc4);
 	}
 }
