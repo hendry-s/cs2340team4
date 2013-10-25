@@ -1,5 +1,7 @@
 package gfx;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -9,6 +11,7 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
@@ -25,7 +28,7 @@ public class Map
 {
 	private JPanel gridPanel;
 	private Tile P, R, M1, M2, M3, T;
-	private JLabel label;
+	private JButton button;
 	private ImageIcon currTile;
 	private Border border;
 
@@ -35,11 +38,9 @@ public class Map
     private final int MAPULX = 25; /* X-coordinate of upper left corner of MAP*/
     private final int MAPULY = 60; /* Y-coordinate of upper left corner of MAP*/
     private final int TILESIZE = 80;
-    private JLabel[] lArray;
-    private int i;
-
     
     public Map() {
+    	
     	tileMap = new Tile[5][9];
 //    	P = new PlainTile();
 //    	R = new RiverTile();
@@ -47,26 +48,26 @@ public class Map
 //    	M2 = new M2Tile();
 //    	M3 = new M3Tile();
 //    	T = new TownTile();
-    	for(int i = 0; i < tileMap.length; i++) {
-    		for(int j = 0; j < tileMap[i].length; j++) {
+    	for(int r = 0; r < tileMap.length; r++) {
+    		for(int c = 0; c < tileMap[r].length; c++) {
     			//create M1 tiles
-    			if((i == 0 && j == 2) || (i == 1 && j ==1) || (i == 2 && j == 8))
-    				tileMap[i][j] = new M1Tile();
+    			if((r == 0 && c == 2) || (r == 1 && c ==1) || (r == 2 && c == 8))
+    				tileMap[r][c] = new M1Tile();
     			//create M2 tiles
-    			else if((i == 3 && j == 1) || (i == 3 && j == 6) || (i == 4 && j == 2) || (i == 4 && j == 8))
-    				tileMap[i][j] = new M2Tile();
+    			else if((r == 3 && c == 1) || (r == 3 && c == 6) || (r == 4 && c == 2) || (r == 4 && c == 8))
+    				tileMap[r][c] = new M2Tile();
     			//create M3 tiles
-    			else if((i == 0 && j == 6) || (i == 1 && j == 8) || (i == 2 && j == 0))
-    				tileMap[i][j] = new M3Tile();
+    			else if((r == 0 && c == 6) || (r == 1 && c == 8) || (r == 2 && c == 0))
+    				tileMap[r][c] = new M3Tile();
     			//create River tiles
-    			else if((i == 0 && j == 4) || (i == 1 && j == 4) || (i == 3 && j == 4) || (i == 4 && j == 4))
-    				tileMap[i][j] = new RiverTile();
+    			else if((r == 0 && c == 4) || (r == 1 && c == 4) || (r == 3 && c == 4) || (r == 4 && c == 4))
+    				tileMap[r][c] = new RiverTile();
     			//create the Town tile
-    			else if(i == 2 && j == 4)
-    				tileMap[i][j] = new TownTile();
+    			else if(r == 2 && c == 4)
+    				tileMap[r][c] = new TownTile();
     			//else all other are Plain tiles
     			else
-    				tileMap[i][j] = new PlainTile();
+    				tileMap[r][c] = new PlainTile();
     		}
     	}
 //    	tileMap = new Tile[][] {
@@ -88,8 +89,8 @@ public class Map
 		
 		int r, c;
 		currTile = null;
-		label = null;
-		border = BorderFactory.createLineBorder(Color.BLUE, 5);;
+		button = null;
+		border = BorderFactory.createLineBorder(Color.BLUE, 5);
 		
 		for (r = 0; r < ROW; r++) {
 			for (c = 0; c < COL; c++) {
@@ -100,112 +101,99 @@ public class Map
 				    if(tileMap[r][c] instanceof M1Tile) {
 				    	
 				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/icon_mountain1.png"));
-				    	label = new JLabel(currTile);
-				    	label.setPreferredSize(new Dimension(80, 80));
-				    	label.addMouseListener(new MouseAdapter() {
-				    		
-				    		public void mouseClicked(MouseEvent e) {
-				    			
-				    			if(e.getComponent() == label) {
-				    				
-				    				label.setBorder(border);
-				    			}
-				    		}
+				    	button = new JButton(currTile);
+				    	button.setPreferredSize(new Dimension(80, 80));
+				    	button.addActionListener(new ActionListener() {
+
+							public void actionPerformed(ActionEvent e) { 
+								
+								if(e.getSource() instanceof JButton) {
+									
+									((JButton)e.getSource()).setBorder(border);
+								}
+							}
 				    	});
 				    }
 				    
 				    else if(tileMap[r][c] instanceof M2Tile) {
 				    	
 				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/icon_mountain2.png"));
-				    	label = new JLabel(currTile);
-				    	label.setPreferredSize(new Dimension(80, 80));
-				    	label.addMouseListener(new MouseAdapter() {
-				    		
-				    		public void mouseClicked(MouseEvent e) {
-				    			
-				    			if(e.getComponent() == label) {
-				    				
-				    				label.setBorder(border);
-				    			}
-				    		}
+				    	button = new JButton(currTile);
+				    	button.setPreferredSize(new Dimension(80, 80));
+				    	button.addActionListener(new ActionListener() {
+
+							public void actionPerformed(ActionEvent e) { 
+
+								if(e.getSource() instanceof JButton) {
+									
+									((JButton)e.getSource()).setBorder(border);
+								}
+							}
 				    	});
 				    }
 				    
 				    else if(tileMap[r][c] instanceof M3Tile) {
 				    	
 				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/icon_mountain3.png"));
-				    	label = new JLabel(currTile);
-				    	label.setPreferredSize(new Dimension(80, 80));
-				    	label.addMouseListener(new MouseAdapter() {
-				    		
-				    		public void mouseClicked(MouseEvent e) {
-				    			
-				    			if(e.getComponent() == label) {
-				    				
-				    				label.setBorder(border);
-				    			}
-				    		}
+				    	button = new JButton(currTile);
+				    	button.setPreferredSize(new Dimension(80, 80));
+				    	button.addActionListener(new ActionListener() {
+
+							public void actionPerformed(ActionEvent e) { 
+
+								if(e.getSource() instanceof JButton) {
+									
+									((JButton)e.getSource()).setBorder(border);
+								}
+							}
 				    	});
 				    }
 				    
 				    else if(tileMap[r][c] instanceof TownTile) {
 				    	
 				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/town.png"));
-				    	label = new JLabel(currTile);
-				    	label.setPreferredSize(new Dimension(80, 80));
-				    	label.addMouseListener(new MouseAdapter() {
-				    		
-				    		public void mouseClicked(MouseEvent e) {
-				    			
-				    			if(e.getComponent() == label) {
-				    				
-				    				label.setBorder(border);
-				    			}
-				    		}
-				    	});
+				    	button = new JButton(currTile);
+				    	button.setPreferredSize(new Dimension(80, 80));
 				    }
 				    
 				    else if(tileMap[r][c] instanceof PlainTile) {
 				    	
 				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/icon_plain.png"));
-				    	label = new JLabel(currTile);
-				    	label.setPreferredSize(new Dimension(80, 80));
-				    	label.addMouseListener(new MouseAdapter() {
-				    		
-				    		public void mouseClicked(MouseEvent e) {
-				    			
-				    			if(e.getComponent() == label) {
-				    				
-				    				label.setBorder(border);
-				    			}
-				    		}
+				    	button = new JButton(currTile);
+				    	button.setPreferredSize(new Dimension(80, 80));
+				    	button.addActionListener(new ActionListener() {
+
+							public void actionPerformed(ActionEvent e) { 
+
+								if(e.getSource() instanceof JButton) {
+									
+									((JButton)e.getSource()).setBorder(border);
+								}
+							}
 				    	});
 				    }
 				    
 				    else if(tileMap[r][c] instanceof RiverTile) {
 				    	
 				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/icon_river.png"));
-				    	label = new JLabel(currTile);
-				    	label.setPreferredSize(new Dimension(80, 80));
-				    	label.addMouseListener(new MouseAdapter() {
-				    		
-				    		public void mouseClicked(MouseEvent e) {
-				    			
-				    			if(e.getComponent() == label) {
-				    				
-				    				label.setBorder(border);
-				    			}
-				    		}
+				    	button = new JButton(currTile);
+				    	button.setPreferredSize(new Dimension(80, 80));
+				    	button.addActionListener(new ActionListener() {
+
+							public void actionPerformed(ActionEvent e) { 
+
+								if(e.getSource() instanceof JButton) {
+									
+									((JButton)e.getSource()).setBorder(border);
+								}
+							}
 				    	});
 				    }
 				    
-				    gridPanel.add(label, gbc);
+				    gridPanel.add(button, gbc);
 			}
 		}
 		
 		return gridPanel;
 	}
 }
-
-
-
