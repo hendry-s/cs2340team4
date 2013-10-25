@@ -152,7 +152,7 @@ public class Town {
 					if (turn.getTurnCount()%2 == 1) // if p1's turn
 					{
 						System.out.println(players[0].getName() + " money: " + players[0].getMoney() + " foodPrice: " + foodPrice);
-						if (players[0].getMoney() > foodPrice)
+						if (players[0].getMoney() >= foodPrice)
 						{
 							players[0].purchase(foodPrice);
 							foodQuantity--;
@@ -165,7 +165,7 @@ public class Town {
 					}
 					else	// p2's turn
 					{
-						if (players[1].getMoney() > foodPrice)
+						if (players[1].getMoney() >= foodPrice)
 						{
 							players[1].purchase(foodPrice);
 							foodQuantity--;
@@ -182,7 +182,7 @@ public class Town {
 					if (turn.getTurnCount()%2 == 1) // if p1's turn
 					{
 						System.out.println(players[0].getName() + " money: " + players[0].getMoney() + " energyPrice: " + energyPrice);
-						if (players[0].getMoney() > energyPrice)
+						if (players[0].getMoney() >= energyPrice)
 						{
 							players[0].purchase(energyPrice);
 							energyQuantity--;
@@ -195,7 +195,7 @@ public class Town {
 					}
 					else	// p2's turn
 					{
-						if (players[1].getMoney() > energyPrice)
+						if (players[1].getMoney() >= energyPrice)
 						{
 							players[1].purchase(energyPrice);
 							foodQuantity--;
@@ -212,7 +212,7 @@ public class Town {
 					if (turn.getTurnCount()%2 == 1) // if p1's turn
 					{
 						System.out.println(players[0].getName() + " money: " + players[0].getMoney() + " orePrice: " + orePrice);
-						if (players[0].getMoney() > orePrice)
+						if (players[0].getMoney() >= orePrice)
 						{
 							players[0].purchase(orePrice);
 							oreQuantity--;
@@ -225,7 +225,7 @@ public class Town {
 					}
 					else	// p2's turn
 					{
-						if (players[1].getMoney() > orePrice)
+						if (players[1].getMoney() >= orePrice)
 						{
 							players[1].purchase(orePrice);
 							oreQuantity--;
@@ -242,7 +242,7 @@ public class Town {
 					if (turn.getTurnCount()%2 == 1) // if p1's turn
 					{
 						System.out.println(players[0].getName() + " money: " + players[0].getMoney() + " mulePrice: " + mulePrice);
-						if (players[0].getMoney() > mulePrice)
+						if (players[0].getMoney() >= mulePrice)
 						{
 							players[0].purchase(mulePrice);
 							muleQuantity--;
@@ -255,7 +255,7 @@ public class Town {
 					}
 					else	// p2's turn
 					{
-						if (players[1].getMoney() > mulePrice)
+						if (players[1].getMoney() >= mulePrice)
 						{
 							players[1].purchase(mulePrice);
 							muleQuantity--;
