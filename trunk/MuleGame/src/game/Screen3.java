@@ -37,10 +37,9 @@ public class Screen3 extends JPanel {
 	public void render() {
 		
 		final Player[] players = {p1, p2};
-		System.out.println(players[0].getName());
 		
-		map = new Map();
-		add(map.render(players));
+		map = new Map(players);
+		add(map.render());
 //		add(p1.render());
 	}
 	
@@ -55,7 +54,10 @@ public class Screen3 extends JPanel {
 		this.p2 = p2;
 	}
 	
-	
+	public Player[] getPlayers()
+	{
+		return new Player[]{p1, p2};
+	}
 	
 	
 	

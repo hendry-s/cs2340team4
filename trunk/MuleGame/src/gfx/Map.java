@@ -26,6 +26,7 @@ import tiles.PlainTile;
 import tiles.RiverTile;
 import tiles.Tile;
 import tiles.TownTile;
+import turn.Turn;
 
 public class Map
 {
@@ -42,9 +43,15 @@ public class Map
     private final int MAPULY = 60; /* Y-coordinate of upper left corner of MAP*/
     private final int TILESIZE = 80;
 
-    private int turnCount = 0; // 0 = p1's turn, 1 = p2's turn, 2 = start new round.
+    private Player[] players;
+    private int selectCount = 0; // 0 = p1's landSelect, 1 = p2's landSelect, 2 = start round.
     
-    public Map() {
+    private Turn turn;
+    
+    public Map(Player[] players) {
+    	
+    	this.players = players;
+    	turn = new Turn();
     	
     	tileMap = new Tile[5][9];
 //    	P = new PlainTile();
@@ -87,11 +94,36 @@ public class Map
     public void landSelectComplete()
     {
     	Graphics g = gridPanel.getGraphics();
-    	g.setFont(new Font("TimesRoman", Font.PLAIN, 20));  // Status message just for now. Will change.
-    	g.drawString("Land Selection Phase Complete", 50, 50);
+    	g.setFont(new Font("TimesRoman", Font.PLAIN, 20));  
+    	g.setColor(Color.blue);
+    	g.drawString(turn.toString(), 150, 20);		// Status message just for now. Will change.
+    	
+    	
     }
 
-	public JPanel render(final Player[] players) {
+    public void landSelect(JButton but, Border border)
+    {    	
+    	//turnCount = turn.getTurnCount();
+    	
+    		
+    	if (selectCount == 0)
+		{
+			border = BorderFactory.createLineBorder(players[0].getColor(), 5);
+			selectCount++;
+		}
+		else if (selectCount == 1)
+		{
+			border = BorderFactory.createLineBorder(players[1].getColor(), 5);
+			selectCount++;
+			landSelectComplete();
+		}
+		else
+			return;
+		
+		but.setBorder(border);
+    }
+    
+	public JPanel render() {
 		
 		gridPanel = new JPanel();
 		gridPanel.setBounds(MAPULX, MAPULY, 724, 404);
@@ -121,21 +153,7 @@ public class Map
 								
 								if(e.getSource() instanceof JButton) {
 									
-									if (turnCount == 0)
-									{
-										border = BorderFactory.createLineBorder(players[turnCount].getColor(), 5);
-										turnCount++;
-									}
-									else if (turnCount == 1)
-									{
-										border = BorderFactory.createLineBorder(players[turnCount].getColor(), 5);
-										turnCount++;
-										landSelectComplete();
-									}
-									else
-										return;
-									
-									((JButton)e.getSource()).setBorder(border);
+									landSelect((JButton)e.getSource(), border);
 								}
 							}
 				    	});
@@ -152,21 +170,7 @@ public class Map
 
 								if(e.getSource() instanceof JButton) {
 									
-									if (turnCount == 0)
-									{
-										border = BorderFactory.createLineBorder(players[turnCount].getColor(), 5);
-										turnCount++;
-									}
-									else if (turnCount == 1)
-									{
-										border = BorderFactory.createLineBorder(players[turnCount].getColor(), 5);
-										turnCount++;
-										landSelectComplete();
-									}
-									else
-										return;
-									
-									((JButton)e.getSource()).setBorder(border);
+									landSelect((JButton)e.getSource(), border);
 								}
 							}
 				    	});
@@ -183,21 +187,7 @@ public class Map
 
 								if(e.getSource() instanceof JButton) {
 									
-									if (turnCount == 0)
-									{
-										border = BorderFactory.createLineBorder(players[turnCount].getColor(), 5);
-										turnCount++;
-									}
-									else if (turnCount == 1)
-									{
-										border = BorderFactory.createLineBorder(players[turnCount].getColor(), 5);
-										turnCount++;
-										landSelectComplete();
-									}
-									else
-										return;
-									
-									((JButton)e.getSource()).setBorder(border);
+									landSelect((JButton)e.getSource(), border);
 								}
 							}
 				    	});
@@ -231,21 +221,7 @@ public class Map
 
 								if(e.getSource() instanceof JButton) {
 									
-									if (turnCount == 0)
-									{
-										border = BorderFactory.createLineBorder(players[turnCount].getColor(), 5);
-										turnCount++;
-									}
-									else if (turnCount == 1)
-									{
-										border = BorderFactory.createLineBorder(players[turnCount].getColor(), 5);
-										turnCount++;
-										landSelectComplete();
-									}
-									else
-										return;
-									
-									((JButton)e.getSource()).setBorder(border);
+									landSelect((JButton)e.getSource(), border);
 								}
 							}
 				    	});
@@ -262,21 +238,7 @@ public class Map
 
 								if(e.getSource() instanceof JButton) {
 									
-									if (turnCount == 0)
-									{
-										border = BorderFactory.createLineBorder(players[turnCount].getColor(), 5);
-										turnCount++;
-									}
-									else if (turnCount == 1)
-									{
-										border = BorderFactory.createLineBorder(players[turnCount].getColor(), 5);
-										turnCount++;
-										landSelectComplete();
-									}
-									else 
-										return; 
-									
-									((JButton)e.getSource()).setBorder(border);
+									landSelect((JButton)e.getSource(), border);
 								}
 							}
 				    	});
