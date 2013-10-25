@@ -62,7 +62,6 @@ public class MuleGame {
 	public static void townScreen()
 	{
 		sc3.setVisible(false);
-		frame.remove(sc3);
 		
 		sc4.render();
 		frame.add(sc4);

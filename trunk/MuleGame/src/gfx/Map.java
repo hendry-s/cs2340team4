@@ -40,6 +40,7 @@ public class Map
     private final int MAPULX = 25; /* X-coordinate of upper left corner of MAP*/
     private final int MAPULY = 60; /* Y-coordinate of upper left corner of MAP*/
     private final int TILESIZE = 80;
+
     
     public Map() {
     	
