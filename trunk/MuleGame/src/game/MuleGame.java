@@ -77,6 +77,12 @@ public class MuleGame {
 		frame.add(sc4);
 	}
 	
+	public static void exitToMap()
+	{
+		sc4.setVisible(false);
+		sc3.setVisible(true);
+	}
+	
 	public static Screen3 getSC3()
 	{
 		return sc3;
