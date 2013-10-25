@@ -8,12 +8,18 @@ import java.awt.Graphics;
  * @version Oct 25, 2013
  */
 public class PlainTile extends Tile {
+	/**
+	 * Default constructor.
+	 * NO param
+	 **/
+	public PlainTile(){}
 	
 	/**
 	 * Default constructor.
 	 * @param x X-coordinate of the upper-left corner of the tile
 	 * @param y Y-coordinate of the upper-left corner of the tile
 	 **/
+	
 	public PlainTile(int x, int y) {
 		super(x,y);
 	}
