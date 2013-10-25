@@ -137,6 +137,7 @@ public class Map
 			return;
 		
 		but.setBorder(border);
+		but.setEnabled(false);
     }
     
 	public JPanel render() {
