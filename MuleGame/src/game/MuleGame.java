@@ -76,4 +76,9 @@ public class MuleGame {
 		sc4.render();
 		frame.add(sc4);
 	}
+	
+	public static Screen3 getSC3()
+	{
+		return sc3;
+	}
 }

@@ -1,6 +1,7 @@
 package gfx;
 import entities.Player;
 import game.MuleGame;
+import game.Screen3;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -93,12 +94,22 @@ public class Map
     
     public void startRound()
     {
-    	Graphics g = gridPanel.getGraphics();
+    	Screen3 sc3 = MuleGame.getSC3();
+    	Graphics g = sc3.getGraphics();
+    	g.setColor(Color.green);
     	g.setFont(new Font("TimesRoman", Font.PLAIN, 20));  
-    	g.setColor(Color.blue);
-    	g.drawString(turn.toString() + "   Enter town to start", 150, 20);		// Status message just for now. Will change.
+    	g.drawString(turn.toString() + "   Enter town to start", 20, 20);
     	
-    	
+    	if (turn.getTurnCount()%2 == 1)
+    	{
+    		g.drawString(players[0].getName() + "'s turn", 20, 40);
+    		System.out.println("1");
+    	}
+    	else
+    	{	
+    		g.drawString(players[1].getName() + "'s turn", 20, 40);
+    		System.out.println("0");
+    	}
     }
 
     public void landSelect(JButton but, Border border)
