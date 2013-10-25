@@ -21,7 +21,10 @@ public class Player extends Character {
 	
 	public Player(String name, Color color, String race) {
 		
-		this.name = name;
+		if (name.equals(""))
+			this.name = "No Name";
+		else
+			this.name = name;
 		this.color = color;
 		this.race = race;
 	}
