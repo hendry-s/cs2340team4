@@ -201,7 +201,8 @@ public class Map
 
 								if(e.getSource() instanceof JButton) {
 									
-									MuleGame.townScreen();
+									if (selectCount == 2)
+										MuleGame.townScreen();
 								}
 							}
 				    	});
