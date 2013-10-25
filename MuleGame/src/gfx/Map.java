@@ -1,4 +1,5 @@
 package gfx;
+import entities.Player;
 import game.MuleGame;
 
 import java.awt.*;
@@ -41,6 +42,7 @@ public class Map
     private final int MAPULY = 60; /* Y-coordinate of upper left corner of MAP*/
     private final int TILESIZE = 80;
 
+    private int turnCount = 0; // 0 = p1's turn, 1 = p2's turn, 2 = start new round.
     
     public Map() {
     	
@@ -81,8 +83,15 @@ public class Map
 //    		{P,  P,  M2, P,  R,  P,  P,  P,  M2}
 //    	};
     }
+    
+    public void landSelectComplete()
+    {
+    	Graphics g = gridPanel.getGraphics();
+    	g.setFont(new Font("TimesRoman", Font.PLAIN, 20));  // Status message just for now. Will change.
+    	g.drawString("Land Selection Phase Complete", 50, 50);
+    }
 
-	public JPanel render() {
+	public JPanel render(final Player[] players) {
 		
 		gridPanel = new JPanel();
 		gridPanel.setBounds(MAPULX, MAPULY, 724, 404);
@@ -93,7 +102,7 @@ public class Map
 		int r, c;
 		currTile = null;
 		button = null;
-		border = BorderFactory.createLineBorder(Color.BLUE, 5);
+		border = BorderFactory.createLineBorder(players[0].getColor(), 5);  // p1 goes first
 		
 		for (r = 0; r < ROW; r++) {
 			for (c = 0; c < COL; c++) {
@@ -112,6 +121,20 @@ public class Map
 								
 								if(e.getSource() instanceof JButton) {
 									
+									if (turnCount == 0)
+									{
+										border = BorderFactory.createLineBorder(players[turnCount].getColor(), 5);
+										turnCount++;
+									}
+									else if (turnCount == 1)
+									{
+										border = BorderFactory.createLineBorder(players[turnCount].getColor(), 5);
+										turnCount++;
+										landSelectComplete();
+									}
+									else
+										return;
+									
 									((JButton)e.getSource()).setBorder(border);
 								}
 							}
@@ -129,6 +152,20 @@ public class Map
 
 								if(e.getSource() instanceof JButton) {
 									
+									if (turnCount == 0)
+									{
+										border = BorderFactory.createLineBorder(players[turnCount].getColor(), 5);
+										turnCount++;
+									}
+									else if (turnCount == 1)
+									{
+										border = BorderFactory.createLineBorder(players[turnCount].getColor(), 5);
+										turnCount++;
+										landSelectComplete();
+									}
+									else
+										return;
+									
 									((JButton)e.getSource()).setBorder(border);
 								}
 							}
@@ -145,6 +182,20 @@ public class Map
 							public void actionPerformed(ActionEvent e) { 
 
 								if(e.getSource() instanceof JButton) {
+									
+									if (turnCount == 0)
+									{
+										border = BorderFactory.createLineBorder(players[turnCount].getColor(), 5);
+										turnCount++;
+									}
+									else if (turnCount == 1)
+									{
+										border = BorderFactory.createLineBorder(players[turnCount].getColor(), 5);
+										turnCount++;
+										landSelectComplete();
+									}
+									else
+										return;
 									
 									((JButton)e.getSource()).setBorder(border);
 								}
@@ -180,6 +231,20 @@ public class Map
 
 								if(e.getSource() instanceof JButton) {
 									
+									if (turnCount == 0)
+									{
+										border = BorderFactory.createLineBorder(players[turnCount].getColor(), 5);
+										turnCount++;
+									}
+									else if (turnCount == 1)
+									{
+										border = BorderFactory.createLineBorder(players[turnCount].getColor(), 5);
+										turnCount++;
+										landSelectComplete();
+									}
+									else
+										return;
+									
 									((JButton)e.getSource()).setBorder(border);
 								}
 							}
@@ -196,6 +261,20 @@ public class Map
 							public void actionPerformed(ActionEvent e) { 
 
 								if(e.getSource() instanceof JButton) {
+									
+									if (turnCount == 0)
+									{
+										border = BorderFactory.createLineBorder(players[turnCount].getColor(), 5);
+										turnCount++;
+									}
+									else if (turnCount == 1)
+									{
+										border = BorderFactory.createLineBorder(players[turnCount].getColor(), 5);
+										turnCount++;
+										landSelectComplete();
+									}
+									else 
+										return; 
 									
 									((JButton)e.getSource()).setBorder(border);
 								}

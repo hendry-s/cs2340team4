@@ -182,31 +182,33 @@ public class Screen2 extends JPanel {
 				
 				if(comboBox_2.getSelectedItem().toString() == "Human") {
 					
-					p2 = new Human(field1.getText(), color1, comboBox_2.getSelectedItem().toString());
+					p2 = new Human(field1.getText(), color2, comboBox_2.getSelectedItem().toString());
 				}
 				
 				else if(comboBox_2.getSelectedItem().toString() == "Flapper") {
 					
-					p2 = new Flapper(field1.getText(), color1, comboBox_2.getSelectedItem().toString());
+					p2 = new Flapper(field1.getText(), color2, comboBox_2.getSelectedItem().toString());
 				}
 				
 				else if(comboBox_2.getSelectedItem().toString() == "Ugaite") {
 					
-					p2 = new Ugaite(field1.getText(), color1, comboBox_2.getSelectedItem().toString());
+					p2 = new Ugaite(field1.getText(), color2, comboBox_2.getSelectedItem().toString());
 				}
 				
 				else if(comboBox_2.getSelectedItem().toString() == "Buzzite") {
 					
-					p2 = new Buzzite(field1.getText(), color1, comboBox_2.getSelectedItem().toString());
+					p2 = new Buzzite(field1.getText(), color2, comboBox_2.getSelectedItem().toString());
 				}
 				
 				else if(comboBox_2.getSelectedItem().toString() == "Bonzoid") {
 					
-					p2 = new Bonzoid(field1.getText(), color1, comboBox_2.getSelectedItem().toString());
+					p2 = new Bonzoid(field1.getText(), color2, comboBox_2.getSelectedItem().toString());
 				}
 				
-//				System.out.print(p1.getName() + p1.getColor() + p1.getRace());
-//				System.out.print(p2.getName() + p2.getColor() + p2.getRace());
+				//System.out.print("Name: " + p1.getName() + " Color: " + p1.getColor() + " Race: " + p1.getRace());
+				//System.out.print(p2.getName() + p2.getColor() + p2.getRace());
+				
+				MuleGame.screen3();
 			}
 			
 		});
