@@ -1,3 +1,5 @@
+import gfx.Map;
+
 import java.awt.CardLayout;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
@@ -12,6 +14,7 @@ public class MuleGame {
 	private static Screen2 sc2;
 	private static Screen3 sc3;
 	private static Screen4 sc4;
+	private static Map map;
 	
 	public static void main(String[] args) {
 		
@@ -46,8 +49,6 @@ public class MuleGame {
 				sc3.render();
 				sc3.setPlayers(sc2.getPlayer1(), sc2.getPlayer2());
 				frame.add(sc3);
-
-				
 			}
 		});
 		
