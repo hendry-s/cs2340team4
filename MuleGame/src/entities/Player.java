@@ -63,4 +63,14 @@ public class Player extends Character {
 		
 		return race;
 	}
+	
+	public int getMoney()
+	{
+		return money;
+	}
+	
+	public void purchase(int price)
+	{
+		money -= price;
+	}
 }

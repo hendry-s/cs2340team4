@@ -13,6 +13,7 @@ public class Turn {
 	private int turnCount;
 	private int roundCount;
 
+	
 	public Turn() 
 	{
 		lg = new LandGrant();
@@ -31,7 +32,7 @@ public class Turn {
 	
 	public int getTurnCount()
 	{
-		System.out.println("Turn: " + turnCount + " Round: " + roundCount);
+		//System.out.println("Turn: " + turnCount + " Round: " + roundCount);
 		return turnCount;
 	}
 	

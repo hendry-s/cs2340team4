@@ -18,8 +18,9 @@ import gfx.Map;
 public class Screen3 extends JPanel {
 	
 	public static boolean running = false;
-	private Player p1;
-	private Player p2;
+	private static Player p1;
+	private static Player p2;
+	private static Turn turn;
 	
 	private Map map;
 	
@@ -31,14 +32,12 @@ public class Screen3 extends JPanel {
 		setLayout(null);
 		setVisible(true);
 		
-		
+		turn = new Turn();
 	}
 
 	public void render() {
 		
-		final Player[] players = {p1, p2};
-		
-		map = new Map(players);
+		map = new Map();
 		add(map.render());
 //		add(p1.render());
 	}
@@ -54,12 +53,15 @@ public class Screen3 extends JPanel {
 		this.p2 = p2;
 	}
 	
-	public Player[] getPlayers()
+	public static Player[] getPlayers()
 	{
 		return new Player[]{p1, p2};
 	}
 	
-	
+	public static Turn getTurn()
+	{
+		return turn;
+	}
 	
 	
 //    static final Dimension dim = new Dimension(Width,Height);
