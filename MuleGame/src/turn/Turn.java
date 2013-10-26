@@ -28,7 +28,7 @@ public class Turn {
 		turnCount++;
 		if (turnCount%2 == 1)
 		{
-			System.out.println("nope!");
+			System.out.println("Round Incremented!"); // DEBUG purposes
 			roundCount++;
 		}
 			
