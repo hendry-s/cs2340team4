@@ -24,7 +24,7 @@ public class MuleGame {
 		
 		sc1 = new Screen1();
 		sc2 = new Screen2();
-		sc3 = new Screen3();
+		//sc3 = new Screen3();	// DEBUG comment
 		sc4 = new Screen4();
 
 		frame.add(sc1);
@@ -65,7 +65,8 @@ public class MuleGame {
 		sc2.setVisible(false);
 		frame.remove(sc2);
 		
-		sc3.setPlayers(sc2.getPlayer1(), sc2.getPlayer2());
+		sc3 = new Screen3(sc2.getPlayer1(), sc2.getPlayer2()); // DEBUG comment
+		//sc3.setPlayers(sc2.getPlayer1(), sc2.getPlayer2());
 		sc3.render();
 		frame.add(sc3);
 	}

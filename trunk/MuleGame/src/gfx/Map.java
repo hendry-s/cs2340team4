@@ -99,66 +99,44 @@ public class Map
     {
     	// To draw onto Screen3 JPanel
     	Screen3 sc3 = MuleGame.getSC3();
-    	Graphics g = sc3.getGraphics();
-    	
-    	// Start new round!
-		g.setColor(Color.green);
-    	g.setFont(new Font("TimesRoman", Font.PLAIN, 20));  
-    	g.drawString("Land grant: Round " + turn.getRoundCount(), 20, 20);
+    	sc3.setGameLabel("Land grant: Round " + (turn.getRoundCount() + 1));
+    	sc3.setTurnLabel("", null); // Clear text.
 		selectCount = 0;
     }
     
     public void startTurn()
     {
-    	// Start new turn
+    	// Start new turn by incrementing turnCount attribute.
     	turn.nextTurn();
     	
     	// To draw onto Screen3 JPanel
     	Screen3 sc3 = MuleGame.getSC3();
-    	Graphics g = sc3.getGraphics();
-    	
-//    	// Start new round!
-//    	if (prevRound < turn.getRoundCount()) 
-//    	{
-//    		g.setColor(Color.green);
-//        	g.setFont(new Font("TimesRoman", Font.PLAIN, 20));  
-//        	g.drawString("Land grant: Round " + turn.getRoundCount(), 20, 20);
-//    		selectCount = 0;
-//    		prevRound = turn.getRoundCount();
-//    		return;
-//    	}
-    	
-    	
-    	g.setColor(Color.green);
-    	g.setFont(new Font("TimesRoman", Font.PLAIN, 20));  
-    	g.drawString(turn.toString() + "   Enter town to start", 20, 20);
-    	
+    	sc3.setGameLabel(turn.toString() + "   Enter town to start");    	
     	
     	// Display which player's turn it is.
-    	if (turn.getTurnCount()%2 == 1)
+    	if (turn.getTurnCount()%2 == 1)		// Player 1's turn, which will be on the odd number turns.
     	{
-    		g.setColor(players[0].getColor());
-    		g.drawString(players[0].getName() + "'s turn", 20, 40);
-    		System.out.println("1");
+    		sc3.setTurnLabel(players[0].getName() + "'s turn", players[0].getColor());
+    		System.out.println("p1's turn"); // DEBUG purposes
     	}
-    	else
-    	{	g.setColor(players[1].getColor());
-    		g.drawString(players[1].getName() + "'s turn", 20, 40);
-    		System.out.println("0");
+    	else // Player 2's turn, which will be on the even number turns.
+    	{	
+    		sc3.setTurnLabel(players[1].getName() + "'s turn", players[1].getColor());
+    		System.out.println("p2's turn"); // DEBUG purposes
     	}
     	
-    	
-    	System.out.println("Master Turn: " + turn.getTurnCount());
+    	// DEBUG purposes
+    	//System.out.println("Master Turn: " + turn.getTurnCount());
     }
 
     public void landSelect(JButton but, Border border)
     {    	 	
-    	if (selectCount == 0)
+    	if (selectCount == 0)	// Player 1's turn in land selection.
 		{
 			border = BorderFactory.createLineBorder(players[0].getColor(), 5);
 			selectCount++;
 		}
-		else if (selectCount == 1)
+		else if (selectCount == 1) // Player 2's turn in land selection.
 		{
 			border = BorderFactory.createLineBorder(players[1].getColor(), 5);
 			selectCount++;
@@ -168,7 +146,7 @@ public class Map
 			return;
 		
 		but.setBorder(border);
-		but.setEnabled(false);	// Now tile is not clickable.
+		but.setEnabled(false);	// Tile becomes unclickable because a player now occupies it.
     }
     
 	public JPanel render() {

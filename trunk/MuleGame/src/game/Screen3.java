@@ -1,7 +1,10 @@
 package game;
+import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -10,6 +13,7 @@ import java.awt.event.ComponentListener;
 import java.awt.image.BufferStrategy;
 import java.io.IOException;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
@@ -23,16 +27,36 @@ public class Screen3 extends JPanel {
 	private static Player p1;
 	private static Player p2;
 	private static Turn turn;
+
+	private JLabel gameLabel;
+	private JLabel turnLabel;
 	
 	private Map map;
+
 	
-	public Screen3() {
+	public Screen3(Player p1, Player p2) {
+		
+		this.p1 = p1;
+		this.p2 = p2;
+		
+		turn = new Turn();
 		
 		setBounds(0, 0, 767, 521);
 		setBackground(Color.BLACK);
 		setBorder(new LineBorder(new Color(0, 0, 0), 5));
-		setLayout(null);
+		setLayout(new BorderLayout()); // setLayout(null) does not work in adding components.
 		setVisible(true);
+		
+		gameLabel = new JLabel("Land grant: Round " + (turn.getRoundCount() + 1));
+		gameLabel.setForeground(Color.blue);
+		gameLabel.setFont(new Font("Showcard Gothic", Font.BOLD, 30));
+		add(gameLabel, BorderLayout.NORTH);
+		
+		//turnStatus = p1.getName() + "'s turn!";
+		turnLabel = new JLabel();
+		turnLabel.setForeground(p1.getColor());
+		turnLabel.setFont(new Font("Showcard Gothic", Font.ITALIC, 20));
+		add(turnLabel, BorderLayout.CENTER);
 		
 		/**
 		 * Component Listener
@@ -58,27 +82,38 @@ public class Screen3 extends JPanel {
 
 			@Override
 			public void componentShown(ComponentEvent arg0) {
-				// TODO Auto-generated method stub
-				System.out.println("Woah dude");
-				if (turn.getTurnCount()%2 == 0)
+				
+				System.out.println("componentShown Listener"); // DEBUG purposes
+				
+				if (turn.getTurnCount()%2 == 0) // if Player 2's turn ends, then start new round.
 				{
-					System.out.println("Should not go through");
+					System.out.println("startRound Invoked!"); // DEBUG purposes
 					map.startRound();
 				}
-				else				
+				else	// Start player 2's turn.				
 					map.startTurn();
 			}
 		});
 		
 		
-		turn = new Turn();
 	}
 
 	public void render() {
 		
 		map = new Map();
-		add(map.render());
+		add(map.render(), BorderLayout.SOUTH); // add(map.render());
 //		add(p1.render());
+	}
+	
+	public void setGameLabel(String message)
+	{
+		gameLabel.setText(message);
+	}
+	
+	public void setTurnLabel(String message, Color color)
+	{
+		turnLabel.setForeground(color);
+		turnLabel.setText(message);
 	}
 	
 /*	public void paintComponent(Graphics g) {
