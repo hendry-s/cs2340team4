@@ -47,8 +47,8 @@ public class Map
     private final int TILESIZE = 80;
 
     private Player[] players;
-    private static int selectCount = 0; // 0 = p1's landSelect, 1 = p2's landSelect, 2 = start round.
-    private int prevRound = 1;
+    private static int selectCount = 0; // 0 = p1's landSelect, 1 = p2's landSelect, 2 = start round,  3 = tiles cannot be selected.
+    private boolean townClickable = false;
     
     private Turn turn;
     
@@ -97,17 +97,22 @@ public class Map
    
     public void startRound()
     {
+    	townClickable = false;
+    	
     	// To draw onto Screen3 JPanel
     	Screen3 sc3 = MuleGame.getSC3();
     	sc3.setGameLabel("Land grant: Round " + (turn.getRoundCount() + 1));
     	sc3.setTurnLabel("", null); // Clear text.
 		selectCount = 0;
+		turn.updateLandGrantTurn(); // DEBUG now landGrantTurn = 0
     }
     
     public void startTurn()
     {
+    	townClickable = true;
+    	
     	// Start new turn by incrementing turnCount attribute.
-    	turn.nextTurn();
+    	turn.incrementTurnCount();
     	
     	// To draw onto Screen3 JPanel
     	Screen3 sc3 = MuleGame.getSC3();
@@ -131,18 +136,21 @@ public class Map
 
     public void landSelect(JButton but, Border border)
     {    	 	
-    	if (selectCount == 0)	// Player 1's turn in land selection.
+    	if (selectCount == 0 || turn.getLandGrantTurn() == 0)	// Player 1's turn in land selection.
 		{
 			border = BorderFactory.createLineBorder(players[0].getColor(), 5);
 			selectCount++;
+			turn.updateLandGrantTurn(); // UPDATED now landGrantTurn = 1
 		}
-		else if (selectCount == 1) // Player 2's turn in land selection.
+		else if (selectCount == 1 || turn.getLandGrantTurn() == 1) // Player 2's turn in land selection.
 		{
 			border = BorderFactory.createLineBorder(players[1].getColor(), 5);
 			selectCount++;
+			turn.updateLandGrantTurn(); // UPDATED now landGrantTurn = 2
+			
 			startTurn();
 		}
-		else
+		else	// All Tiles will not be selectable. This happens when Land Grant selection ends.
 			return;
 		
 		but.setBorder(border);
@@ -231,10 +239,22 @@ public class Map
 
 								if(e.getSource() instanceof JButton) {
 									
-									if (selectCount == 2 && turn.getRoundCount() == 1)
-										MuleGame.townScreen();
-									else
-										MuleGame.noRenderTownScreen();
+									if (townClickable == true)
+									{
+										if (selectCount == 2 && turn.getRoundCount() == 1)
+											MuleGame.createTownScreen(); // Create only once and display Town screen.
+										else
+											MuleGame.showTownScreen(); // Display Town Screen.
+									}
+									
+//									if (townClickable == true)
+//									{
+//										if (turn.getLandGrantTurn() == 2 && turn.getRoundCount() == 1) // Create and display Town screen only once.
+//											MuleGame.createTownScreen();
+//										else
+//											MuleGame.showTownScreen();
+//									}
+								
 								}
 							}
 				    	});
@@ -284,6 +304,7 @@ public class Map
 	
 	public static void noRenderTown()
 	{
+		System.out.println("noRenderTown() " + "selectCount = " + selectCount);
 		selectCount = 3;
 	}
 }

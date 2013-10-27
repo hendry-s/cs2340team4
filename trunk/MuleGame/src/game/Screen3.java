@@ -28,8 +28,8 @@ public class Screen3 extends JPanel {
 	private static Player p2;
 	private static Turn turn;
 
-	private JLabel gameLabel;
-	private JLabel turnLabel;
+	private JLabel gameLabel;	// Displays the current game state.
+	private JLabel turnLabel;	// Displays the current player's turn.
 	
 	private Map map;
 
@@ -115,12 +115,7 @@ public class Screen3 extends JPanel {
 		turnLabel.setForeground(color);
 		turnLabel.setText(message);
 	}
-	
-/*	public void paintComponent(Graphics g) {
 		
-		map.render(g);
-	}
-*/	
 	public void setPlayers(Player p1, Player p2)
 	{
 		this.p1 = p1;
