@@ -17,6 +17,8 @@ public class MuleGame {
 	private static Screen4 sc4;
 	private static Map map;
 	
+	private static boolean townScreenCreated = false;
+	
 	public static void main(String[] args) {
 		
 		frame = new JFrame("Aim4C++ MULE GAME");
@@ -71,20 +73,32 @@ public class MuleGame {
 		frame.add(sc3);
 	}
 	
-	public static void createTownScreen()
-	{
-		sc3.setVisible(false);
-		
-		// Create and display Town screen.
-		sc4.render();
-		frame.add(sc4);
-	}
+//	public static void createTownScreen()
+//	{
+//		sc3.setVisible(false);
+//		
+//		// Create and display Town screen.
+//		sc4.render();
+//		frame.add(sc4);
+//	}
 	
 	public static void showTownScreen()
 	{
 		// Display Town screen.
-		sc3.setVisible(false);
-		sc4.setVisible(true);	// Will activate Component Listener in Screen3 class.
+		if (townScreenCreated == false)
+		{
+			sc3.setVisible(false);
+			
+			// Create and display Town screen.
+			sc4.render();
+			frame.add(sc4);
+			townScreenCreated = true;
+		}
+		else // If town screen is already created, just display it.
+		{
+			sc3.setVisible(false);
+			sc4.setVisible(true);	// Will activate Component Listener in Screen3 class.
+		}
 	}
 	
 	public static void exitToMap()

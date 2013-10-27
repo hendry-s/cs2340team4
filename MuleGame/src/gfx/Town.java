@@ -128,7 +128,7 @@ public class Town {
 				
 				if(e.getSource() instanceof JButton) {
 					
-					Map.noRenderTown();
+					turn.endPlayerTurn();	// increment index for player order[]
 					MuleGame.exitToMap();
 				}
 			}
@@ -160,133 +160,75 @@ public class Town {
 			case "Food":
 				if (foodQuantity != 0)
 				{
-					if (turn.getTurnCount()%2 == 1) // if p1's turn
+					Player player = turn.getPlayerTurn();
+					System.out.println(player.getName() + " money: " + player.getMoney() + " foodPrice: " + foodPrice + " Food Quantity: " + player.getFood());
+					
+					if (player.getMoney() >= foodPrice)
 					{
-						System.out.println(players[0].getName() + " money: " + players[0].getMoney() + " foodPrice: " + foodPrice + " Food Quantity: " + players[0].getFood());
-						if (players[0].getMoney() >= foodPrice)
-						{
-							players[0].purchase(foodPrice, "Food");
-							foodQuantity--;
-							but.setText("Buy Food (Stock: " + foodQuantity + ")");
-						}
-						else
-							System.out.println("Not enough money");
-						
-						System.out.println(players[0].getName() + " money after: " + players[0].getMoney() + " Food Quantity: " + players[0].getFood());
+						player.purchase(foodPrice, "Food");
+						foodQuantity--;
+						but.setText("Buy Food (Stock: " + foodQuantity + ")");
 					}
-					else	// p2's turn
-					{
-						System.out.println(players[1].getName() + " money: " + players[1].getMoney() + " foodPrice: " + foodPrice + " Food Quantity: " + players[1].getFood());
-						if (players[1].getMoney() >= foodPrice)
-						{
-							players[1].purchase(foodPrice, "Food");
-							foodQuantity--;
-							but.setText("Buy Food (Stock: " + foodQuantity + ")");
-						}
-						else
-							System.out.println("Not enough money");
-						
-						System.out.println(players[1].getName() + " money after: " + players[1].getMoney() + " Food Quantity: " + players[1].getFood());
-					}
+					else
+						System.out.println("Not enough money");
+					
+					System.out.println(player.getName() + " money after: " + player.getMoney() + " Food Quantity: " + player.getFood());
+
 				}
 				break;
 			case "Energy":
 				if (energyQuantity != 0)
 				{
-					if (turn.getTurnCount()%2 == 1) // if p1's turn
+					Player player = turn.getPlayerTurn();
+					System.out.println(player.getName() + " money: " + player.getMoney() + " energyPrice: " + energyPrice + " Energy Quantity: " + player.getEnergy());
+					
+					if (player.getMoney() >= energyPrice)
 					{
-						System.out.println(players[0].getName() + " money: " + players[0].getMoney() + " energyPrice: " + energyPrice + " Energy Quantity: " + players[0].getEnergy());
-						if (players[0].getMoney() >= energyPrice)
-						{
-							players[0].purchase(energyPrice, "Energy");
-							energyQuantity--;
-							but.setText("Buy Energy (Stock: " + energyQuantity + ")");
-						}
-						else
-							System.out.println("Not enough money");
-						
-						System.out.println(players[0].getName() + " money after: " + players[0].getMoney() + " Energy Quantity: " + players[0].getEnergy());
+						player.purchase(energyPrice, "Energy");
+						energyQuantity--;
+						but.setText("Buy Energy (Stock: " + energyQuantity + ")");
 					}
-					else	// p2's turn
-					{
-						System.out.println(players[1].getName() + " money: " + players[1].getMoney() + " energyPrice: " + energyPrice + " Energy Quantity: " + players[1].getEnergy());
-						if (players[1].getMoney() >= energyPrice)
-						{
-							players[1].purchase(energyPrice, "Energy");
-							energyQuantity--;
-							but.setText("Buy Energy (Stock: " + energyQuantity + ")");
-						}
-						else
-							System.out.println("Not enough money");
-						
-						System.out.println(players[1].getName() + " money after: " + players[1].getMoney() + " Energy Quantity: " + players[1].getEnergy());
-					}
+					else
+						System.out.println("Not enough money");
+					
+					System.out.println(player.getName() + " money after: " + player.getMoney() + " Energy Quantity: " + player.getEnergy());
+					
 				}
 				break;
 			case "Ore":
 				if (oreQuantity != 0)
 				{
-					if (turn.getTurnCount()%2 == 1) // if p1's turn
+					Player player = turn.getPlayerTurn();
+					System.out.println(player.getName() + " money: " + player.getMoney() + " orePrice: " + orePrice + " Ore Quantity: " + player.getOre());
+					if (player.getMoney() >= orePrice)
 					{
-						System.out.println(players[0].getName() + " money: " + players[0].getMoney() + " orePrice: " + orePrice + " Ore Quantity: " + players[0].getOre());
-						if (players[0].getMoney() >= orePrice)
-						{
-							players[0].purchase(orePrice, "Ore");
-							oreQuantity--;
-							but.setText("Buy Ore (Stock: " + oreQuantity + ")");
-						}
-						else
-							System.out.println("Not enough money");
-						
-						System.out.println(players[0].getName() + " money after: " + players[0].getMoney() + " Ore Quantity: " + players[0].getOre());
+						player.purchase(orePrice, "Ore");
+						oreQuantity--;
+						but.setText("Buy Ore (Stock: " + oreQuantity + ")");
 					}
-					else	// p2's turn
-					{
-						System.out.println(players[1].getName() + " money: " + players[1].getMoney() + " orePrice: " + orePrice + " Ore Quantity: " + players[1].getOre());
-						if (players[1].getMoney() >= orePrice)
-						{
-							players[1].purchase(orePrice, "Ore");
-							oreQuantity--;
-							but.setText("Buy Ore (Stock: " + oreQuantity + ")");
-						}
-						else
-							System.out.println("Not enough money");
-						
-						System.out.println(players[1].getName() + " money after: " + players[1].getMoney() + " Ore Quantity: " + players[1].getOre());
-					}
+					else
+						System.out.println("Not enough money");
+					
+					System.out.println(player.getName() + " money after: " + player.getMoney() + " Ore Quantity: " + player.getOre());
+
 				}
 				break;
 			case "Mule":
 				if (muleQuantity != 0)
 				{
-					if (turn.getTurnCount()%2 == 1) // if p1's turn
+					Player player = turn.getPlayerTurn();
+					System.out.println(player.getName() + " money: " + player.getMoney() + " mulePrice: " + mulePrice);
+					if (player.getMoney() >= mulePrice)
 					{
-						System.out.println(players[0].getName() + " money: " + players[0].getMoney() + " mulePrice: " + mulePrice);
-						if (players[0].getMoney() >= mulePrice)
-						{
-							players[0].purchase(mulePrice, "Mule");
-							muleQuantity--;
-							but.setText("Buy Mule (Stock: " + muleQuantity + ")");
-						}
-						else
-							System.out.println("Not enough money");
-						
-						System.out.println(players[0].getName() + " money after: " + players[0].getMoney());
+						player.purchase(mulePrice, "Mule");
+						muleQuantity--;
+						but.setText("Buy Mule (Stock: " + muleQuantity + ")");
 					}
-					else	// p2's turn
-					{
-						System.out.println(players[1].getName() + " money: " + players[1].getMoney() + " mulePrice: " + mulePrice);
-						if (players[1].getMoney() >= mulePrice)
-						{
-							players[1].purchase(mulePrice, "Mule");
-							muleQuantity--;
-							but.setText("Buy Mule (Stock: " + muleQuantity + ")");
-						}
-						else
-							System.out.println("Not enough money");
-						
-						System.out.println(players[1].getName() + " money after: " + players[1].getMoney());
-					}
+					else
+						System.out.println("Not enough money");
+					
+					System.out.println(player.getName() + " money after: " + player.getMoney());
+					
 				}
 				break;
 			

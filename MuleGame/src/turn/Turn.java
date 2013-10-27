@@ -15,7 +15,6 @@ public class Turn {
 	
 	private int turnCount;
 	private int roundCount;
-	private int landGrantTurn;	// Determines which player is selecting Land. 0 = p1, 1 = p2, 2 = land grant over
 	
 	private Player p1;
 	private Player p2;
@@ -30,8 +29,8 @@ public class Turn {
 		
 		lg = new LandGrant();
 		
-		turnCount = 0;	// starting at 0 for code to work.
-		roundCount = 0;
+		turnCount = 1;	// starting at 0 for code to work.
+		roundCount = 1;
 	}
 	
 	public void incrementTurnCount()
@@ -56,17 +55,60 @@ public class Turn {
 		return roundCount;
 	}
 	
-	public int getLandGrantTurn()
-	{
-		return landGrantTurn;
+	public Player getPlayerTurn()
+	{	
+		Player play = order[index];
+		//index++;
+		return play;
 	}
 	
-	public void updateLandGrantTurn()
+	public void endPlayerTurn()
 	{
-		if (landGrantTurn != 2)
-			landGrantTurn++;
+		index++;
+	}
+	
+	public boolean isLandSelectComplete()
+	{
+		if (index == order.length)
+		{
+			index = 0; // Reset index for player turns now.
+			return true;
+		}
 		else
-			landGrantTurn = 0;
+			return false;
+	}
+	
+	public boolean isRoundComplete()
+	{
+		if (index == order.length)
+		{
+			index = 0;
+			calculatePlayerOrder();	// Helper method
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	private void calculatePlayerOrder()
+	{
+		int p1Score = p1.getMoney() + p1.getFood() + p1.getEnergy() + p1.getOre();
+		int p2Score = p2.getMoney() + p2.getFood() + p2.getEnergy() + p2.getOre();
+		
+		System.out.println("p1Score: " + p1Score + ", p2Score: " + p2Score);
+		
+		if (p1Score >= p2Score)
+		{
+			order[0] = p1;
+			order[1] = p2;
+		}
+		else if (p1Score < p2Score)
+		{
+			order[0] = p2;
+			order[1] = p1;
+		}
 	}
 	
 	public String toString()

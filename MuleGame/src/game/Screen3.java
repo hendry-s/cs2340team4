@@ -8,11 +8,14 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.image.BufferStrategy;
 import java.io.IOException;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
@@ -30,6 +33,7 @@ public class Screen3 extends JPanel {
 
 	private JLabel gameLabel;	// Displays the current game state.
 	private JLabel turnLabel;	// Displays the current player's turn.
+	private JButton passButton;	// Button for player to pass land selection turn.
 	
 	private Map map;
 
@@ -47,16 +51,27 @@ public class Screen3 extends JPanel {
 		setLayout(new BorderLayout()); // setLayout(null) does not work in adding components.
 		setVisible(true);
 		
-		gameLabel = new JLabel("Land grant: Round " + (turn.getRoundCount() + 1));
+		gameLabel = new JLabel("Land grant: Round " + (turn.getRoundCount()));
 		gameLabel.setForeground(Color.blue);
 		gameLabel.setFont(new Font("Showcard Gothic", Font.BOLD, 30));
 		add(gameLabel, BorderLayout.NORTH);
 		
-		//turnStatus = p1.getName() + "'s turn!";
-		turnLabel = new JLabel();
+		turnLabel = new JLabel(p1.getName() + ", select your land.");
 		turnLabel.setForeground(p1.getColor());
 		turnLabel.setFont(new Font("Showcard Gothic", Font.ITALIC, 20));
 		add(turnLabel, BorderLayout.CENTER);
+		
+		passButton = new JButton("Pass");
+		passButton.setVisible(false);
+		passButton.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) { 
+				// Skip land selection.
+				map.passLandSelect();
+			}
+    	});
+		add(passButton, BorderLayout.EAST);
+		
 		
 		/**
 		 * Component Listener
@@ -85,13 +100,14 @@ public class Screen3 extends JPanel {
 				
 				System.out.println("componentShown Listener"); // DEBUG purposes
 				
-				if (turn.getTurnCount()%2 == 0) // if Player 2's turn ends, then start new round.
+				if (turn.isRoundComplete() == true)
 				{
-					System.out.println("startRound Invoked!"); // DEBUG purposes
+					System.out.println("startRound() invoked!");
 					map.startRound();
 				}
-				else	// Start player 2's turn.				
+				else	// Start next player's turn.
 					map.startTurn();
+				
 			}
 		});
 		
@@ -114,6 +130,11 @@ public class Screen3 extends JPanel {
 	{
 		turnLabel.setForeground(color);
 		turnLabel.setText(message);
+	}
+	
+	public void setPassButtonVisible(boolean condition)
+	{
+		passButton.setVisible(condition);
 	}
 		
 	public void setPlayers(Player p1, Player p2)
