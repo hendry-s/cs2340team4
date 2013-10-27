@@ -31,6 +31,8 @@ public class Screen4 extends JPanel {
 		Player[] players = {p1, p2};
 		town = new Town();
 		add(town.getPanel());
+		
+		
 	}
 
 	public void setPlayers(Player player1, Player player2) {

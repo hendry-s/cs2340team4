@@ -24,7 +24,7 @@ public class MuleGame {
 		
 		sc1 = new Screen1();
 		sc2 = new Screen2();
-		//sc3 = new Screen3();	// DEBUG comment
+		//sc3 = new Screen3();	// CORRECT comment
 		sc4 = new Screen4();
 
 		frame.add(sc1);
@@ -71,18 +71,20 @@ public class MuleGame {
 		frame.add(sc3);
 	}
 	
-	public static void townScreen()
+	public static void createTownScreen()
 	{
 		sc3.setVisible(false);
 		
+		// Create and display Town screen.
 		sc4.render();
 		frame.add(sc4);
 	}
 	
-	public static void noRenderTownScreen()
+	public static void showTownScreen()
 	{
+		// Display Town screen.
 		sc3.setVisible(false);
-		sc4.setVisible(true);
+		sc4.setVisible(true);	// Will activate Component Listener in Screen3 class.
 	}
 	
 	public static void exitToMap()

@@ -118,12 +118,43 @@ public class Player extends Character {
 		return money;
 	}
 	
+	public int getEnergy()
+	{
+		return energy;
+	}
+	
+	public int getFood()
+	{
+		return food;
+	}
+	
+	public int getOre()
+	{
+		return ore;
+	}
+	
 	/**
 	 * Make a purchase out of the player's asset
 	 * @param price Price of an item purchased
 	 **/
-	public void purchase(int price)
+	public void purchase(int price, String product)
 	{
 		money -= price;
+		
+		switch (product)
+		{
+			case "Food":
+				food++;
+				break;
+			case "Energy":
+				energy++;
+				break;
+			case "Ore":
+				ore++;
+				break;
+			case "Mule":
+				System.out.println("Mule quantity not implemented yet");
+				break;
+		}
 	}
 }
