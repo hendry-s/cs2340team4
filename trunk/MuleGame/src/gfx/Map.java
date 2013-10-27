@@ -47,8 +47,8 @@ public class Map
     private final int TILESIZE = 80;
 
     private Player[] players;
-    private static int selectCount = 0; // 0 = p1's landSelect, 1 = p2's landSelect, 2 = start round,  3 = tiles cannot be selected.
     private boolean townClickable = false;
+    private boolean landClickable = true;
     
     private Turn turn;
     
@@ -98,63 +98,120 @@ public class Map
     public void startRound()
     {
     	townClickable = false;
+    	landClickable = true;
     	
-    	// To draw onto Screen3 JPanel
+    	Player player = turn.getPlayerTurn();
+    	
+    	// Update game and turn labels on Screen3 JPanel.
     	Screen3 sc3 = MuleGame.getSC3();
-    	sc3.setGameLabel("Land grant: Round " + (turn.getRoundCount() + 1));
-    	sc3.setTurnLabel("", null); // Clear text.
-		selectCount = 0;
-		turn.updateLandGrantTurn(); // DEBUG now landGrantTurn = 0
+    	sc3.setGameLabel("Land grant: Round " + turn.getRoundCount());
+    	sc3.setTurnLabel(player.getName() + ", select a land.", player.getColor());
+    	
+    	if (turn.getRoundCount() > 2)
+    	{
+    		sc3.setPassButtonVisible(true);
+    		sc3.setTurnLabel(player.getName() + ", purchase a land. Money: $" + player.getMoney(), player.getColor());
+    	}
     }
     
     public void startTurn()
     {
     	townClickable = true;
     	
-    	// Start new turn by incrementing turnCount attribute.
-    	turn.incrementTurnCount();
+//    	// Start new turn by incrementing turnCount attribute.
+//    	turn.incrementTurnCount();
     	
     	// To draw onto Screen3 JPanel
     	Screen3 sc3 = MuleGame.getSC3();
-    	sc3.setGameLabel(turn.toString() + "   Enter town to start");    	
+    	sc3.setGameLabel(turn.toString() + "   Enter town to start");
+    	sc3.setPassButtonVisible(false);
     	
-    	// Display which player's turn it is.
-    	if (turn.getTurnCount()%2 == 1)		// Player 1's turn, which will be on the odd number turns.
-    	{
-    		sc3.setTurnLabel(players[0].getName() + "'s turn", players[0].getColor());
-    		System.out.println("p1's turn"); // DEBUG purposes
-    	}
-    	else // Player 2's turn, which will be on the even number turns.
-    	{	
-    		sc3.setTurnLabel(players[1].getName() + "'s turn", players[1].getColor());
-    		System.out.println("p2's turn"); // DEBUG purposes
-    	}
-    	
-    	// DEBUG purposes
-    	//System.out.println("Master Turn: " + turn.getTurnCount());
+    	// Determine player turn
+    	Player player = turn.getPlayerTurn();
+    	sc3.setTurnLabel(player.getName() + "'s turn", player.getColor());
+		System.out.println(player.getName() + "'s turn"); // DEBUG purposes
+		
+		// Start new turn by incrementing turnCount attribute.
+    	turn.incrementTurnCount();
+    }
+    
+    public void passLandSelect()
+    {
+    	//Determine player land select
+     	Player player = turn.getPlayerTurn();
+     	turn.endPlayerTurn();	// increment index for player order[].
+     	
+     	if (turn.isLandSelectComplete() == true)
+     	{
+     		landClickable = false;
+     		townClickable = true;
+     		startTurn();
+     	}
+     	else
+     	{
+     		// Set turn status to next player
+     		player = turn.getPlayerTurn();
+     		Screen3 sc3 = MuleGame.getSC3();
+         	sc3.setGameLabel("Land grant: Round " + (turn.getRoundCount()));
+         	sc3.setTurnLabel(player.getName() + ", select a land.", player.getColor());
+     	}
     }
 
-    public void landSelect(JButton but, Border border)
+    public void landSelect(JButton but, Border border, Tile tile)
     {    	 	
-    	if (selectCount == 0 || turn.getLandGrantTurn() == 0)	// Player 1's turn in land selection.
-		{
-			border = BorderFactory.createLineBorder(players[0].getColor(), 5);
-			selectCount++;
-			turn.updateLandGrantTurn(); // UPDATED now landGrantTurn = 1
-		}
-		else if (selectCount == 1 || turn.getLandGrantTurn() == 1) // Player 2's turn in land selection.
-		{
-			border = BorderFactory.createLineBorder(players[1].getColor(), 5);
-			selectCount++;
-			turn.updateLandGrantTurn(); // UPDATED now landGrantTurn = 2
-			
-			startTurn();
-		}
-		else	// All Tiles will not be selectable. This happens when Land Grant selection ends.
-			return;
-		
-		but.setBorder(border);
+    	
+    	// Determine player land select
+    	Player player = turn.getPlayerTurn();
+    	
+    	// Land is free the first 2 rounds.
+    	if (turn.getRoundCount() > 2)
+    	{
+	    	
+	    	if (player.getMoney() >= tile.getPrice())	
+			{
+				player.purchase(tile.getPrice(), "Land");
+			}
+	    	else	// If player has sufficient funds to purchase land.
+	    	{
+	    		Screen3 sc3 = MuleGame.getSC3();
+	        	sc3.setTurnLabel(player.getName() + " has insufficient funds: Money: $" + player.getMoney() + " < Land: $" + tile.getPrice(), player.getColor());
+	        	return;
+	    	}
+    	}
+    	
+    	border = BorderFactory.createLineBorder(player.getColor(), 5);
+    	but.setBorder(border);
 		but.setEnabled(false);	// Tile becomes unclickable because a player now occupies it.
+    	
+    	turn.endPlayerTurn();	// increment index for player order[].
+    	
+    	if (turn.isLandSelectComplete() == true)
+    	{
+    		landClickable = false;
+    		townClickable = true;
+    		startTurn();
+    	}
+    	else
+    	{
+    		if (turn.getRoundCount() <= 2)
+    		{
+	    		// Set turn status to next player
+	    		player = turn.getPlayerTurn();
+	    		Screen3 sc3 = MuleGame.getSC3();
+	        	sc3.setGameLabel("Land grant: Round " + (turn.getRoundCount()));
+	        	sc3.setTurnLabel(player.getName() + ", select a land.", player.getColor());
+    		}
+    		else
+    		{
+    			// Set turn status to next player
+	    		player = turn.getPlayerTurn();
+	    		Screen3 sc3 = MuleGame.getSC3();
+	        	sc3.setGameLabel("Land grant: Round " + (turn.getRoundCount()));
+	        	sc3.setTurnLabel(player.getName() + ", purchase a land. Money: $" + player.getMoney(), player.getColor());
+    		}
+    	}
+    			
+		
     }
     
 	public JPanel render() {
@@ -182,13 +239,24 @@ public class Map
 				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/icon_mountain1.png"));
 				    	button = new JButton(currTile);
 				    	button.setPreferredSize(new Dimension(80, 80));
+				    	final int row = r; // To save the row of the button.
+				    	final int col = c; // To save the column of the button.
 				    	button.addActionListener(new ActionListener() {
 
 							public void actionPerformed(ActionEvent e) { 
 								
 								if(e.getSource() instanceof JButton) {
 									
-									landSelect((JButton)e.getSource(), border);
+									//System.out.println("row: " + row + " col: " + col); // DEBUG purposes
+									//System.out.println("Price: " + tileMap[row][col].getPrice()); // DEBUG purposes
+									//System.out.println("Round: " + turn.getRoundCount());	// DEBUG purposes
+									
+									if (landClickable == true)
+									{
+										if (turn.getRoundCount() <= 2) // Land is free for first 2 rounds.
+											landSelect((JButton)e.getSource(), border, tileMap[row][col]);
+										
+									}	
 								}
 							}
 				    	});
@@ -199,13 +267,20 @@ public class Map
 				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/icon_mountain2.png"));
 				    	button = new JButton(currTile);
 				    	button.setPreferredSize(new Dimension(80, 80));
+				    	final int row = r; // To save the row of the button.
+				    	final int col = c; // To save the column of the button.
 				    	button.addActionListener(new ActionListener() {
 
 							public void actionPerformed(ActionEvent e) { 
 
 								if(e.getSource() instanceof JButton) {
 									
-									landSelect((JButton)e.getSource(), border);
+									//System.out.println("row: " + row + " col: " + col); // DEBUG purposes
+									//System.out.println("Price: " + tileMap[row][col].getPrice()); // DEBUG purposes
+									//System.out.println("Round: " + turn.getRoundCount());	// DEBUG purposes
+									
+									if (landClickable == true)
+										landSelect((JButton)e.getSource(), border, tileMap[row][col]);
 								}
 							}
 				    	});
@@ -216,13 +291,20 @@ public class Map
 				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/icon_mountain3.png"));
 				    	button = new JButton(currTile);
 				    	button.setPreferredSize(new Dimension(80, 80));
+				    	final int row = r; // To save the row of the button.
+				    	final int col = c; // To save the column of the button.
 				    	button.addActionListener(new ActionListener() {
 
 							public void actionPerformed(ActionEvent e) { 
 
 								if(e.getSource() instanceof JButton) {
 									
-									landSelect((JButton)e.getSource(), border);
+									//System.out.println("row: " + row + " col: " + col); // DEBUG purposes
+									//System.out.println("Price: " + tileMap[row][col].getPrice()); // DEBUG purposes
+									//System.out.println("Round: " + turn.getRoundCount());	// DEBUG purposes
+									
+									if (landClickable == true)
+										landSelect((JButton)e.getSource(), border, tileMap[row][col]);
 								}
 							}
 				    	});
@@ -241,20 +323,8 @@ public class Map
 									
 									if (townClickable == true)
 									{
-										if (selectCount == 2 && turn.getRoundCount() == 1)
-											MuleGame.createTownScreen(); // Create only once and display Town screen.
-										else
-											MuleGame.showTownScreen(); // Display Town Screen.
+										MuleGame.showTownScreen(); // Display Town Screen.
 									}
-									
-//									if (townClickable == true)
-//									{
-//										if (turn.getLandGrantTurn() == 2 && turn.getRoundCount() == 1) // Create and display Town screen only once.
-//											MuleGame.createTownScreen();
-//										else
-//											MuleGame.showTownScreen();
-//									}
-								
 								}
 							}
 				    	});
@@ -265,13 +335,20 @@ public class Map
 				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/icon_plain.png"));
 				    	button = new JButton(currTile);
 				    	button.setPreferredSize(new Dimension(80, 80));
+				    	final int row = r; // To save the row of the button.
+				    	final int col = c; // To save the column of the button.
 				    	button.addActionListener(new ActionListener() {
 
 							public void actionPerformed(ActionEvent e) { 
 
 								if(e.getSource() instanceof JButton) {
 									
-									landSelect((JButton)e.getSource(), border);
+									//System.out.println("row: " + row + " col: " + col); // DEBUG purposes
+									//System.out.println("Price: " + tileMap[row][col].getPrice()); // DEBUG purposes
+									//System.out.println("Round: " + turn.getRoundCount());	// DEBUG purposes
+									
+									if (landClickable == true)
+										landSelect((JButton)e.getSource(), border, tileMap[row][col]);
 								}
 							}
 				    	});
@@ -282,13 +359,20 @@ public class Map
 				    	currTile = new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/icon_river.png"));
 				    	button = new JButton(currTile);
 				    	button.setPreferredSize(new Dimension(80, 80));
+				    	final int row = r; // To save the row of the button.
+				    	final int col = c; // To save the column of the button.
 				    	button.addActionListener(new ActionListener() {
 
 							public void actionPerformed(ActionEvent e) { 
 
 								if(e.getSource() instanceof JButton) {
 									
-									landSelect((JButton)e.getSource(), border);
+									//System.out.println("row: " + row + " col: " + col); // DEBUG purposes
+									//System.out.println("Price: " + tileMap[row][col].getPrice()); // DEBUG purposes
+									//System.out.println("Round: " + turn.getRoundCount());	// DEBUG purposes
+									
+									if (landClickable == true)
+										landSelect((JButton)e.getSource(), border, tileMap[row][col]);
 								}
 							}
 				    	});
@@ -301,10 +385,4 @@ public class Map
 		return gridPanel;
 	}
 	
-	
-	public static void noRenderTown()
-	{
-		System.out.println("noRenderTown() " + "selectCount = " + selectCount);
-		selectCount = 3;
-	}
 }
