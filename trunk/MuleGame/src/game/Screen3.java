@@ -98,7 +98,7 @@ public class Screen3 extends JPanel {
 			@Override
 			public void componentShown(ComponentEvent arg0) {
 				
-				System.out.println("componentShown Listener"); // DEBUG purposes
+				//System.out.println("componentShown Listener"); // DEBUG purposes
 				
 				if (turn.isRoundComplete() == true)
 				{
