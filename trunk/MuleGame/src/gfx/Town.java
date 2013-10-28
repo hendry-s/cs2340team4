@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import entities.Player;
 import game.MuleGame;
 import game.Screen3;
+import game.Screen4;
 import tiles.M1Tile;
 import tiles.M2Tile;
 import tiles.M3Tile;
@@ -56,6 +57,7 @@ public class Town {
     
     private Player[] players;
     private Turn turn;
+    private Screen4 sc4;
     
     private JButton buyFood;
     private JButton buyEnergy;
@@ -63,10 +65,11 @@ public class Town {
     private JButton buyMule;
     private JButton exit;
 	
-	public Town() {
+	public Town(Screen4 sc4) {
 	
 		this.players = Screen3.getPlayers();
 		this.turn = Screen3.getTurn();
+		this.sc4 = sc4;
 		
 		townPanel = new JPanel();
 		townPanel.setBounds(MAPULX, MAPULY, 724, 404);
@@ -128,6 +131,7 @@ public class Town {
 				
 				if(e.getSource() instanceof JButton) {
 					
+					stopTurnTimer();
 					turn.endPlayerTurn();	// increment index for player order[]
 					MuleGame.exitToMap();
 				}
@@ -168,6 +172,7 @@ public class Town {
 						player.purchase(foodPrice, "Food");
 						foodQuantity--;
 						but.setText("Buy Food (Stock: " + foodQuantity + ")");
+						sc4.updateLabelStats();
 					}
 					else
 						System.out.println("Not enough money");
@@ -187,6 +192,7 @@ public class Town {
 						player.purchase(energyPrice, "Energy");
 						energyQuantity--;
 						but.setText("Buy Energy (Stock: " + energyQuantity + ")");
+						sc4.updateLabelStats();
 					}
 					else
 						System.out.println("Not enough money");
@@ -205,6 +211,7 @@ public class Town {
 						player.purchase(orePrice, "Ore");
 						oreQuantity--;
 						but.setText("Buy Ore (Stock: " + oreQuantity + ")");
+						sc4.updateLabelStats();
 					}
 					else
 						System.out.println("Not enough money");
@@ -223,6 +230,7 @@ public class Town {
 						player.purchase(mulePrice, "Mule");
 						muleQuantity--;
 						but.setText("Buy Mule (Stock: " + muleQuantity + ")");
+						sc4.updateLabelStats();
 					}
 					else
 						System.out.println("Not enough money");
@@ -233,6 +241,11 @@ public class Town {
 				break;
 			
 		}
+	}
+	
+	public void stopTurnTimer()
+	{
+		sc4.stopTimer();
 	}
 	
 	public JPanel getPanel() {

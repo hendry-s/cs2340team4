@@ -27,7 +27,7 @@ public class MuleGame {
 		sc1 = new Screen1();
 		sc2 = new Screen2();
 		//sc3 = new Screen3();	// CORRECT comment
-		sc4 = new Screen4();
+		//sc4 = new Screen4();
 
 		frame.add(sc1);
 		
@@ -90,6 +90,7 @@ public class MuleGame {
 			sc3.setVisible(false);
 			
 			// Create and display Town screen.
+			sc4 = new Screen4();
 			sc4.render();
 			frame.add(sc4);
 			townScreenCreated = true;

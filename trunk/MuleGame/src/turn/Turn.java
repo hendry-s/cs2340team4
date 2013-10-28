@@ -21,6 +21,8 @@ public class Turn {
 	private Player[] order;	// Array used to determine turn order.
 	private int index;
 	
+	private int turnTime;
+	
 	public Turn() 
 	{
 		this.p1 = Screen3.getPlayers()[0];
@@ -109,6 +111,20 @@ public class Turn {
 			order[0] = p2;
 			order[1] = p1;
 		}
+	}
+	
+	public int getPlayerTurnTime()
+	{		
+		Player player = getPlayerTurn();
+		turnTime = player.getEnergy() * 3000;	// 4000 miliseconds = 4 seconds
+		
+		return turnTime;	// returns in miliseconds.
+	}
+	
+	public int decrementPlayerTurnTime()
+	{
+		turnTime -= 1000; // By one second (1000 miliseconds)
+		return turnTime;
 	}
 	
 	public String toString()
