@@ -102,7 +102,7 @@ public class Screen3 extends JPanel {
 				
 				if (turn.isRoundComplete() == true)
 				{
-					System.out.println("startRound() invoked!");
+					//System.out.println("startRound() invoked!"); // DEBUG purposes
 					map.startRound();
 				}
 				else	// Start next player's turn.

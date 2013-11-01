@@ -40,7 +40,7 @@ public class Turn {
 		turnCount++;
 		if (turnCount%2 == 1)
 		{
-			System.out.println("Round Incremented!"); // DEBUG purposes
+			//System.out.println("Round Incremented!"); // DEBUG purposes
 			roundCount++;
 		}
 	}
@@ -48,7 +48,7 @@ public class Turn {
 	
 	public int getTurnCount()
 	{
-		System.out.println("Turn: " + turnCount + " Round: " + roundCount);
+		//System.out.println("Turn: " + turnCount + " Round: " + roundCount); // DEBUG purposes
 		return turnCount;
 	}
 	
@@ -60,7 +60,6 @@ public class Turn {
 	public Player getPlayerTurn()
 	{	
 		Player play = order[index];
-		//index++;
 		return play;
 	}
 	
@@ -99,7 +98,7 @@ public class Turn {
 		int p1Score = p1.getMoney() + p1.getFood() + p1.getEnergy() + p1.getOre();
 		int p2Score = p2.getMoney() + p2.getFood() + p2.getEnergy() + p2.getOre();
 		
-		System.out.println("p1Score: " + p1Score + ", p2Score: " + p2Score);
+		System.out.println("p1Score: " + p1Score + ", p2Score: " + p2Score); // DEBUG purposes
 		
 		if (p1Score >= p2Score)
 		{

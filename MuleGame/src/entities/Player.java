@@ -157,4 +157,14 @@ public class Player extends Character {
 				break;
 		}
 	}
+	
+	/**
+	 * Add money won from gambling to player's money.
+	 * @param moneyWon Money won from gambling.
+	 */
+	
+	public void gambleMoneyWon(int moneyWon)
+	{
+		money += moneyWon;
+	}
 }

@@ -129,7 +129,7 @@ public class Map
     	// Determine player turn
     	Player player = turn.getPlayerTurn();
     	sc3.setTurnLabel(player.getName() + "'s turn", player.getColor());
-		System.out.println(player.getName() + "'s turn"); // DEBUG purposes
+		//System.out.println(player.getName() + "'s turn"); // DEBUG purposes
 		
 		// Start new turn by incrementing turnCount attribute.
     	turn.incrementTurnCount();
