@@ -95,7 +95,7 @@ public class Screen4 extends JPanel {
 			@Override
 			public void componentShown(ComponentEvent arg0) {
 				
-				System.out.println("componentShown Listener in Screen4"); // DEBUG purposes
+				//System.out.println("componentShown Listener in Screen4"); // DEBUG purposes
 				timer.start();
 				updateLabelStats();
 				updateTimeLabel(turn.getPlayerTurnTime());

@@ -6,6 +6,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.AbstractButton;
 import javax.swing.JButton;
@@ -149,8 +150,23 @@ public class Town {
 		townPanel.add(store);
 		JButton assay = new JButton("Assay");
 		townPanel.add(assay);
+		
 		JButton pub = new JButton("Pub");
 		townPanel.add(pub);
+		pub.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) { 
+				
+				if(e.getSource() instanceof JButton) {
+					
+					gambleMoney();
+					stopTurnTimer();
+					turn.endPlayerTurn();	// increment index for player order[]
+					MuleGame.exitToMap();
+				}
+			}
+    	});
+		
 		JButton landOffice = new JButton("Land Offices");
 		townPanel.add(landOffice);
     }
@@ -241,6 +257,19 @@ public class Town {
 				break;
 			
 		}
+	}
+	
+	public void gambleMoney()
+	{
+		Player player = turn.getPlayerTurn();
+		
+		Random rand = new Random();
+		int gamble = rand.nextInt(100) + 51; // From $50 - $150 can be won.
+		System.out.println("Money won: " + gamble); // DEBUG purposes
+		System.out.println("Money BEFORE gambling: " + player.getMoney()); // DEBUG purposes
+		
+		player.gambleMoneyWon(gamble);
+		System.out.println("Money AFTER gambling: " + player.getMoney()); // DEBUG purposes
 	}
 	
 	public void stopTurnTimer()
