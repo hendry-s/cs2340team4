@@ -130,6 +130,14 @@ public class Town {
 		
 		outfitFood = new JButton("Outfit to Food");
 		outfitEnergy = new JButton("Outfit to Energy");
+		outfitEnergy.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				if(e.getSource() instanceof JButton){
+					
+				}
+			}
+			
+		}
 		outfitOre = new JButton("Outfit to Ore");
 		
 		exit = new JButton("Exit to Map");
