@@ -22,6 +22,9 @@ public class Player extends Character {
 	protected int energy;
 	protected int food;
 	protected int ore;
+	protected int outfitFood;
+	protected int outfitEnergy;
+	protected int outfitOre;	
 	protected boolean hasMuleInMap;
 	protected boolean hasEmptyLand;
 	
@@ -157,6 +160,17 @@ public class Player extends Character {
 				break;
 		}
 	}
+	
+	/**
+	 *outfitting a mule out of the player's asset
+	 * @param price Price of an item purchased
+	 **/
+	public void outfitting(int price, String product)
+	{
+		money -= price;
+		
+	}
+	
 	
 	/**
 	 * Add money won from gambling to player's money.
