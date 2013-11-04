@@ -137,10 +137,18 @@ public class Player extends Character {
 		return ore;
 	}
 	
+	/**
+	 * getter for player's mule status
+	 * @return true if player purchased a mule
+	 */
 	public boolean hasMule(){
 		return hasMule;
 	}
 	
+	/**
+	 * getter for player's mule in  map status
+	 * @return true if player has a mule installed in the map
+	 */
 	public boolean hasMuleInMap(){
 		return hasMuleInMap;
 	}
