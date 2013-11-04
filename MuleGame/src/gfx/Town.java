@@ -65,6 +65,9 @@ public class Town {
     private JButton buyOre;
     private JButton buyMule;
     private JButton exit;
+    private JButton outfitFood;
+    private JButton outfitEnergy;
+    private JButton outfitOre;
 	
 	public Town(Screen4 sc4) {
 	
@@ -125,6 +128,10 @@ public class Town {
 			}
     	});
 		
+		outfitFood = new JButton("Outfit to Food");
+		outfitEnergy = new JButton("Outfit to Energy");
+		outfitOre = new JButton("Outfit to Ore");
+		
 		exit = new JButton("Exit to Map");
 		exit.addActionListener(new ActionListener() {
 
@@ -143,6 +150,9 @@ public class Town {
 		townPanel.add(buyEnergy);
 		townPanel.add(buyOre);
 		townPanel.add(buyMule);
+		townPanel.add(outfitFood);
+		townPanel.add(outfitEnergy);
+		townPanel.add(outfitOre);
 		townPanel.add(exit);
 		
 		
