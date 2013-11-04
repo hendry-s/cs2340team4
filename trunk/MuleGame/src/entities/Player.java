@@ -25,7 +25,8 @@ public class Player extends Character {
 	protected int outfitFood;
 	protected int outfitEnergy;
 	protected int outfitOre;	
-	protected boolean hasMuleInMap;
+	protected boolean hasMule = false;
+	protected boolean hasMuleInMap = false;
 	protected boolean hasEmptyLand;
 	
 	/**
@@ -136,6 +137,14 @@ public class Player extends Character {
 		return ore;
 	}
 	
+	public boolean hasMule(){
+		return hasMule;
+	}
+	
+	public boolean hasMuleInMap(){
+		return hasMuleInMap;
+	}
+	
 	/**
 	 * Make a purchase out of the player's asset
 	 * @param price Price of an item purchased
@@ -156,7 +165,7 @@ public class Player extends Character {
 				ore++;
 				break;
 			case "Mule":
-				System.out.println("Mule quantity not implemented yet");
+				hasMule = true;
 				break;
 		}
 	}
@@ -165,10 +174,10 @@ public class Player extends Character {
 	 *outfitting a mule out of the player's asset
 	 * @param price Price of an item purchased
 	 **/
-	public void outfitting(int price, String product)
+	public void outfitting(int price)
 	{
 		money -= price;
-		
+		hasMuleInMap = true;
 	}
 	
 	
