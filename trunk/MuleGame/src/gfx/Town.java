@@ -4,12 +4,14 @@ import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
 import javax.swing.AbstractButton;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import entities.Player;
@@ -51,6 +53,7 @@ public class Town {
 
 
 	private JPanel townPanel;
+	private JPanel storePanel;
 
 	private final int COL = 9;
 	private final int ROW = 5;
@@ -70,6 +73,13 @@ public class Town {
 	private JButton outfitFood;
 	private JButton outfitEnergy;
 	private JButton outfitOre;
+	private JButton sellFood;
+	private JButton sellEnergy;
+	private JButton sellOre;
+	
+	private JLabel foodLabel;
+	private JLabel energyLabel;
+	private JLabel oreLabel;
 
 	public Town(Screen4 sc4) {
 
@@ -211,6 +221,77 @@ public class Town {
 
 		JButton landOffice = new JButton("Land Offices");
 		townPanel.add(landOffice);
+		
+		
+		
+		buildStorePanel();
+		
+		
+		
+	}
+	
+	
+	/** method for creating the store panel
+	 * which displays the amount of resources currently owned by the player
+	 * allows player to sell his resources
+	 */
+	
+	public void buildStorePanel() {
+		storePanel = new JPanel();
+		storePanel.setBounds(MAPULX, MAPULY, 724, 404);
+		storePanel.setBackground(Color.WHITE);
+		storePanel.setLayout(new GridLayout(3,2));
+		
+		sellFood = new JButton("Sell");
+		sellFood.addActionListener(new ActionListener(){
+			
+			public void actionPerformed(ActionEvent e){
+				
+				if(e.getSource() instanceof JButton){
+					turn.getPlayerTurn().sellResources(100, "Food");
+					foodLabel.setText("                     " + "Food: " + turn.getPlayerTurn().getFood());
+				}
+			}
+		});
+		
+		sellEnergy = new JButton("Sell");
+		sellEnergy.addActionListener(new ActionListener(){
+			
+			public void actionPerformed(ActionEvent e){
+				
+				if(e.getSource() instanceof JButton){
+					turn.getPlayerTurn().sellResources(100, "Energy");
+					energyLabel.setText("                     " + "Energy: " + turn.getPlayerTurn().getEnergy());
+				}
+			}
+		});
+		
+		sellOre = new JButton("Sell");
+		sellOre.addActionListener(new ActionListener(){
+			
+			public void actionPerformed(ActionEvent e){
+				
+				if(e.getSource() instanceof JButton){
+					turn.getPlayerTurn().sellResources(100, "Ore");
+					oreLabel.setText("                     " + "Ore: " + turn.getPlayerTurn().getOre());
+				}
+			}
+		});
+		
+		foodLabel = new JLabel("                     " + "Food: " + turn.getPlayerTurn().getFood());
+		energyLabel = new JLabel("                     " + "Energy: " + turn.getPlayerTurn().getEnergy());
+		oreLabel = new JLabel("                     " + "Ore: " + turn.getPlayerTurn().getOre());
+		
+		storePanel.add(foodLabel);
+		storePanel.add(sellFood);
+		storePanel.add(energyLabel);
+		storePanel.add(sellEnergy);
+		storePanel.add(oreLabel);
+		storePanel.add(sellOre);
+	}
+	
+	public JPanel getStorePanel() {
+		return storePanel;
 	}
 
 	public void outfitMule(JButton but, String product){
