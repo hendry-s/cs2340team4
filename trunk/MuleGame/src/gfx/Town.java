@@ -46,6 +46,8 @@ public class Town {
 	private final int energyMountFee = 50;
 	private final int smithoreMountFee = 75;
 	//	private final int crystiteMountFee = 100;
+	
+	
 
 
 	private JPanel townPanel;
@@ -167,7 +169,7 @@ public class Town {
 			public void actionPerformed(ActionEvent e) { 
 
 				if(e.getSource() instanceof JButton) {
-
+					turn.getPlayerTurn().setMuleOutfitted(false);	// reset muleoutfitted back to false after exit
 					stopTurnTimer();
 					turn.endPlayerTurn();	// increment index for player order[]
 					MuleGame.exitToMap();
@@ -212,15 +214,18 @@ public class Town {
 
 	public void outfitMule(JButton but, String product){
 		Player player = turn.getPlayerTurn();
+		
 		switch (product){
 		case "Food":
-			if(player.hasMule() == true){
+			if(player.hasMule() == true && player.muleHasOutfitted() == false){
 				System.out.println(player.getName() + " money: " + player.getMoney() + " foodMountFee: " + foodMountFee);
 
 				if (player.getMoney() >= foodMountFee)
 				{
 					player.outfitting(foodMountFee);
+					player.setMuleOutfitted(true);
 					sc4.updateLabelStats();
+					
 				}
 				else
 					System.out.println("Not enough money");
@@ -231,13 +236,15 @@ public class Town {
 			break;
 
 		case "Energy":
-			if(player.hasMule() == true){
+			if(player.hasMule() == true && player.muleHasOutfitted() == false){
 				System.out.println(player.getName() + " money: " + player.getMoney() + " energyMountFee: " + energyMountFee);
 
 				if (player.getMoney() >= energyMountFee)
 				{
 					player.outfitting(energyMountFee);
+					player.setMuleOutfitted(true);
 					sc4.updateLabelStats();
+					
 				}
 				else
 					System.out.println("Not enough money");
@@ -248,13 +255,15 @@ public class Town {
 			break;
 
 		case "Ore":
-			if(player.hasMule() == true){
+			if(player.hasMule() == true && player.muleHasOutfitted() == false){
 				System.out.println(player.getName() + " money: " + player.getMoney() + " smithoreMountFee: " + smithoreMountFee);
 
 				if (player.getMoney() >= smithoreMountFee)
 				{
 					player.outfitting(smithoreMountFee);
+					player.setMuleOutfitted(true);
 					sc4.updateLabelStats();
+					
 				}
 				else
 					System.out.println("Not enough money");
