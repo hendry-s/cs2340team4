@@ -27,6 +27,7 @@ public class Player extends Character {
 	protected int outfitOre;	
 	protected boolean hasMule = false;
 	protected boolean hasMuleInMap = false;
+	protected boolean muleHasOutfitted = false;
 	protected boolean hasEmptyLand;
 	
 	/**
@@ -143,6 +144,23 @@ public class Player extends Character {
 	 */
 	public boolean hasMule(){
 		return hasMule;
+	}
+	
+	/**
+	 * getter for player's mule status
+	 * @return true if mule is already outfitted
+	 */
+	public boolean muleHasOutfitted(){
+		return muleHasOutfitted;
+	}
+	
+	
+	/**
+	 * setter for player's mule status
+	 * @return true if mule is already outfitted
+	 */
+	public boolean setMuleOutfitted(boolean t){
+		return muleHasOutfitted = t;
 	}
 	
 	/**
