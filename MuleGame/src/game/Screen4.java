@@ -109,7 +109,7 @@ public class Screen4 extends JPanel {
 		Player[] players = {p1, p2};
 		town = new Town(this);
 		add(town.getPanel(), BorderLayout.CENTER);
-		
+		add(town.getStorePanel(), BorderLayout.SOUTH);
 		
 	}
 	
