@@ -196,6 +196,36 @@ public class Player extends Character {
 		}
 	}
 	
+	/** sell resources from the player's assets (storehouse)
+	 *  update player's resources and money
+	 *  @param price Price of the item being sold
+	 **/
+	
+	public void sellResources(int price, String product) {
+		switch(product) {
+		case "Food":
+			if(food > 0) {
+				food--;
+				money += price;
+			}
+			break;
+		
+		case "Energy": 
+			if(energy > 0) {
+				energy--;
+				money += price;
+			}
+			break;
+		
+		case "Ore":
+			if(ore > 0) {
+				ore--;
+				money += price;
+			}
+			break;
+		}
+	}
+	
 	/**
 	 *outfitting a mule out of the player's asset
 	 * @param price Price of an item purchased
