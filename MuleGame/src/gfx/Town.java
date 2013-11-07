@@ -172,6 +172,7 @@ public class Town {
 					turn.getPlayerTurn().setMuleOutfitted(false);	// reset muleoutfitted back to false after exit
 					stopTurnTimer();
 					turn.endPlayerTurn();	// increment index for player order[]
+					
 					MuleGame.exitToMap();
 				}
 			}

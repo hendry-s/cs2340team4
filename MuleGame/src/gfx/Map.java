@@ -171,7 +171,7 @@ public class Map
 			{
 				player.purchase(tile.getPrice(), "Land");
 			}
-	    	else	// If player has sufficient funds to purchase land.
+	    	else	// If player has insufficient funds to purchase land.
 	    	{
 	    		Screen3 sc3 = MuleGame.getSC3();
 	        	sc3.setTurnLabel(player.getName() + " has insufficient funds: Money: $" + player.getMoney() + " < Land: $" + tile.getPrice(), player.getColor());
