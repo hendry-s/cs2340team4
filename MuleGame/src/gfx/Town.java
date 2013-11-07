@@ -100,6 +100,7 @@ public class Town {
 				if(e.getSource() instanceof JButton) {
 
 					buyProduct((JButton)e.getSource(), "Food");
+					foodLabel.setText("                     " + "Food: " + turn.getPlayerTurn().getFood());
 				}
 			}
 		});
@@ -112,6 +113,7 @@ public class Town {
 				if(e.getSource() instanceof JButton) {
 
 					buyProduct((JButton)e.getSource(), "Energy");
+					energyLabel.setText("                     " + "Energy: " + turn.getPlayerTurn().getEnergy());
 				}
 			}
 		});
@@ -124,6 +126,7 @@ public class Town {
 				if(e.getSource() instanceof JButton) {
 
 					buyProduct((JButton)e.getSource(), "Ore");
+					oreLabel.setText("                     " + "Ore: " + turn.getPlayerTurn().getOre());
 				}
 			}
 		});
@@ -232,8 +235,8 @@ public class Town {
 	
 	
 	/** method for creating the store panel
-	 * which displays the amount of resources currently owned by the player
-	 * allows player to sell his resources
+	 *  which displays the amount of resources currently owned by the player
+	 *  allows player to sell his resources
 	 */
 	
 	public void buildStorePanel() {
