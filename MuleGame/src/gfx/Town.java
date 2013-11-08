@@ -251,7 +251,7 @@ public class Town {
 			public void actionPerformed(ActionEvent e){
 				
 				if(e.getSource() instanceof JButton){
-					turn.getPlayerTurn().sellResources(foodPrice, "Food");
+					turn.getPlayerTurn().sellResources((foodPrice * 2), "Food");
 					foodLabel.setText("                     " + "Food: " + turn.getPlayerTurn().getFood());
 				}
 			}
@@ -263,7 +263,7 @@ public class Town {
 			public void actionPerformed(ActionEvent e){
 				
 				if(e.getSource() instanceof JButton){
-					turn.getPlayerTurn().sellResources(energyPrice, "Energy");
+					turn.getPlayerTurn().sellResources((energyPrice * 2), "Energy");
 					energyLabel.setText("                     " + "Energy: " + turn.getPlayerTurn().getEnergy());
 				}
 			}
@@ -275,7 +275,7 @@ public class Town {
 			public void actionPerformed(ActionEvent e){
 				
 				if(e.getSource() instanceof JButton){
-					turn.getPlayerTurn().sellResources(orePrice, "Ore");
+					turn.getPlayerTurn().sellResources((orePrice * 2), "Ore");
 					oreLabel.setText("                     " + "Ore: " + turn.getPlayerTurn().getOre());
 				}
 			}
