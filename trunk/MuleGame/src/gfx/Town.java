@@ -148,7 +148,7 @@ public class Town {
 			public void actionPerformed(ActionEvent e){
 				if(e.getSource() instanceof JButton){
 					Player player = turn.getPlayerTurn();
-					outfitMule((JButton)e.getSource(), "Food");
+					outfitMule("Food");
 				}
 			}
 
@@ -160,7 +160,7 @@ public class Town {
 			public void actionPerformed(ActionEvent e){
 				if(e.getSource() instanceof JButton){
 					Player player = turn.getPlayerTurn();
-					outfitMule((JButton)e.getSource(), "Energy");
+					outfitMule("Energy");
 				}
 			}
 
@@ -171,7 +171,7 @@ public class Town {
 			public void actionPerformed(ActionEvent e){
 				if(e.getSource() instanceof JButton){
 					Player player = turn.getPlayerTurn();
-					outfitMule((JButton)e.getSource(), "Ore");
+					outfitMule("Ore");
 				}
 			}
 
@@ -297,19 +297,19 @@ public class Town {
 		return storePanel;
 	}
 
-	public void outfitMule(JButton but, String product){
+	public void outfitMule(String product){
 		Player player = turn.getPlayerTurn();
 		
 		switch (product){
 		case "Food":
-			if(player.hasMule() == true && player.muleHasOutfitted() == false){
+			if(player.hasMule() == true && player.getmuleHasOutfitted() == false){
 				System.out.println(player.getName() + " money: " + player.getMoney() + " foodMountFee: " + foodMountFee);
 
 				if (player.getMoney() >= foodMountFee)
 				{
 					player.outfitting(foodMountFee);
 					player.setMuleOutfitted(true);
-					sc4.updateLabelStats();
+					sc4.updateLabelStats(product);
 					
 				}
 				else
@@ -321,14 +321,14 @@ public class Town {
 			break;
 
 		case "Energy":
-			if(player.hasMule() == true && player.muleHasOutfitted() == false){
+			if(player.hasMule() == true && player.getmuleHasOutfitted() == false){
 				System.out.println(player.getName() + " money: " + player.getMoney() + " energyMountFee: " + energyMountFee);
 
 				if (player.getMoney() >= energyMountFee)
 				{
 					player.outfitting(energyMountFee);
 					player.setMuleOutfitted(true);
-					sc4.updateLabelStats();
+					sc4.updateLabelStats(product);
 					
 				}
 				else
@@ -340,14 +340,14 @@ public class Town {
 			break;
 
 		case "Ore":
-			if(player.hasMule() == true && player.muleHasOutfitted() == false){
+			if(player.hasMule() == true && player.getmuleHasOutfitted() == false){
 				System.out.println(player.getName() + " money: " + player.getMoney() + " smithoreMountFee: " + smithoreMountFee);
 
 				if (player.getMoney() >= smithoreMountFee)
 				{
 					player.outfitting(smithoreMountFee);
 					player.setMuleOutfitted(true);
-					sc4.updateLabelStats();
+					sc4.updateLabelStats(product);
 					
 				}
 				else
@@ -378,7 +378,7 @@ public void buyProduct(JButton but, String product)
 				player.purchase(foodPrice, "Food");
 				foodQuantity--;
 				but.setText("Buy Food (Stock: " + foodQuantity + ")");
-				sc4.updateLabelStats();
+				sc4.updateLabelStats("");
 			}
 			else
 				System.out.println("Not enough money");
@@ -398,7 +398,7 @@ public void buyProduct(JButton but, String product)
 				player.purchase(energyPrice, "Energy");
 				energyQuantity--;
 				but.setText("Buy Energy (Stock: " + energyQuantity + ")");
-				sc4.updateLabelStats();
+				sc4.updateLabelStats("");
 			}
 			else
 				System.out.println("Not enough money");
@@ -417,7 +417,7 @@ public void buyProduct(JButton but, String product)
 				player.purchase(orePrice, "Ore");
 				oreQuantity--;
 				but.setText("Buy Ore (Stock: " + oreQuantity + ")");
-				sc4.updateLabelStats();
+				sc4.updateLabelStats("");
 			}
 			else
 				System.out.println("Not enough money");
@@ -436,7 +436,7 @@ public void buyProduct(JButton but, String product)
 				player.purchase(mulePrice, "Mule");
 				muleQuantity--;
 				but.setText("Buy Mule (Stock: " + muleQuantity + ")");
-				sc4.updateLabelStats();
+				sc4.updateLabelStats("");
 			}
 			else
 				System.out.println("Not enough money");

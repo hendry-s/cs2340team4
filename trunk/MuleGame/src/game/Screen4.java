@@ -97,7 +97,7 @@ public class Screen4 extends JPanel {
 				
 				//System.out.println("componentShown Listener in Screen4"); // DEBUG purposes
 				timer.start();
-				updateLabelStats();
+				updateLabelStats("");
 				updateTimeLabel(turn.getPlayerTurnTime());
 			}
 		});
@@ -113,10 +113,10 @@ public class Screen4 extends JPanel {
 		
 	}
 	
-	public void updateLabelStats()
+	public void updateLabelStats(String s)
 	{
 		Player player = turn.getPlayerTurn();
-		playerStats.setText(player.getName() + "'s turn-> Money: $" + player.getMoney() + " Energy: " + player.getEnergy() + " Food: " + player.getFood() + " Ore: " + player.getOre());
+		playerStats.setText(player.getName() + "'s turn-> Money: $" + player.getMoney() + " Energy: " + player.getEnergy() + " Food: " + player.getFood() + " Ore: " + player.getOre() + "Mule Outfitted to: " + s);
 		playerStats.setForeground(player.getColor());
 	}
 	
