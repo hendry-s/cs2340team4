@@ -297,6 +297,13 @@ public class Town {
 		return storePanel;
 	}
 
+	/**
+	 * A method to outfit a mule. player can only outfit the mule if and only if the player already purchased a mule and the player current amount of money
+	 * has to be greater than or equal to the price of outfitting the mule.
+	 * the method also checks that the condition so that the mule can only be outfitted to one kind.
+	 * @param product, type which mule can be outfitted to.
+	 */
+	
 	public void outfitMule(String product){
 		Player player = turn.getPlayerTurn();
 		
@@ -361,6 +368,13 @@ public class Town {
 	}
 
 
+/**
+ * The method allows player to select the product(food, energy, ore, mule) which player can purchase.
+ * Player can purchase if and only if the player's current money is greaer or equal to the price.	
+ * @param but
+ * @param product
+ */
+	
 public void buyProduct(JButton but, String product)
 {
 
@@ -449,6 +463,12 @@ public void buyProduct(JButton but, String product)
 	}
 }
 
+
+/**
+ * This method allow player to gamble in the pub.
+ * The amount of price is generated using API random method
+ * 
+ */
 public void gambleMoney()
 {
 	Player player = turn.getPlayerTurn();
