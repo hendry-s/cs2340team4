@@ -150,7 +150,7 @@ public class Player extends Character {
 	 * getter for player's mule status
 	 * @return true if mule is already outfitted
 	 */
-	public boolean muleHasOutfitted(){
+	public boolean getmuleHasOutfitted(){
 		return muleHasOutfitted;
 	}
 	
