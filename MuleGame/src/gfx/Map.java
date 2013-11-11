@@ -385,4 +385,9 @@ public class Map
 		return gridPanel;
 	}
 	
+	public JButton getButton() {
+		
+		return button;
+	}
+	
 }
