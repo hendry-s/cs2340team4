@@ -1,5 +1,6 @@
 package gfx;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
@@ -10,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.Random;
 
 import javax.swing.AbstractButton;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -50,8 +52,6 @@ public class Town {
 	//	private final int crystiteMountFee = 100;
 	
 	
-
-
 	private JPanel townPanel;
 	private JPanel storePanel;
 
@@ -182,9 +182,18 @@ public class Town {
 			public void actionPerformed(ActionEvent e) { 
 
 				if(e.getSource() instanceof JButton) {
-					turn.getPlayerTurn().setMuleOutfitted(false);	// reset muleoutfitted back to false after exit
+					//turn.getPlayerTurn().setMuleOutfitted(false);	// reset muleoutfitted back to false after exit
 					stopTurnTimer();
-					turn.endPlayerTurn();	// increment index for player order[]
+					
+					if((turn.getPlayerTurn().hasMule() == true) && (turn.getPlayerTurn().getmuleHasOutfitted() == true)) {
+						
+						placeMule();
+					}
+					
+					else {
+						
+						turn.endPlayerTurn(); // increment index for player order[]
+					}
 					
 					MuleGame.exitToMap();
 				}
@@ -225,11 +234,7 @@ public class Town {
 		JButton landOffice = new JButton("Land Offices");
 		townPanel.add(landOffice);
 		
-		
-		
 		buildStorePanel();
-		
-		
 		
 	}
 	
@@ -368,6 +373,12 @@ public class Town {
 	}
 
 
+	public void placeMule() {
+		
+		
+	}
+	
+	
 /**
  * The method allows player to select the product(food, energy, ore, mule) which player can purchase.
  * Player can purchase if and only if the player's current money is greaer or equal to the price.	

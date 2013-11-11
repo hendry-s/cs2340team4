@@ -172,6 +172,14 @@ public class Player extends Character {
 	}
 	
 	/**
+	 * setter for mule's map placement status
+	 * @return true if mule is already placed on a tile in map
+	 */
+	public boolean hasMuleInMap(boolean b){
+		return hasMuleInMap = b;
+	}
+	
+	/**
 	 * Make a purchase out of the player's asset
 	 * @param price Price of an item purchased
 	 **/
@@ -233,7 +241,6 @@ public class Player extends Character {
 	public void outfitting(int price)
 	{
 		money -= price;
-		hasMuleInMap = true;
 	}
 	
 	
