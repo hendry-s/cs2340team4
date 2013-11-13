@@ -51,7 +51,7 @@ public class Town {
 	private final int smithoreMountFee = 75;
 	//	private final int crystiteMountFee = 100;
 	
-	
+	private Map map;
 	private JPanel townPanel;
 	private JPanel storePanel;
 
@@ -182,18 +182,17 @@ public class Town {
 			public void actionPerformed(ActionEvent e) { 
 
 				if(e.getSource() instanceof JButton) {
-					//turn.getPlayerTurn().setMuleOutfitted(false);	// reset muleoutfitted back to false after exit
+					
 					stopTurnTimer();
+//					if((turn.getPlayerTurn().hasMule() == true) && (turn.getPlayerTurn().getmuleHasOutfitted() == true)) {
+//						
+//						placeMule();
+//					}
 					
-					if((turn.getPlayerTurn().hasMule() == true) && (turn.getPlayerTurn().getmuleHasOutfitted() == true)) {
+//					else {
 						
-						placeMule();
-					}
-					
-					else {
-						
-						turn.endPlayerTurn(); // increment index for player order[]
-					}
+//						turn.endPlayerTurn(); // increment index for player order[]
+//					}
 					
 					MuleGame.exitToMap();
 				}
@@ -370,12 +369,6 @@ public class Town {
 			}
 			break;	
 		}
-	}
-
-
-	public void placeMule() {
-		
-		
 	}
 	
 	

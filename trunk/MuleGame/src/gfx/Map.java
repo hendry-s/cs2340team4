@@ -385,9 +385,17 @@ public class Map
 		return gridPanel;
 	}
 	
-	public JButton getButton() {
+	public void placeMule() {
 		
-		return button;
+//		button.addActionListener(new ActionListener() {
+//
+//			public void actionPerformed(ActionEvent e) { 
+//
+//				if(e.getSource() instanceof JButton) {
+//					
+//					button.setIcon(new ImageIcon(Map.class.getResource("/MULEIMAGE/resources/CharacterIcon_Mule.png")));
+//				}
+//			}
+//    	});
 	}
-	
 }
