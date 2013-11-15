@@ -19,7 +19,7 @@ public class SetupClass extends StateBasedGame {
 	}
 	
 	public static void main(String[] args) throws SlickException {
-		AppGameContainer app = new AppGameContainer(new SetupClass("Setup Test"));
+		AppGameContainer app = new AppGameContainer(new SetupClass("MULE"));
 		
 		app.setDisplayMode(800, 600, false);
 		app.setAlwaysRender(true);
