@@ -25,7 +25,11 @@ public class Mule {
 		this.muleType = muleType;
 	}
 	
-	public MuleType getType(){
+	public void setMuleType(MuleType muleType){
+		this.muleType = muleType;
+	}
+	
+	public MuleType getMuleType(){
 		return this.muleType;
 	}
 	
