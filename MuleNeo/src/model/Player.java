@@ -36,47 +36,48 @@ public class Player {
 	private ArrayList<Tile> land = new ArrayList<Tile>();
 	private ArrayList<Mule> mulesNum = new ArrayList<Mule>();
 
-	public Player(String name, String race, int color, int x, int y)
+	
+	
+	public Player(String name, int race, int color, int x, int y)
 	{
 		this.xPos = x;
 		this.initial_x = x;
 		this.yPos = y - 10;
 		this.initial_y = y - 10;
 		this.name = name;
-		this.race = race;
-		switch(race)
-		{
-		case "Human":
-			money = 600;
-			break;
-		case "Flapper":
+		
+		if (race == 0) {	//Bonzoid
+			this.race = "Bonzoid";
+			money = 1000;
+		} else if (race == 1) {	// Buzzite
+			this.race = "Buzzite";
+			money = 1000;
+		} else if (race == 2) {	// Flapper
+			this.race = "Flapper";
 			money = 1600;
-			break;
-		case "Bonzoid":
+		} else if (race == 3) { // Human
+			this.race = "Human";
+			money = 600;
+		} else if (race == 4) {	// Ugaite
+			this.race = "Ugaite";
 			money = 1000;
-			break;
-		case "Ugaite":
-			money = 1000;
-			break;
-		case "Buzzite":
-			money = 1000;
-			break;
 		}
+		
 		// here we only allowing 4 color
-		//0 == yellow, 1 == blue, 2 == green, 3 == red
+		//0 == red, 1 == blue, 2 == yellow, 3 == green
 		switch(color)
 		{
 		case 0:
-			this.color = Color.yellow;
+			this.color = Color.red;
 			break;
 		case 1:
 			this.color = Color.blue;
 			break;
 		case 2:
-			this.color = Color.green;
+			this.color = Color.yellow;
 			break;
 		case 3:
-			this.color = Color.red;
+			this.color = Color.green;
 			break;
 		}
 	}

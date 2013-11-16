@@ -179,7 +179,6 @@ public class IntroStateTwo extends BasicGameState {
 			if ((posX>500 && posX<800) && (posY>400 && posY<500)) {
 				if (Mouse.isButtonDown(0)) {
 					GameData.getInstance().updateStateTwoInfo(this);
-				//	sbg.enterState(2);
 					frame = new PlayerInfoFrame();
 					playerInfoEntered = true;
 				}
@@ -189,7 +188,7 @@ public class IntroStateTwo extends BasicGameState {
 		if (playerInfoEntered == true) {
 			if ((posX>500 && posX<800) && (posY>500 && posY<600)) {
 				if (Mouse.isButtonDown(0)) {
-					sbg.enterState(3);
+					sbg.enterState(2);	// to LandGrantState
 				}
 			}
 		}
