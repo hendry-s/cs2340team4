@@ -28,6 +28,8 @@ public class LandGrantState extends BasicGameState {
 	final int ROW = 5;
 	final int COL = 9;
 	
+	int round = GameData.getInstance().round;
+	
 	@Override
 	public void init(GameContainer container, StateBasedGame sbg)
 			throws SlickException {
@@ -62,7 +64,6 @@ public class LandGrantState extends BasicGameState {
 				} else if (mapLayout[i][j] == 5) {
 					townTile.draw(TILE_WIDTH*j, TILE_HEIGHT*i);
 				}
-				
 			}
 		}
 		

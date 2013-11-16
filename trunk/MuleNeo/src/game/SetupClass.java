@@ -15,6 +15,7 @@ public class SetupClass extends StateBasedGame {
 		this.addState(new IntroStateTwo());
 		this.addState(new IntroStateThree());
 		this.addState(new LandGrantState());
+		this.addState(new TownState());
 		
 	}
 	

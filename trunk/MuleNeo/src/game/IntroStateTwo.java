@@ -1,5 +1,7 @@
 package game;
 
+import model.Player;
+
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
@@ -11,6 +13,7 @@ public class IntroStateTwo extends BasicGameState {
 	boolean levelSelected;
 	boolean mapSelected;
 	boolean numOfPlayerSelected;
+	boolean playerInfoEntered;
 	
 	int level;			// 0: beginner,		1: intermediate, 2: tournament
 	int map;			// 0: (default),	1: random
@@ -20,7 +23,12 @@ public class IntroStateTwo extends BasicGameState {
 	int posX;
 	int posY;
 	
-	GameData data;
+	Player p1;
+	Player p2;
+	Player p3;
+	Player P4;
+	
+	PlayerInfoFrame frame;
 	
 	@Override
 	public void init(GameContainer container, StateBasedGame sbg)
@@ -30,6 +38,7 @@ public class IntroStateTwo extends BasicGameState {
 		levelSelected = false;
 		mapSelected = false;
 		numOfPlayerSelected = false;
+		playerInfoEntered = false;
 		
 		input = container.getInput();
 		
@@ -80,7 +89,11 @@ public class IntroStateTwo extends BasicGameState {
 						g.draw(new Rectangle(400f, 300f, 50f, 30f));
 					}
 					
-					g.drawString("Click for Next: Player info", 500, 500);
+					g.drawString("Click for Next: Player info", 500, 400);
+				
+					if (playerInfoEntered == true) {
+						g.drawString("Click [Here] to Proceed...", 500, 500);
+					}
 				}
 			}
 		}
@@ -163,10 +176,20 @@ public class IntroStateTwo extends BasicGameState {
 		
 		if (levelSelected == true && mapSelected == true
 				&& numOfPlayerSelected == true) {
-			if ((posX>500 && posX<800) && (posY>500 && posY<600)) {
+			if ((posX>500 && posX<800) && (posY>400 && posY<500)) {
 				if (Mouse.isButtonDown(0)) {
 					GameData.getInstance().updateStateTwoInfo(this);
-					sbg.enterState(2);
+				//	sbg.enterState(2);
+					frame = new PlayerInfoFrame();
+					playerInfoEntered = true;
+				}
+			}
+		}
+		
+		if (playerInfoEntered == true) {
+			if ((posX>500 && posX<800) && (posY>500 && posY<600)) {
+				if (Mouse.isButtonDown(0)) {
+					sbg.enterState(3);
 				}
 			}
 		}
