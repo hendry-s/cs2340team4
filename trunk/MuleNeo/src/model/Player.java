@@ -15,7 +15,7 @@ import gfx.Tile;
 
 /**
  * This class represents the player and is going to be instantiated for each new player
- * Provides methods for accessing position
+ * Methods for query player's configurations and positions
  * 
  *
  */
@@ -34,7 +34,7 @@ public class Player {
 	private Controller direction;
 	private int size = 10;
 	private ArrayList<Tile> land = new ArrayList<Tile>();
-	private ArrayList<Mule> mules = new ArrayList<Mule>();
+	private ArrayList<Mule> mulesNum = new ArrayList<Mule>();
 
 	public Player(String name, String race, int color, int x, int y)
 	{
@@ -120,25 +120,25 @@ public class Player {
 		return this.name;
 	}
 
-	public String getSpecies(){
+	public String getRace(){
 		return this.race;
 	}
 
 	
 	public int getNumMules()
 	{
-		return mules.size();
+		return mulesNum.size();
 	}
 
 
 	public void loseMule(){
 		currentMule = null;
-		mules.remove(mules.size() - 1);
+		mulesNum.remove(mulesNum.size() - 1);
 	}
 
 	public void addMule(Mule mule){
 		this.currentMule = mule;
-		mules.add(mule);
+		mulesNum.add(mule);
 	}
 
 	public boolean hasMule(){
@@ -248,7 +248,7 @@ public class Player {
 
 
 	public void clearMules(){
-		this.mules.clear();
+		this.mulesNum.clear();
 	}
 
 
