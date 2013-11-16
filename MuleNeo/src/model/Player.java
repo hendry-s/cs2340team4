@@ -26,7 +26,7 @@ public class Player {
 	private int money;
 	private int food;
 	private int energy;
-	private int smithore;
+	private int ore;
 	private int crystite;
 	private Color color;
 	private Mule currentMule;
@@ -98,12 +98,12 @@ public class Player {
 		this.energy = energy;
 	}
 
-	public int getSmithore() {
-		return smithore;
+	public int getOre() {
+		return ore;
 	}
 
-	public void setSmithore(int smithore) {
-		this.smithore = smithore;
+	public void setOre(int ore) {
+		this.ore = ore;
 	}
 
 	public int getCrystite() {
