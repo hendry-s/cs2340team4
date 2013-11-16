@@ -2,6 +2,8 @@ package game;
 
 import java.io.Serializable;
 
+import model.Player;
+
 import org.newdawn.slick.Color;
 
 /**
@@ -29,6 +31,12 @@ public class GameData implements Serializable {
 	final int MAX_ROUND = 12;
 	final int MAX_TURN = numOfPlayer;
 	
+	Player player1 = null;
+	Player player2 = null;
+	Player player3 = null;
+	Player player4 = null;
+
+/*
 	String playerName1 = null;
 	String playerName2 = null;
 	String playerName3 = null;
@@ -39,10 +47,11 @@ public class GameData implements Serializable {
 	int playerRace3;
 	int playerRace4;
 	
-	Color playerColor1;	// RED
-	Color playerColor2;	// BLUE
-	Color playerColor3;	// YELLOW
-	Color playerColor4;	// GREEN
+	int playerColor1;	// RED
+	int playerColor2;	// BLUE
+	int playerColor3;	// YELLOW
+	int playerColor4;	// GREEN
+*/
 	
 	private GameData() {
 		round = 1;
@@ -66,22 +75,22 @@ public class GameData implements Serializable {
 		this.numOfPlayer = isTwo.numOfPlayer;
 	}
 
-	public void updatePlayerInfo(PlayerInfoFrame frame) {
-		this.playerName1 = frame.playerName1;
-		this.playerName1 = frame.playerName2;
-		this.playerName1 = frame.playerName3;
-		this.playerName1 = frame.playerName4;
-		this.playerRace1 = frame.playerRace1;
-		this.playerRace2 = frame.playerRace2;
-		this.playerRace3 = frame.playerRace3;
-		this.playerRace4 = frame.playerRace4;
-		this.playerColor1 = frame.playerColor1;
-		this.playerColor2 = frame.playerColor2;
-		this.playerColor3 = frame.playerColor3;
-		this.playerColor4 = frame.playerColor4;
-		
+	public void updatePlayerInfo(Player player1, Player player2, 
+			Player player3, Player player4) {
+		this.player1 = player1;
+		this.player2 = player2;
+		this.player3 = player3;
+		this.player4 = player4;
 	}
 
+	public int incrementRound() {
+		return ++round;
+	}
+	
+	public int incrementTurn() {
+		return ++turn;
+	}
+	
 	// other methods here
 }
 

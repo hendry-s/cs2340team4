@@ -68,7 +68,8 @@ public class LandGrantState extends BasicGameState {
 			}
 		}
 		
-//		g.drawString(GameData.getInstance().playerName1, 400, 400);
+		
+		g.drawString(GameData.getInstance().player1.getName(), 400, 400);
 		
 	}
 
