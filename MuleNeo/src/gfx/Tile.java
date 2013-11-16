@@ -28,7 +28,7 @@ public class Tile {
 		plainTile = tiles.getSubImage(3,0);
 		riverTile = tiles.getSubImage(4,0);
 		townTile = tiles.getSubImage(5,0);
-		/*
+		/*EITHER WORKS
 		m1Tile = new Image("/data/tile/icon_mountain1.png");
 		m2Tile = new Image("/data/tile/icon_mountain2.png");
 		m3Tile = new Image("/data/tile/icon_mountain3.png");

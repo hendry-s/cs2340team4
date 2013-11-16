@@ -17,6 +17,9 @@ public class GameData implements Serializable {
 	private static final long serialVersionUID = 299659050051109649L;
 	private volatile static GameData dataInstance;
 	
+	int round;	// upto 12 rounds
+	int turn;
+	
 	/* IntroStateTwo info */
 	int level;			// 0: beginner,		1: intermediate, 2: tournament
 	int map;			// 0: (default),	1: random
@@ -38,13 +41,9 @@ public class GameData implements Serializable {
 	Color playerColor3;	// YELLOW
 	Color playerColor4;	// GREEN
 	
-	boolean donePlayer1;
-	boolean donePlayer2;
-	boolean donePlayer3;
-	boolean donePlayer4;
-	
 	private GameData() {
-		
+		round = 1;
+		turn = 1;
 	}
 	
 	public static GameData getInstance() {
@@ -63,20 +62,21 @@ public class GameData implements Serializable {
 		this.map = isTwo.map;
 		this.numOfPlayer = isTwo.numOfPlayer;
 	}
-	
-	public void updateStateThreeInfo(IntroStateThree isThree) {
-		this.playerName1 = isThree.playerName1;
-		this.playerName1 = isThree.playerName2;
-		this.playerName1 = isThree.playerName3;
-		this.playerName1 = isThree.playerName4;
-		this.playerRace1 = isThree.playerRace1;
-		this.playerRace2 = isThree.playerRace2;
-		this.playerRace3 = isThree.playerRace3;
-		this.playerRace4 = isThree.playerRace4;
-		this.playerColor1 = isThree.playerColor1;
-		this.playerColor2 = isThree.playerColor2;
-		this.playerColor3 = isThree.playerColor3;
-		this.playerColor4 = isThree.playerColor4;
+
+	public void updatePlayerInfo(PlayerInfoFrame frame) {
+		this.playerName1 = frame.playerName1;
+		this.playerName1 = frame.playerName2;
+		this.playerName1 = frame.playerName3;
+		this.playerName1 = frame.playerName4;
+		this.playerRace1 = frame.playerRace1;
+		this.playerRace2 = frame.playerRace2;
+		this.playerRace3 = frame.playerRace3;
+		this.playerRace4 = frame.playerRace4;
+		this.playerColor1 = frame.playerColor1;
+		this.playerColor2 = frame.playerColor2;
+		this.playerColor3 = frame.playerColor3;
+		this.playerColor4 = frame.playerColor4;
+		
 	}
 
 	// other methods here

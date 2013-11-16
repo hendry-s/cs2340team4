@@ -1,5 +1,11 @@
 package game;
 
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -25,10 +31,6 @@ public class IntroStateThree extends BasicGameState {
 	String playerName3 = null;
 	String playerName4 = null;
 	
-	JFrame frame;
-	JTextField field;
-	JTextArea area;
-	
 	int playerRace1;	// (Bonzoid 0) (Buzzite 1) (Flapper 2) (Human 3) (Ugaite 4) 
 	int playerRace2;
 	int playerRace3;
@@ -39,15 +41,8 @@ public class IntroStateThree extends BasicGameState {
 	Color playerColor3;	// YELLOW
 	Color playerColor4;	// GREEN
 	
-	boolean donePlayerName1;
-	boolean donePlayerName2;
-	boolean donePlayerName3;
-	boolean donePlayerName4;
+	PlayerInfoFrame frame;
 	
-	boolean donePlayer1;
-	boolean donePlayer2;
-	boolean donePlayer3;
-	boolean donePlayer4;
 	
 	@Override
 	public void init(GameContainer container, StateBasedGame sbg)
@@ -55,23 +50,13 @@ public class IntroStateThree extends BasicGameState {
 		// TODO Auto-generated method stub
 		
 		if (GameData.getInstance().numOfPlayer >= 2) {
-			playerName1 = "One";
-			playerName2 = "Two";
+			playerName1 = "Player 1";
+			playerName2 = "Player 2";
 		} if (GameData.getInstance().numOfPlayer >= 3) {
-			playerName3 = "Three";
+			playerName3 = "Player 3";
 		} if (GameData.getInstance().numOfPlayer == 4) {
-			playerName4 = "Four";
+			playerName4 = "Player 4";
 		}
-		
-		donePlayer1 = false;
-		donePlayer2 = false;
-		donePlayer3 = false;
-		donePlayer4 = false;
-		
-		donePlayerName1 = false;
-		donePlayerName2 = false;
-		donePlayerName3 = false;
-		donePlayerName4 = false;
 		
 		playerRace1 = 0;
 		playerRace2 = 0;
@@ -84,22 +69,20 @@ public class IntroStateThree extends BasicGameState {
 		playerColor4 = Color.green;
 		
 		input = container.getInput();
-		
-		frame = new JFrame("Enter the Player Name");
-		
+
 	}
 	
 
 	@Override
 	public void update(GameContainer container, StateBasedGame sbg, int delta)
 			throws SlickException {
-		
+		/*
 		if (container.getInput().isMouseButtonDown(0)) {
 			GameData.getInstance().updateStateThreeInfo(this);
-			sbg.enterState(3);
+			sbg.enterState(4);
 		}
-		
-		
+		*/
+
 		
 	}
 	
@@ -110,9 +93,7 @@ public class IntroStateThree extends BasicGameState {
 		posY = input.getMouseY();
 		
 		g.drawString("(x,y) " + posX + "  " + posY, 100, 300); // debug
-		
-//		g.drawString("Player 1 Name: ", 100, 100);
-		g.drawString("Click to Proceed", 500, 500);
+
 		
 	}
 
@@ -124,4 +105,17 @@ public class IntroStateThree extends BasicGameState {
 		return 2;
 	}
 
+	/*
+	private class TextFieldListener implements ActionListener {
+		public void actionPerformed(ActionEvent evt) {
+			String name = field.getText();
+			if (nowPlayerName1 == true && nowPlayerName2 == false
+					&& nowPlayerName3 == false && nowPlayerName3 == false) {
+				playerName1 = name;
+			}
+			frame.setVisible(false);
+		}
+	}
+	*/
+	
 }
