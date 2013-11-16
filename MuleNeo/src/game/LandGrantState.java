@@ -28,7 +28,8 @@ public class LandGrantState extends BasicGameState {
 	final int ROW = 5;
 	final int COL = 9;
 	
-	int round = GameData.getInstance().round;
+	int round;
+	int turn;
 	
 	@Override
 	public void init(GameContainer container, StateBasedGame sbg)
@@ -67,19 +68,22 @@ public class LandGrantState extends BasicGameState {
 			}
 		}
 		
+//		g.drawString(GameData.getInstance().playerName1, 400, 400);
+		
 	}
 
 	@Override
 	public void update(GameContainer container, StateBasedGame sbg, int delta)
 			throws SlickException {
-		// TODO Auto-generated method stub
-		
+		 round = GameData.getInstance().round;
+		 round = GameData.getInstance().turn;
+		 
 	}
 
 	@Override
 	public int getID() {
 		// TODO Auto-generated method stub
-		return 3;
+		return 2;
 	}
 
 }

@@ -30,7 +30,7 @@ public class PlayerInfoFrame {
 	
 	
 	
-	String playerName1 = null;
+	String playerName1 = "Jin";
 	String playerName2 = null;
 	String playerName3 = null;
 	String playerName4 = null;

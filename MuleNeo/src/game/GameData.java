@@ -17,8 +17,6 @@ public class GameData implements Serializable {
 	private static final long serialVersionUID = 299659050051109649L;
 	private volatile static GameData dataInstance;
 	
-	int round;	// upto 12 rounds
-	int turn;
 	
 	/* IntroStateTwo info */
 	int level;			// 0: beginner,		1: intermediate, 2: tournament
@@ -26,6 +24,11 @@ public class GameData implements Serializable {
 	int numOfPlayer;	// 2, 3, or 4
 	
 	/* IntroStateThree info */
+	int round;	// upto 12 rounds
+	int turn;
+	final int MAX_ROUND = 12;
+	final int MAX_TURN = numOfPlayer;
+	
 	String playerName1 = null;
 	String playerName2 = null;
 	String playerName3 = null;
