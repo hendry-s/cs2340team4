@@ -77,6 +77,8 @@ public class TownState extends BasicGameState {
 		circle.setCenterY(playerPosY);
 		g.setColor(Color.red);
 		g.draw(circle);
+		
+		g.drawString(GameData.getInstance().playerName1, 500, 500);
 	}
 
 
@@ -84,6 +86,6 @@ public class TownState extends BasicGameState {
 	@Override
 	public int getID() {
 		// TODO Auto-generated method stub
-		return 4;
+		return 3;
 	}
 }
