@@ -3,10 +3,13 @@ package game;
 import gfx.Map;
 import gfx.Tile;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Circle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -31,6 +34,14 @@ public class LandGrantState extends BasicGameState {
 	int round;
 	int turn;
 	
+	
+	int playerPosX;
+	int playerPosY;
+	Input input;
+	
+	Circle circle;
+	
+	
 	@Override
 	public void init(GameContainer container, StateBasedGame sbg)
 			throws SlickException {
@@ -44,8 +55,62 @@ public class LandGrantState extends BasicGameState {
 		plainTile = tiles.getPlainTile();
 		riverTile = tiles.getRiverTile();
 		townTile = tiles.getTownTile();
+		
+		playerPosX = 500;
+		playerPosY = 500;
+		
+		input = container.getInput();
+		
+		circle = new Circle(playerPosX, playerPosY, 3);
 	}
 
+	
+
+	@Override
+	public void update(GameContainer container, StateBasedGame sbg, int delta)
+			throws SlickException {
+		 round = GameData.getInstance().round;
+		 round = GameData.getInstance().turn;
+		 
+	
+		// KeyListen
+		if (input.isKeyDown(Input.KEY_LEFT)) {
+			playerPosX -= delta/6;
+		}
+		if (input.isKeyDown(Input.KEY_RIGHT)) {
+			playerPosX += delta/6;
+		}
+		if (input.isKeyDown(Input.KEY_UP)) {
+			playerPosY -= delta/6;
+		}
+		if (input.isKeyDown(Input.KEY_DOWN)) {
+			playerPosY += delta/6;
+		}
+		
+		// Collision Detection: Exiting Town
+		if (playerPosX > 320 || playerPosX < 400
+				|| playerPosY > 160 || playerPosY < 240) {
+			
+			sbg.enterState(3);	// To TownState;
+		}
+	
+		// Collision Detection: Map Boundary
+		if (playerPosX <= 0) {
+			playerPosX = 0;
+		}
+		if (playerPosX >= 719) {
+			playerPosX = 719;
+		}
+		if (playerPosY <= 0) {
+			playerPosY = 0;
+		}
+		if (playerPosY >= 399) {
+			playerPosY = 399;
+		}
+	
+	}
+	
+	
 	@Override
 	public void render(GameContainer container, StateBasedGame sbg, Graphics g)
 			throws SlickException {
@@ -69,17 +134,17 @@ public class LandGrantState extends BasicGameState {
 		}
 		
 		
+		circle.setCenterX(playerPosX);
+		circle.setCenterY(playerPosY);
+		g.setColor(Color.red);
+		g.draw(circle);
+		
+		
+		
 		g.drawString(GameData.getInstance().player1.getName(), 400, 400);
 		
 	}
 
-	@Override
-	public void update(GameContainer container, StateBasedGame sbg, int delta)
-			throws SlickException {
-		 round = GameData.getInstance().round;
-		 round = GameData.getInstance().turn;
-		 
-	}
 
 	@Override
 	public int getID() {

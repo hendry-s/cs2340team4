@@ -61,7 +61,7 @@ public class TownState extends BasicGameState {
 		if (playerPosX < 0 || playerPosX > 720
 				|| playerPosY < 0 || playerPosY > 400) {
 			
-			sbg.enterState(3);	// LandGrantState;
+			sbg.enterState(2);	// LandGrantState;
 		}
 		
 		
@@ -73,12 +73,17 @@ public class TownState extends BasicGameState {
 		
 		townImage.draw(0,0);
 		
+		int mouseX = input.getMouseX();
+		int mouseY = input.getMouseY();
+		
+		g.drawString("" + mouseX +"  " + mouseY, 500,500);
+		
 		circle.setCenterX(playerPosX);
 		circle.setCenterY(playerPosY);
 		g.setColor(Color.red);
 		g.draw(circle);
 		
-		g.drawString(GameData.getInstance().playerName1, 500, 500);
+//		g.drawString(GameData.getInstance().playerName1, 500, 500);
 	}
 
 
