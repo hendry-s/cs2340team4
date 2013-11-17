@@ -1,6 +1,11 @@
 package game;
 
+import gfx.Map;
+import gfx.MapMuleMount;
+import gfx.MapPossession;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import model.Player;
 import model.Store;
@@ -26,7 +31,8 @@ public class GameData implements Serializable {
 	int map;			// 0: (default),	1: random
 	int numOfPlayer;	// 2, 3, or 4
 	
-	/* IntroStateThree info */
+	
+	/* Turn-related info */
 	int round;	// upto 12 rounds
 	int turn;
 	final int MAX_ROUND = 12;
@@ -39,29 +45,25 @@ public class GameData implements Serializable {
 	
 	static Store store = new Store();
 	
-	boolean justFromLandGrantState;
+	boolean justFromMuleMountState;
 	boolean justFromTownState;
+	boolean roundInitiated;
 
-/*
-	String playerName1 = null;
-	String playerName2 = null;
-	String playerName3 = null;
-	String playerName4 = null;
+	boolean landSelectionDone;
 	
-	int playerRace1;	// (Bonzoid 0) (Buzzite 1) (Flapper 2) (Human 3) (Ugaite 4) 
-	int playerRace2;
-	int playerRace3;
-	int playerRace4;
+	Map mapLayout;
+	MapPossession possessionLayout;
+	MapMuleMount muleMountLayout;
 	
-	int playerColor1;	// RED
-	int playerColor2;	// BLUE
-	int playerColor3;	// YELLOW
-	int playerColor4;	// GREEN
-*/
 	
 	private GameData() {
 		round = 1;
 		turn = 1;
+		
+		mapLayout = new Map(0);
+		possessionLayout = new MapPossession();
+		muleMountLayout = new MapMuleMount();
+		
 	}
 	
 	public static GameData getInstance() {
@@ -77,8 +79,12 @@ public class GameData implements Serializable {
 	
 	public void updateStateTwoInfo(IntroStateTwo isTwo) {
 		this.setLevel(isTwo.level);
-		this.map = isTwo.map;
 		this.numOfPlayer = isTwo.numOfPlayer;
+		if (isTwo.map == 0) {
+			mapLayout = new Map(0);
+		} else {
+			mapLayout = new Map(1);
+		}
 	}
 
 	public void updatePlayerInfo(Player player1, Player player2, 
@@ -104,6 +110,9 @@ public class GameData implements Serializable {
 	public void setLevel(int level) {
 		this.level = level;
 	}
+	
+	
+	
 	
 	// other methods here
 }

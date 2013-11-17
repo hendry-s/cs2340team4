@@ -188,7 +188,7 @@ public class IntroStateTwo extends BasicGameState {
 		if (playerInfoEntered == true) {
 			if ((posX>500 && posX<800) && (posY>500 && posY<600)) {
 				if (Mouse.isButtonDown(0)) {
-					sbg.enterState(3);	// to LandGrantState
+					sbg.enterState(2);	// to LandGrantState
 				}
 			}
 		}
