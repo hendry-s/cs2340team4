@@ -3,15 +3,15 @@ package model;
 import java.util.ArrayList;
 
 import org.newdawn.slick.*;
-import org.newdawn.slick.Color;
-import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Point;
 
 import model.Controller;
 import model.MuleType;
 
 
+import game.GameData;
 import gfx.Tile;
+
 
 /**
  * This class represents the player and is going to be instantiated for each new player
@@ -80,6 +80,17 @@ public class Player {
 			this.color = Color.green;
 			break;
 		}
+		
+		if (GameData.getInstance().level == 0) {
+			food = 8;
+			energy = 4;
+		} else {
+			food = 4;
+			energy = 2;
+		}
+		
+		
+			
 	}
 
 	public int getFood() {
