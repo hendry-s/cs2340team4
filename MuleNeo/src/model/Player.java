@@ -263,5 +263,8 @@ public class Player {
 		this.mulesNum.clear();
 	}
 
+	public int getScore() {
+		return money + food*30 + energy*25 + ore*50;
+	}
 
 }
