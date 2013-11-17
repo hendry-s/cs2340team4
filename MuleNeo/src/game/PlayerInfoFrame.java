@@ -212,7 +212,7 @@ public class PlayerInfoFrame {
 				playerColor2 = 3;
 			}
 			
-			if (numPlayers == 3) {
+			if (numPlayers >= 3) {
 				if (panel3.colorBox.getSelectedItem().toString() == "Red") {
 					playerColor3 = 0;
 				} else if (panel3.colorBox.getSelectedItem().toString() == "Blue") {
@@ -223,7 +223,7 @@ public class PlayerInfoFrame {
 					playerColor3 = 3;
 				}
 			}
-			if (numPlayers == 4) {
+			if (numPlayers >= 4) {
 				if (panel4.colorBox.getSelectedItem().toString() == "Red") {
 					playerColor4 = 0;
 				} else if (panel4.colorBox.getSelectedItem().toString() == "Blue") {
@@ -262,7 +262,7 @@ public class PlayerInfoFrame {
 				playerRace2 = 4;
 			}
 			
-			if (numPlayers == 3) {
+			if (numPlayers >= 3) {
 				if (panel3.raceBox.getSelectedItem().toString() == "Bonzoid") {
 					playerRace3 = 0;
 				} else if (panel3.raceBox.getSelectedItem().toString() == "Buzzite") {
@@ -275,7 +275,7 @@ public class PlayerInfoFrame {
 					playerRace3 = 4;
 				}
 			}
-			if (numPlayers == 4) {
+			if (numPlayers >= 4) {
 				if (panel4.raceBox.getSelectedItem().toString() == "Bonzoid") {
 					playerRace4 = 0;
 				} else if (panel4.raceBox.getSelectedItem().toString() == "Buzzite") {
@@ -292,10 +292,10 @@ public class PlayerInfoFrame {
 			// Update Names
 			playerName1 = panel1.nameField.getText();
 			playerName2 = panel2.nameField.getText();
-			if (numPlayers == 3) {
+			if (numPlayers >= 3) {
 				playerName3 = panel3.nameField.getText();
 			}
-			if (numPlayers == 4) {
+			if (numPlayers >= 4) {
 				playerName4 = panel4.nameField.getText();
 			}
 			
@@ -303,9 +303,10 @@ public class PlayerInfoFrame {
 			// Create Player Class
 			player1 = new Player(playerName1, playerRace1, playerColor1, 0, 0);
 			player2 = new Player(playerName2, playerRace2, playerColor2, 0, 0);
-			if (GameData.getInstance().numOfPlayer == 3) {
+			if (GameData.getInstance().numOfPlayer >= 3) {
 				player3 = new Player(playerName3, playerRace3, playerColor3, 0, 0);
-			} else if (GameData.getInstance().numOfPlayer == 4) {
+			} 
+			if (GameData.getInstance().numOfPlayer >= 4) {
 				player4 = new Player(playerName4, playerRace4, playerColor4, 0, 0);
 			}
 			

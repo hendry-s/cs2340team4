@@ -3,6 +3,7 @@ package game;
 import java.io.Serializable;
 
 import model.Player;
+import model.Store;
 
 import org.newdawn.slick.Color;
 
@@ -21,7 +22,7 @@ public class GameData implements Serializable {
 	
 	
 	/* IntroStateTwo info */
-	int level;			// 0: beginner,		1: intermediate, 2: tournament
+	public int level;			// 0: beginner,		1: intermediate, 2: tournament
 	int map;			// 0: (default),	1: random
 	int numOfPlayer;	// 2, 3, or 4
 	
@@ -35,6 +36,11 @@ public class GameData implements Serializable {
 	Player player2 = null;
 	Player player3 = null;
 	Player player4 = null;
+	
+	static Store store = new Store();
+	
+	boolean justFromLandGrantState;
+	boolean justFromTownState;
 
 /*
 	String playerName1 = null;
@@ -70,7 +76,7 @@ public class GameData implements Serializable {
 	}
 	
 	public void updateStateTwoInfo(IntroStateTwo isTwo) {
-		this.level = isTwo.level;
+		this.setLevel(isTwo.level);
 		this.map = isTwo.map;
 		this.numOfPlayer = isTwo.numOfPlayer;
 	}
@@ -89,6 +95,14 @@ public class GameData implements Serializable {
 	
 	public int incrementTurn() {
 		return ++turn;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
 	}
 	
 	// other methods here

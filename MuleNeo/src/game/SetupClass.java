@@ -33,6 +33,10 @@ public class SetupClass extends StateBasedGame {
 		
 		app.start();
 	}
+	
+	public void enterState() {
+		
+	}
 
 	
 }
