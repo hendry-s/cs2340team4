@@ -22,7 +22,7 @@ public class MapMuleMount {
 		mapMuleMount[r][c] = 0;
 	}
 	
-	public int[][] getMapPossession() {
+	public int[][] getMapMuleMount() {
 		return mapMuleMount;
 	}
 }

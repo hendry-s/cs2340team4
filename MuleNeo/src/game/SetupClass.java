@@ -20,7 +20,7 @@ public class SetupClass extends StateBasedGame {
 		this.addState(new SummaryState());		// id: 6
 		this.addState(new SaveDataState());		// id: 98
 		this.addState(new LoadDataState());		// id: 99
-		
+		this.addState(new GameOverState());		// id: 999
 		
 	}
 	

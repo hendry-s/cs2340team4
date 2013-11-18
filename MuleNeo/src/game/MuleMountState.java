@@ -43,7 +43,8 @@ public class MuleMountState extends BasicGameState {
 	int playerPosY;
 	Input input;
 	
-	Circle circle;
+	Circle playerWithNoMule;
+	String playerWithMule;
 	
 	GameData data;
 	Rectangle rect;
@@ -76,7 +77,7 @@ public class MuleMountState extends BasicGameState {
 		
 		input = container.getInput();
 		
-		circle = new Circle(playerPosX, playerPosY, 3);
+		playerWithNoMule = new Circle(playerPosX, playerPosY, 3);
 		
 		data = GameData.getInstance();
 		
@@ -146,13 +147,111 @@ public class MuleMountState extends BasicGameState {
 			playerPosY = 399;
 		}
 
-/* TextField is left out due to performance issues
-		// Game Message Update (in TextField)
-		textField.setText("Helluva");
-		textField.setFocus(true);
-*/				
+
+		// Actual Mule Mounting
+		if (turn == 1) {	// player 1 case
+			if (data.player1.whatKindOfMule == 0) {
+				
+			} else if (data.player1.whatKindOfMule == 1) {	// EnergyMule
+				if (input.isKeyDown(Input.KEY_SPACE)) {
+					if (data.mapPossession[playerPosY/80][playerPosX/80] == 1) {	// Player1 owns the right place?
+						data.mapMuleMount[playerPosY/80][playerPosX/80] = 1;	// mount EnergyMule
+					} 
+					data.player1.whatKindOfMule = 0;	// Mule un-set, or runs away case
+				}
+			} else if (data.player1.whatKindOfMule == 2) {	// FoodMule
+				if (input.isKeyDown(Input.KEY_SPACE)) {
+					if (data.mapPossession[playerPosY/80][playerPosX/80] == 1) {	// Player1 owns the right place?
+						data.mapMuleMount[playerPosY/80][playerPosX/80] = 2;	// mount FoodMule
+					} 
+					data.player1.whatKindOfMule = 0;	// Mule un-set, or runs away case
+				}
+			} else if (data.player1.whatKindOfMule == 3) {	// OreMule
+				if (input.isKeyDown(Input.KEY_SPACE)) {
+					if (data.mapPossession[playerPosY/80][playerPosX/80] == 1) {	// Player1 owns the right place?
+						data.mapMuleMount[playerPosY/80][playerPosX/80] = 3;	// mount OreMule
+					} 
+					data.player1.whatKindOfMule = 0;	// Mule un-set, or runs away case
+				}
+			}
+		} else if (turn == 2) {	// player 2 case
+			if (data.player2.whatKindOfMule == 0) {
+				
+			} else if (data.player2.whatKindOfMule == 1) {	// EnergyMule
+				if (input.isKeyDown(Input.KEY_SPACE)) {
+					if (data.mapPossession[playerPosY/80][playerPosX/80] == 2) {	// Player2 owns the right place?
+						data.mapMuleMount[playerPosY/80][playerPosX/80] = 1;	// mount EnergyMule
+					} 
+					data.player2.whatKindOfMule = 0;	// Mule un-set, or runs away case
+				}
+			} else if (data.player2.whatKindOfMule == 2) {	// FoodMule
+				if (input.isKeyDown(Input.KEY_SPACE)) {
+					if (data.mapPossession[playerPosY/80][playerPosX/80] == 2) {	// Player2 owns the right place?
+						data.mapMuleMount[playerPosY/80][playerPosX/80] = 2;	// mount FoodMule
+					} 
+					data.player2.whatKindOfMule = 0;	// Mule un-set, or runs away case
+				}
+			} else if (data.player2.whatKindOfMule == 3) {	// OreMule
+				if (input.isKeyDown(Input.KEY_SPACE)) {
+					if (data.mapPossession[playerPosY/80][playerPosX/80] == 2) {	// Player2 owns the right place?
+						data.mapMuleMount[playerPosY/80][playerPosX/80] = 3;	// mount OreMule
+					} 
+					data.player2.whatKindOfMule = 0;	// Mule un-set, or runs away case
+				}
+			}
+		} else if (turn == 3) {	// player 3 case
+			if (data.player3.whatKindOfMule == 0) {
+				
+			} else if (data.player3.whatKindOfMule == 1) {	// EnergyMule
+				if (input.isKeyDown(Input.KEY_SPACE)) {
+					if (data.mapPossession[playerPosY/80][playerPosX/80] == 3) {	// Player3 owns the right place?
+						data.mapMuleMount[playerPosY/80][playerPosX/80] = 1;	// mount EnergyMule
+					} 
+					data.player3.whatKindOfMule = 0;	// Mule un-set, or runs away case
+				}
+			} else if (data.player3.whatKindOfMule == 2) {	// FoodMule
+				if (input.isKeyDown(Input.KEY_SPACE)) {
+					if (data.mapMuleMount[playerPosY/80][playerPosX/80] == 3) {	// Player3 owns the right place?
+						data.mapMuleMount[playerPosY/80][playerPosX/80] = 2;	// mount FoodMule
+					} 
+					data.player3.whatKindOfMule = 0;	// Mule un-set, or runs away case
+				}
+			} else if (data.player3.whatKindOfMule == 3) {	// OreMule
+				if (input.isKeyDown(Input.KEY_SPACE)) {
+					if (data.mapPossession[playerPosY/80][playerPosX/80] == 3) {	// Player3 owns the right place?
+						data.mapMuleMount[playerPosY/80][playerPosX/80] = 3;	// mount OreMule
+					} 
+					data.player3.whatKindOfMule = 0;	// Mule un-set, or runs away case
+				}
+			}
+		} else if (turn == 4) {	// player 4 case
+			if (data.player4.whatKindOfMule == 0) {
+				
+			} else if (data.player4.whatKindOfMule == 1) {	// EnergyMule
+				if (input.isKeyDown(Input.KEY_SPACE)) {
+					if (data.mapPossession[playerPosY/80][playerPosX/80] == 4) {	// Player4 owns the right place?
+						data.mapMuleMount[playerPosY/80][playerPosX/80] = 1;	// mount EnergyMule
+					} 
+					data.player4.whatKindOfMule = 0;	// Mule un-set, or runs away case
+				}
+			} else if (data.player4.whatKindOfMule == 2) {	// FoodMule
+				if (input.isKeyDown(Input.KEY_SPACE)) {
+					if (data.mapPossession[playerPosY/80][playerPosX/80] == 4) {	// Player4 owns the right place?
+						data.mapMuleMount[playerPosY/80][playerPosX/80] = 2;	// mount FoodMule
+					} 
+					data.player4.whatKindOfMule = 0;	// Mule un-set, or runs away case
+				}
+			} else if (data.player4.whatKindOfMule == 3) {	// OreMule
+				if (input.isKeyDown(Input.KEY_SPACE)) {
+					if (data.mapPossession[playerPosY/80][playerPosX/80] == 4) {	// Player4 owns the right place?
+						data.mapMuleMount[playerPosY/80][playerPosX/80] = 3;	// mount OreMule
+					} 
+					data.player4.whatKindOfMule = 0;	// Mule un-set, or runs away case
+				}
+			}
+		}
+			
 	}
-	
 	
 	@Override
 	public void render(GameContainer container, StateBasedGame sbg, Graphics g)
@@ -177,10 +276,85 @@ public class MuleMountState extends BasicGameState {
 		}
 		
 		
-		circle.setCenterX(playerPosX);
-		circle.setCenterY(playerPosY);
-		g.setColor(Color.red);
-		g.draw(circle);
+		// Render a circle object for the player with no mule
+		// otherwise, a String "E", "F", "S" is displayed
+		if (turn == 1) {
+			if (data.player1.whatKindOfMule == 0) {
+				playerWithNoMule.setCenterX(playerPosX);
+				playerWithNoMule.setCenterY(playerPosY);
+				g.setColor(data.player1.getColor());
+				g.draw(playerWithNoMule);
+			} else if (data.player1.whatKindOfMule == 1) {
+				playerWithMule = "E";
+				g.setColor(data.player1.getColor());
+				g.drawString(playerWithMule, playerPosX, playerPosY);
+			} else if (data.player1.whatKindOfMule == 2) {
+				playerWithMule = "F";
+				g.setColor(data.player1.getColor());
+				g.drawString(playerWithMule, playerPosX, playerPosY);
+			} else if (data.player1.whatKindOfMule == 3) {
+				playerWithMule = "S";
+				g.setColor(data.player1.getColor());
+				g.drawString(playerWithMule, playerPosX, playerPosY);
+			}
+		} else if (turn == 2) {
+			if (data.player2.whatKindOfMule == 0) {
+				playerWithNoMule.setCenterX(playerPosX);
+				playerWithNoMule.setCenterY(playerPosY);
+				g.setColor(data.player2.getColor());
+				g.draw(playerWithNoMule);
+			} else if (data.player2.whatKindOfMule == 1) {
+				playerWithMule = "E";
+				g.setColor(data.player2.getColor());
+				g.drawString(playerWithMule, playerPosX, playerPosY);
+			} else if (data.player2.whatKindOfMule == 2) {
+				playerWithMule = "F";
+				g.setColor(data.player2.getColor());
+				g.drawString(playerWithMule, playerPosX, playerPosY);
+			} else if (data.player2.whatKindOfMule == 3) {
+				playerWithMule = "S";
+				g.setColor(data.player2.getColor());
+				g.drawString(playerWithMule, playerPosX, playerPosY);
+			}
+		} else if (turn == 3) {
+			if (data.player3.whatKindOfMule == 0) {
+				playerWithNoMule.setCenterX(playerPosX);
+				playerWithNoMule.setCenterY(playerPosY);
+				g.setColor(data.player3.getColor());
+				g.draw(playerWithNoMule);
+			} else if (data.player3.whatKindOfMule == 1) {
+				playerWithMule = "E";
+				g.setColor(data.player3.getColor());
+				g.drawString(playerWithMule, playerPosX, playerPosY);
+			} else if (data.player3.whatKindOfMule == 2) {
+				playerWithMule = "F";
+				g.setColor(data.player3.getColor());
+				g.drawString(playerWithMule, playerPosX, playerPosY);
+			} else if (data.player3.whatKindOfMule == 3) {
+				playerWithMule = "S";
+				g.setColor(data.player3.getColor());
+				g.drawString(playerWithMule, playerPosX, playerPosY);
+			}
+		} else if (turn == 4) {
+			if (data.player4.whatKindOfMule == 0) {
+				playerWithNoMule.setCenterX(playerPosX);
+				playerWithNoMule.setCenterY(playerPosY);
+				g.setColor(data.player4.getColor());
+				g.draw(playerWithNoMule);
+			} else if (data.player4.whatKindOfMule == 1) {
+				playerWithMule = "E";
+				g.setColor(data.player4.getColor());
+				g.drawString(playerWithMule, playerPosX, playerPosY);
+			} else if (data.player4.whatKindOfMule == 2) {
+				playerWithMule = "F";
+				g.setColor(data.player4.getColor());
+				g.drawString(playerWithMule, playerPosX, playerPosY);
+			} else if (data.player4.whatKindOfMule == 3) {
+				playerWithMule = "S";
+				g.setColor(data.player4.getColor());
+				g.drawString(playerWithMule, playerPosX, playerPosY);
+			}
+		}
 		
 		
 		// Status Updater
@@ -235,9 +409,10 @@ public class MuleMountState extends BasicGameState {
 //		g.drawString(alertMessage, 20, 420);
 
 		
+		// Rectangle (players' land ownership) updater
 		for (int i=0; i<5; i++) {
 			for (int j=0; j<9; j++) {
-				int who = data.possessionLayout.getMapPossession()[i][j];
+				int who = data.mapPossession[i][j];
 				if (who > 0) {
 					if (who == 1) {
 						g.setColor(data.player1.getColor());
@@ -256,6 +431,35 @@ public class MuleMountState extends BasicGameState {
 			}
 		}
 		
+		// Mule Mount updater
+		for (int i=0; i<5; i++) {
+			for (int j=0; j<9; j++) {
+				int whichMule = data.mapMuleMount[i][j];
+				int who = data.mapPossession[i][j];
+				
+				if (whichMule > 0) {
+					// first, get the color
+					if (who == 1) {
+						g.setColor(data.player1.getColor());
+					} else if (who == 2) {
+						g.setColor(data.player2.getColor());
+					} else if (who == 3) {
+						g.setColor(data.player3.getColor());
+					} else if (who == 4) {
+						g.setColor(data.player4.getColor());
+					}
+					
+					// then, check the mule mount type and update
+					if (whichMule == 1) {	// energy type
+						g.drawString("[Energy]", j*80+5, i*80+60);
+					} else if (whichMule == 2) {	// food type
+						g.drawString("[Food]", j*80+5, i*80+60);
+					} else if (whichMule == 3) {	// ore type
+						g.drawString("[Smithore]", j*80+5, i*80+60);
+					}
+				}
+			}
+		}
 	}
 
 	@Override

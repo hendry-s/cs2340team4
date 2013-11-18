@@ -48,12 +48,19 @@ public class GameData implements Serializable {
 	boolean justFromMuleMountState;
 	boolean justFromTownState;
 	boolean roundInitiated;
+	boolean turnJustStarted; // as we enter TownState after LandGrant
 
 	boolean landSelectionDone;
 	
 	Map mapLayout;
 	MapPossession possessionLayout;
 	MapMuleMount muleMountLayout;
+	
+	int[][] mapPossession;
+	int[][] mapMuleMount;
+	
+	int timeAtCurrentTurn;
+	
 	
 	
 	private GameData() {
@@ -63,6 +70,9 @@ public class GameData implements Serializable {
 		mapLayout = new Map(0);
 		possessionLayout = new MapPossession();
 		muleMountLayout = new MapMuleMount();
+		
+		mapPossession = possessionLayout.getMapPossession();
+		mapMuleMount = muleMountLayout.getMapMuleMount();
 		
 	}
 	

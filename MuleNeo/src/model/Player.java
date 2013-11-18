@@ -35,6 +35,8 @@ public class Player {
 	private int size = 10;
 	private ArrayList<Tile> land = new ArrayList<Tile>();
 	private ArrayList<Mule> mulesNum = new ArrayList<Mule>();
+	
+	public int whatKindOfMule;	// (none 0) (energy 1) (food 2) (ore 3)
 
 	
 	
@@ -89,7 +91,7 @@ public class Player {
 			energy = 2;
 		}
 		
-		
+		whatKindOfMule = 0;
 			
 	}
 
