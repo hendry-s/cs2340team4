@@ -23,8 +23,9 @@ public class TownState extends BasicGameState {
 	Town town;
 	Image townImage;
 
-	Circle circle;
-
+	Circle playerWithNoMule;
+	String playerWithMule;
+	
 	int round;
 	int turn;
 	
@@ -43,7 +44,9 @@ public class TownState extends BasicGameState {
 		playerPosX = 300;
 		playerPosY = 200;
 		
-		circle = new Circle(400,300,5);
+		playerWithNoMule = new Circle(400,300,5);
+		
+		data = GameData.getInstance();
 		
 /* TextField is left out due to performance issues
 		// font setups
@@ -96,11 +99,119 @@ public class TownState extends BasicGameState {
 			sbg.enterState(4);	// MuleMountState;
 		}
 		
-/* TextField is left out due to performance issues
-		// Game Message Update (in TextField)
-		textField.setText("Helluva");
-		textField.setFocus(true);
-*/		
+		// Store Recognition: EnergyMule
+		if (playerPosX > 76 && playerPosX < 224
+				&& playerPosY > 51 && playerPosY < 142) {
+			
+			if (turn == 1) {
+				data.player1.whatKindOfMule = 1;
+				data.player1.spend(data.store.getEnergyMuleCost());
+			} else if (turn == 2) {
+				data.player2.whatKindOfMule = 1;
+				data.player2.spend(data.store.getEnergyMuleCost());
+			} else if (turn == 3) {
+				data.player3.whatKindOfMule = 1;
+				data.player3.spend(data.store.getEnergyMuleCost());
+			} else if (turn == 4) {
+				data.player4.whatKindOfMule = 1;
+				data.player4.spend(data.store.getEnergyMuleCost());
+			}
+			playerPosX = 300;
+			playerPosY = 200;	// get back
+		}
+		
+		// Store Recognition: FoodMule
+		if (playerPosX > 285 && playerPosX < 433
+				&& playerPosY > 51 && playerPosY < 148) {
+			
+			if (turn == 1) {
+				data.player1.whatKindOfMule = 2;
+				data.player1.spend(data.store.getFoodMuleCost());
+			} else if (turn == 2) {
+				data.player2.whatKindOfMule = 2;
+				data.player2.spend(data.store.getFoodMuleCost());
+			} else if (turn == 3) {
+				data.player3.whatKindOfMule = 2;
+				data.player3.spend(data.store.getFoodMuleCost());
+			} else if (turn == 4) {
+				data.player4.whatKindOfMule = 2;
+				data.player4.spend(data.store.getFoodMuleCost());
+			}
+			playerPosX = 300;
+			playerPosY = 200;	// get back
+		}
+		
+		// Store Recognition: OreMule
+		if (playerPosX > 495 && playerPosX < 646
+				&& playerPosY > 51 && playerPosY < 148) {
+			
+			if (turn == 1) {
+				data.player1.whatKindOfMule = 3;
+				data.player1.spend(data.store.getOreMuleCost());
+			} else if (turn == 2) {
+				data.player2.whatKindOfMule = 3;
+				data.player2.spend(data.store.getOreMuleCost());
+			} else if (turn == 3) {
+				data.player3.whatKindOfMule = 3;
+				data.player3.spend(data.store.getOreMuleCost());
+			} else if (turn == 4) {
+				data.player4.whatKindOfMule = 3;
+				data.player4.spend(data.store.getOreMuleCost());
+			}
+			playerPosX = 300;
+			playerPosY = 200;	// get back
+		}
+		
+		// Store Recognition: Pub
+		if (playerPosX > 495 && playerPosX < 646
+				&& playerPosY > 246 && playerPosY < 344) {
+			
+			if (data.round <= 12) {
+				if (turn == 1) {
+					data.player1.addMoney(50);
+					data.turn = 2;
+				} else if (turn == 2) {
+					data.player2.addMoney(50);
+					if (data.numOfPlayer == 2) {
+						data.round++;
+						data.turn = 1;
+					} else {
+						data.turn = 3;
+					}
+				} else if (turn == 3) {
+					data.player3.addMoney(50);
+					if (data.numOfPlayer == 3) {
+						data.round++;
+						data.turn = 1;
+					} else {
+						data.turn = 4;
+					}
+				} else if (turn == 4) {
+					data.player4.addMoney(50);
+					data.round++;
+					data.turn = 1;
+				}
+				data.landSelectionDone = false;
+				
+				data.player1.whatKindOfMule = 0;
+				data.player2.whatKindOfMule = 0;
+				if (turn >= 3)
+					data.player3.whatKindOfMule = 0;
+				if (turn >= 4)
+					data.player4.whatKindOfMule = 0;
+				
+				sbg.enterState(2);
+			} else {
+				sbg.enterState(999);
+			}
+			
+			playerPosX = 300;
+			playerPosY = 200;	// get back
+		}
+				
+				
+		
+		
 	}
 	
 	@Override
@@ -115,11 +226,86 @@ public class TownState extends BasicGameState {
 		g.drawString("" + playerPosX +", " + playerPosY, 500,500);
 		g.drawString("" + mouseX + ", " + mouseY, 500, 550);
 		
-		circle.setCenterX(playerPosX);
-		circle.setCenterY(playerPosY);
-		g.setColor(Color.red);
-		g.draw(circle);
 		
+		// Render a circle object for the player with no mule
+		// otherwise, a String "E", "F", "S" is displayed
+		if (turn == 1) {
+			if (data.player1.whatKindOfMule == 0) {
+				playerWithNoMule.setCenterX(playerPosX);
+				playerWithNoMule.setCenterY(playerPosY);
+				g.setColor(data.player1.getColor());
+				g.draw(playerWithNoMule);
+			} else if (data.player1.whatKindOfMule == 1) {
+				playerWithMule = "E";
+				g.setColor(data.player1.getColor());
+				g.drawString(playerWithMule, playerPosX, playerPosY);
+			} else if (data.player1.whatKindOfMule == 2) {
+				playerWithMule = "F";
+				g.setColor(data.player1.getColor());
+				g.drawString(playerWithMule, playerPosX, playerPosY);
+			} else if (data.player1.whatKindOfMule == 3) {
+				playerWithMule = "S";
+				g.setColor(data.player1.getColor());
+				g.drawString(playerWithMule, playerPosX, playerPosY);
+			}
+		} else if (turn == 2) {
+			if (data.player2.whatKindOfMule == 0) {
+				playerWithNoMule.setCenterX(playerPosX);
+				playerWithNoMule.setCenterY(playerPosY);
+				g.setColor(data.player2.getColor());
+				g.draw(playerWithNoMule);
+			} else if (data.player2.whatKindOfMule == 1) {
+				playerWithMule = "E";
+				g.setColor(data.player2.getColor());
+				g.drawString(playerWithMule, playerPosX, playerPosY);
+			} else if (data.player2.whatKindOfMule == 2) {
+				playerWithMule = "F";
+				g.setColor(data.player2.getColor());
+				g.drawString(playerWithMule, playerPosX, playerPosY);
+			} else if (data.player2.whatKindOfMule == 3) {
+				playerWithMule = "S";
+				g.setColor(data.player2.getColor());
+				g.drawString(playerWithMule, playerPosX, playerPosY);
+			}
+		} else if (turn == 3) {
+			if (data.player3.whatKindOfMule == 0) {
+				playerWithNoMule.setCenterX(playerPosX);
+				playerWithNoMule.setCenterY(playerPosY);
+				g.setColor(data.player3.getColor());
+				g.draw(playerWithNoMule);
+			} else if (data.player3.whatKindOfMule == 1) {
+				playerWithMule = "E";
+				g.setColor(data.player3.getColor());
+				g.drawString(playerWithMule, playerPosX, playerPosY);
+			} else if (data.player3.whatKindOfMule == 2) {
+				playerWithMule = "F";
+				g.setColor(data.player3.getColor());
+				g.drawString(playerWithMule, playerPosX, playerPosY);
+			} else if (data.player3.whatKindOfMule == 3) {
+				playerWithMule = "S";
+				g.setColor(data.player3.getColor());
+				g.drawString(playerWithMule, playerPosX, playerPosY);
+			}
+		} else if (turn == 4) {
+			if (data.player4.whatKindOfMule == 0) {
+				playerWithNoMule.setCenterX(playerPosX);
+				playerWithNoMule.setCenterY(playerPosY);
+				g.setColor(data.player4.getColor());
+				g.draw(playerWithNoMule);
+			} else if (data.player4.whatKindOfMule == 1) {
+				playerWithMule = "E";
+				g.setColor(data.player4.getColor());
+				g.drawString(playerWithMule, playerPosX, playerPosY);
+			} else if (data.player4.whatKindOfMule == 2) {
+				playerWithMule = "F";
+				g.setColor(data.player4.getColor());
+				g.drawString(playerWithMule, playerPosX, playerPosY);
+			} else if (data.player4.whatKindOfMule == 3) {
+				playerWithMule = "S";
+				g.setColor(data.player4.getColor());
+				g.drawString(playerWithMule, playerPosX, playerPosY);
+			}
+		}
 
 		// Status Updater
 		g.setColor(GameData.getInstance().player1.getColor());

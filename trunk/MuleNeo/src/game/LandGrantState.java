@@ -74,20 +74,6 @@ public class LandGrantState extends BasicGameState {
 		
 		data = GameData.getInstance();
 		
-		
-
-/* TextField is left out due to performance issues	
-		// font setups
-		font = new UnicodeFont(new java.awt.Font("DejaVu Serif", java.awt.Font.PLAIN, 16));
-        
-        font.addAsciiGlyphs();
-        font.addGlyphs(400,600);
-        font.getEffects().add(new ColorEffect(java.awt.Color.WHITE));
-        font.loadGlyphs();
-        
-        // TextField Setup
-        textField = new TextField(container, font, 20, 420, 600, 16);
-  */
 	}
 
 	
@@ -120,10 +106,10 @@ public class LandGrantState extends BasicGameState {
 		if (posX >= 0 && posX < 720) {
 			if (posY >= 0 && posY < 400) {
 				if (input.isMousePressed(0) && !data.landSelectionDone) {
-					if (data.possessionLayout.getMapPossession()[posY/80][posX/80] == 0) {
+					if (data.mapPossession[posY/80][posX/80] == 0) {
 					// if not occupied
 						
-						data.possessionLayout.getMapPossession()[posY/80][posX/80] = data.turn;
+						data.mapPossession[posY/80][posX/80] = data.turn;
 						data.landSelectionDone = true;
 						
 						if (data.round >= 3) {
@@ -227,18 +213,51 @@ public class LandGrantState extends BasicGameState {
 		for (int i=0; i<5; i++) {
 			for (int j=0; j<9; j++) {
 				int who = data.possessionLayout.getMapPossession()[i][j];
-				if (who == 1) {
-					g.setColor(data.player1.getColor());
-				} else if (who == 2) {
-					g.setColor(data.player2.getColor());
-				} else if (who == 3) {
-					g.setColor(data.player3.getColor());
-				} else if (who == 4) {
-					g.setColor(data.player4.getColor());
-				}
-				rect = new Rectangle((j*80), (i*80), 80f, 80f);
-				g.draw(rect);
+				if (who > 0) {
+					if (who == 1) {
+						g.setColor(data.player1.getColor());
+					} else if (who == 2) {
+						g.setColor(data.player2.getColor());
+					} else if (who == 3) {
+						g.setColor(data.player3.getColor());
+					} else if (who == 4) {
+						g.setColor(data.player4.getColor());
+					}
+				
+					rect = new Rectangle((j*80), (i*80), 80f, 80f);
+					g.draw(rect);
 					
+				}	
+			}
+		}
+		
+		// Mule Mount updater
+		for (int i=0; i<5; i++) {
+			for (int j=0; j<9; j++) {
+				int whichMule = data.mapMuleMount[i][j];
+				int who = data.mapPossession[i][j];
+				
+				if (whichMule > 0) {
+					// first, get the color
+					if (who == 1) {
+						g.setColor(data.player1.getColor());
+					} else if (who == 2) {
+						g.setColor(data.player2.getColor());
+					} else if (who == 3) {
+						g.setColor(data.player3.getColor());
+					} else if (who == 4) {
+						g.setColor(data.player4.getColor());
+					}
+					
+					// then, check the mule mount type and update
+					if (whichMule == 1) {	// energy type
+						g.drawString("[Energy]", j*80+5, i*80+60);
+					} else if (whichMule == 2) {	// food type
+						g.drawString("[Food]", j*80+5, i*80+60);
+					} else if (whichMule == 3) {	// ore type
+						g.drawString("[Ore]", j*80+5, i*80+60);
+					}
+				}
 			}
 		}
 	}
