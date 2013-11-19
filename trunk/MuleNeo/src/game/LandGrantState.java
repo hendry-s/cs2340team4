@@ -81,7 +81,7 @@ public class LandGrantState extends BasicGameState {
 	@Override
 	public void update(GameContainer container, StateBasedGame sbg, int delta)
 			throws SlickException {
-		round = GameData.getInstance().round;
+		round = GameData.getInstance().getRound();
 		turn = GameData.getInstance().turn;
 		
 		// Updating the alert message.
@@ -112,7 +112,7 @@ public class LandGrantState extends BasicGameState {
 						data.mapPossession[posY/80][posX/80] = data.turn;
 						data.landSelectionDone = true;
 						
-						if (data.round >= 3) {
+						if (data.getRound() >= 3) {
 							if (turn == 1) {
 								data.player1.spend(300);
 							} else if (turn == 2) {

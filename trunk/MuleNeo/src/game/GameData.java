@@ -6,11 +6,14 @@ import gfx.MapPossession;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Random;
 
 import model.Player;
 import model.Store;
 
 import org.newdawn.slick.Color;
+
+
 
 /**
  * GameData class is singleton, holding all the data info
@@ -51,6 +54,9 @@ public class GameData implements Serializable {
 	boolean turnJustStarted; // as we enter TownState after LandGrant
 
 	boolean landSelectionDone;
+	boolean unluckyUpdated;
+	boolean productionUpdated;
+	boolean productionUpdatedToPlayer;
 	
 	Map mapLayout;
 	MapPossession possessionLayout;
@@ -58,23 +64,64 @@ public class GameData implements Serializable {
 	
 	int[][] mapPossession;
 	int[][] mapMuleMount;
+	int[][] mapProduction = {
+			{0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,-1,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0}
+	};
 	
 	int timeAtCurrentTurn;
 	
+	int unluckyOne;
+	String unluckyOneName;
+	int unluckyEvent;
+	String unluckyEventName;
+	
+	transient Random rand;
 	
 	
 	private GameData() {
-		round = 1;
+		setRound(1);
 		turn = 1;
 		
-		mapLayout = new Map(0);
 		possessionLayout = new MapPossession();
 		muleMountLayout = new MapMuleMount();
 		
 		mapPossession = possessionLayout.getMapPossession();
 		mapMuleMount = muleMountLayout.getMapMuleMount();
 		
+		int[][] mapProduction = {
+				{0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,-1,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0},
+				{0,0,0,0,0,0,0,0,0}
+		};
+		
+		rand = new Random();
 	}
+	
+	private String getRandomEvent() {
+		unluckyEvent = rand.nextInt(7);
+		
+		if (unluckyEvent == 0)
+			return "A PACKAGE FROM THE GT ALUMNI, +3 FOOD AND +2 ENERGY.";
+		else if (unluckyEvent == 1)
+			return "YOUR ROOMMATE REPAID YOUR HOSPITALITY,  +2 ORE.";
+		else if (unluckyEvent == 2)
+			return "THE MUSEUM BOUGHT YOUR ANTIQUE PERSONAL COMPUTER, +$300.";
+		else if (unluckyEvent == 3)
+			return "YOU FOUND A DEAD MOOSE RAT AND SOLD THE HIDE, +$100.";
+		else if (unluckyEvent == 4)
+			return "FLYING CAT-BUGS ATE THE ROOF OFF YOUR HOUSE, -$100.";
+		else if (unluckyEvent == 5)
+			return "MISCHIEVOUS UGA STUDENTS BROKE IN AND STOLE HALF YOUR FOOD.";
+		else
+			return "YOUR SPACE GYPSY INLAWS MADE A MESS OF THE TOWN. -$300.";		
+	}
+	
 	
 	public static GameData getInstance() {
 		if (dataInstance == null) {
@@ -104,9 +151,131 @@ public class GameData implements Serializable {
 		this.player3 = player3;
 		this.player4 = player4;
 	}
+	
+	public void updateUnluckyOne() {
+		unluckyOne = rand.nextInt(numOfPlayer) + 1;
+		if (unluckyOne == 1)
+			unluckyOneName = player1.getName();
+		else if (unluckyOne == 2)
+			unluckyOneName = player2.getName();
+		else if (unluckyOne == 3)
+			unluckyOneName = player3.getName();
+		else
+			unluckyOneName = player4.getName();
+		
+		unluckyEventName = getRandomEvent();
+	}
 
+	public void updateTurnTime() {
+		if (turn == 1) {
+			if (round <= 4) {
+				if (player1.getFood() >= 3) {
+					timeAtCurrentTurn = 50;
+				} else if (player1.getFood() <= 0 && player1.getFood() >= 3) {
+					timeAtCurrentTurn = 30;
+				} else {
+					timeAtCurrentTurn = 5;
+				}
+			} else if (round <= 8) {
+				if (player1.getFood() >= 4) {
+					timeAtCurrentTurn = 50;
+				} else if (player1.getFood() <= 0 && player1.getFood() >= 3) {
+					timeAtCurrentTurn = 30;
+				} else {
+					timeAtCurrentTurn = 5;
+				}
+			} else {
+				if (player1.getFood() >= 5) {
+					timeAtCurrentTurn = 50;
+				} else if (player1.getFood() <= 0 && player1.getFood() >= 3) {
+					timeAtCurrentTurn = 30;
+				} else {
+					timeAtCurrentTurn = 5;
+				}
+			}
+		} else if (turn == 2) {
+			if (round <= 4) {
+				if (player2.getFood() >= 3) {
+					timeAtCurrentTurn = 50;
+				} else if (player2.getFood() <= 0 && player2.getFood() >= 3) {
+					timeAtCurrentTurn = 30;
+				} else {
+					timeAtCurrentTurn = 5;
+				}
+			} else if (round <= 8) {
+				if (player2.getFood() >= 4) {
+					timeAtCurrentTurn = 50;
+				} else if (player2.getFood() <= 0 && player2.getFood() >= 3) {
+					timeAtCurrentTurn = 30;
+				} else {
+					timeAtCurrentTurn = 5;
+				}
+			} else {
+				if (player2.getFood() >= 5) {
+					timeAtCurrentTurn = 50;
+				} else if (player2.getFood() <= 0 && player2.getFood() >= 3) {
+					timeAtCurrentTurn = 30;
+				} else {
+					timeAtCurrentTurn = 5;
+				}
+			}
+		} else if (turn == 3) {
+			if (round <= 4) {
+				if (player3.getFood() >= 3) {
+					timeAtCurrentTurn = 50;
+				} else if (player3.getFood() <= 0 && player3.getFood() >= 3) {
+					timeAtCurrentTurn = 30;
+				} else {
+					timeAtCurrentTurn = 5;
+				}
+			} else if (round <= 8) {
+				if (player3.getFood() >= 4) {
+					timeAtCurrentTurn = 50;
+				} else if (player3.getFood() <= 0 && player3.getFood() >= 3) {
+					timeAtCurrentTurn = 30;
+				} else {
+					timeAtCurrentTurn = 5;
+				}
+			} else {
+				if (player3.getFood() >= 5) {
+					timeAtCurrentTurn = 50;
+				} else if (player3.getFood() <= 0 && player3.getFood() >= 3) {
+					timeAtCurrentTurn = 30;
+				} else {
+					timeAtCurrentTurn = 5;
+				}
+			}
+		} else {
+			if (round <= 4) {
+				if (player4.getFood() >= 3) {
+					timeAtCurrentTurn = 50;
+				} else if (player4.getFood() <= 0 && player4.getFood() >= 3) {
+					timeAtCurrentTurn = 30;
+				} else {
+					timeAtCurrentTurn = 5;
+				}
+			} else if (round <= 8) {
+				if (player4.getFood() >= 4) {
+					timeAtCurrentTurn = 50;
+				} else if (player4.getFood() <= 0 && player4.getFood() >= 3) {
+					timeAtCurrentTurn = 30;
+				} else {
+					timeAtCurrentTurn = 5;
+				}
+			} else {
+				if (player4.getFood() >= 5) {
+					timeAtCurrentTurn = 50;
+				} else if (player4.getFood() <= 0 && player4.getFood() >= 3) {
+					timeAtCurrentTurn = 30;
+				} else {
+					timeAtCurrentTurn = 5;
+				}
+			}
+		}		
+	}
+	
 	public int incrementRound() {
-		return ++round;
+		return setRound(getRound() + 1);
 	}
 	
 	public int incrementTurn() {
@@ -119,6 +288,15 @@ public class GameData implements Serializable {
 
 	public void setLevel(int level) {
 		this.level = level;
+	}
+
+	public int getRound() {
+		return round;
+	}
+
+	public int setRound(int round) {
+		this.round = round;
+		return round;
 	}
 	
 	

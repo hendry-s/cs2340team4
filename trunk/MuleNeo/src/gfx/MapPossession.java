@@ -1,6 +1,6 @@
 package gfx;
 
-public class MapPossession {
+public class MapPossession implements java.io.Serializable {
 
 	int[][] mapPossession;
 	

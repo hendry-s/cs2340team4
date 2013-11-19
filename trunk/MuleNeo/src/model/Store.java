@@ -2,7 +2,7 @@ package model;
 
 import game.GameData;
 
-public class Store {
+public class Store implements java.io.Serializable {
 
 	private int foodNum;
 	private int energyNum;

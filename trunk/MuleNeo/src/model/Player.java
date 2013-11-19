@@ -20,25 +20,25 @@ import gfx.Tile;
  *
  */
 
-public class Player {
+public class Player implements java.io.Serializable {
 	private String name;
 	private String race;
-	private int money;
-	private int food;
-	private int energy;
-	private int ore;
+	public int money;
+	public int food;
+	public int energy;
+	public int ore;
 	private int crystite;
 	private Color color;
-	private Mule currentMule;
+//	private Mule currentMule;
 	int xPos, yPos, prevX, prevY, initial_x, initial_y;
-	private Controller direction;
+//	private Controller direction;
 	private int size = 10;
-	private ArrayList<Tile> land = new ArrayList<Tile>();
-	private ArrayList<Mule> mulesNum = new ArrayList<Mule>();
+//	private ArrayList<Tile> land = new ArrayList<Tile>();
+//	private ArrayList<Mule> mulesNum = new ArrayList<Mule>();
 	
 	public int whatKindOfMule;	// (none 0) (energy 1) (food 2) (ore 3)
 
-	
+
 	
 	public Player(String name, int race, int color, int x, int y)
 	{
@@ -138,7 +138,7 @@ public class Player {
 		return this.race;
 	}
 
-	
+/*	
 	public int getNumMules()
 	{
 		return mulesNum.size();
@@ -158,7 +158,7 @@ public class Player {
 	public boolean hasMule(){
 		return (currentMule != null);
 	}
-
+*/
 	public void setPosition(int xPos, int yPos)
 	{
 		this.xPos = xPos;
@@ -222,7 +222,7 @@ public class Player {
 		this.money += money;
 	}
 
-
+/*
 	public void setDirection(Controller d){
 		this.direction = d;
 	}
@@ -264,7 +264,7 @@ public class Player {
 	public void clearMules(){
 		this.mulesNum.clear();
 	}
-
+*/
 	public int getScore() {
 		return money + food*30 + energy*25 + ore*50;
 	}
