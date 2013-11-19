@@ -2,7 +2,7 @@ package gfx;
 
 public class MapMuleMount implements java.io.Serializable {
 	
-	int[][] mapMuleMount;
+	private int[][] mapMuleMount;
 	
 	public MapMuleMount() {
 		mapMuleMount = new int[][] {
