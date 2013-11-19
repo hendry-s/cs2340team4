@@ -39,7 +39,7 @@ public class Store implements java.io.Serializable {
 		energyMuleOutfitCost = 50;
 		foodMuleOutfitCost = 25;
 		oreMuleOutfitCost = 75;
-	}
+	} 
 
 	// When the player is selling stuffs to the store
 	public boolean buyFood(Player player, int quantity) {
