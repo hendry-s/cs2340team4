@@ -25,31 +25,43 @@ public class HendryTest {
 	public void createFoodMule(){
 		m = new Mule(player1, MuleType.FOOD);
 		assertTrue("Successfully create food mule", m.getMuleType() == MuleType.FOOD);
+		assertFalse("Successfully testing for false condition", m.getMuleType() == MuleType.ENERGY); // Two way testing
 	}
 	
 	@Test
 	public void createCrystiteMule(){
 		m = new Mule(player1, MuleType.CRYSTITE);
 		assertTrue("Successfully create cristite mule", m.getMuleType() == MuleType.CRYSTITE);
+		assertFalse("Successfully testing for false condition", m.getMuleType() == MuleType.ENERGY);
+
 	}
 	
 	@Test
 	public void createEnergyMule(){
 		m = new Mule(player1, MuleType.ENERGY);
 		assertTrue("Successfully create energy mule", m.getMuleType() == MuleType.ENERGY);
+		assertFalse("Successfully testing for false condition", m.getMuleType() == MuleType.FOOD);
+
 	}
 	
 	@Test
 	public void createSmithoreMule(){
 		m = new Mule(player1, MuleType.SMITHORE);
 		assertTrue("Successfully create smithore mule", m.getMuleType() == MuleType.SMITHORE);
+		assertFalse("Successfully testing for false condition", m.getMuleType() == MuleType.ENERGY);
+
 	}
 	
+		
 	@Test
 	public void testPlayerConfig(){
 		assertTrue("Successfully set up player 1 property", player1.getName() == "P1");
 		assertTrue("Successfully set up player 1 race", player1.getRace() == "Bonzoid");
 		assertTrue("Successfully set up player 1 color", player1.getColor() == Color.red);
+		assertFalse("Successfully testing for false condition",  player1.getName() == "P2");
+		assertFalse("Successfully testing for false condition",  player1.getRace() == "Human");
+		assertFalse("Successfully testing for false condition",  player1.getColor() == Color.blue);
+		
 	}
 	
 	@Test
@@ -57,6 +69,9 @@ public class HendryTest {
 		assertTrue("Successfully set up player 1 initial money", player1.getMoney() == 1000);
 		assertTrue("Successfully set up player 1 initial food", player1.getFood() == 8);
 		assertTrue("Successfully set up player 1 initial energy", player1.getEnergy() == 4);
+		assertFalse("Successfully testing for false condition",  player1.getMoney() != 1000);
+		assertFalse("Successfully testing for false condition",  player1.getFood() != 8);
+		assertFalse("Successfully testing for false condition",  player1.getEnergy() != 4);
 	}
 	
 	@Test
@@ -64,6 +79,9 @@ public class HendryTest {
 		assertTrue("Successfully set up player 1 property", player2.getName() == "p2");
 		assertTrue("Successfully set up player 1 race", player2.getRace() == "Buzzite");
 		assertTrue("Successfully set up player 1 color", player2.getColor() == Color.blue);
+		assertFalse("Successfully testing for false condition",  player2.getName() == "P1");
+		assertFalse("Successfully testing for false condition",  player2.getRace() == "Human");
+		assertFalse("Successfully testing for false condition",  player2.getColor() == Color.red);
 	}
 	
 	@Test
@@ -71,6 +89,11 @@ public class HendryTest {
 		assertTrue("Successfully set up player 2 initial money", player2.getMoney() == 1000);
 		assertTrue("Successfully set up player 2 initial food", player2.getFood() == 8);
 		assertTrue("Successfully set up player 2 initial energy", player2.getEnergy() == 4);
+		assertFalse("Successfully testing for false condition",  player2.getMoney() != 1000);
+		assertFalse("Successfully testing for false condition",  player2.getFood() != 8);
+		assertFalse("Successfully testing for false condition",  player2.getEnergy() != 4);
 	}
+	
+	
 	
 }
