@@ -33,6 +33,8 @@ public class TownState extends BasicGameState {
 	
 	GameData data;
 	
+	int timeLeft;
+	
 	@Override
 	public void init(GameContainer container, StateBasedGame sbg)
 			throws SlickException {
@@ -65,7 +67,7 @@ public class TownState extends BasicGameState {
 	@Override
 	public void update(GameContainer container, StateBasedGame sbg, int delta)
 			throws SlickException {
-		round = GameData.getInstance().round;
+		round = GameData.getInstance().getRound();
 		turn = GameData.getInstance().turn;
 		
 		
@@ -90,6 +92,10 @@ public class TownState extends BasicGameState {
 		if (input.isKeyDown(Input.KEY_DOWN)) {
 			playerPosY += delta/4;
 		}
+		
+		
+		// Time left for this turn
+		
 		
 		// Collision Detection: Exiting Town
 		if (playerPosX < 0 || playerPosX > 720
@@ -166,31 +172,8 @@ public class TownState extends BasicGameState {
 		if (playerPosX > 495 && playerPosX < 646
 				&& playerPosY > 246 && playerPosY < 344) {
 			
-			if (data.round <= 12) {
-				if (turn == 1) {
-					data.player1.addMoney(50);
-					data.turn = 2;
-				} else if (turn == 2) {
-					data.player2.addMoney(50);
-					if (data.numOfPlayer == 2) {
-						data.round++;
-						data.turn = 1;
-					} else {
-						data.turn = 3;
-					}
-				} else if (turn == 3) {
-					data.player3.addMoney(50);
-					if (data.numOfPlayer == 3) {
-						data.round++;
-						data.turn = 1;
-					} else {
-						data.turn = 4;
-					}
-				} else if (turn == 4) {
-					data.player4.addMoney(50);
-					data.round++;
-					data.turn = 1;
-				}
+			if (data.getRound() <= 12) {
+				
 				data.landSelectionDone = false;
 				
 				data.player1.whatKindOfMule = 0;
@@ -199,8 +182,46 @@ public class TownState extends BasicGameState {
 					data.player3.whatKindOfMule = 0;
 				if (turn >= 4)
 					data.player4.whatKindOfMule = 0;
+
 				
-				sbg.enterState(2);
+				
+				
+				if (turn == 1) {
+					data.player1.addMoney(50);
+					data.turn = 2;
+					sbg.enterState(2);
+				} else if (turn == 2) {
+					data.player2.addMoney(50);
+					if (data.numOfPlayer == 2) {
+				//		data.setRound(data.getRound() + 1);
+				//		data.turn = 1;
+						data.unluckyUpdated = false;
+						sbg.enterState(5);
+						
+					} else {
+						data.turn = 3;
+						sbg.enterState(2);
+					}
+				} else if (turn == 3) {
+					data.player3.addMoney(50);
+					if (data.numOfPlayer == 3) {
+				//		data.setRound(data.getRound() + 1);
+				//		data.turn = 1;
+						data.unluckyUpdated = false;
+						sbg.enterState(5);
+					} else {
+						data.turn = 4;
+						sbg.enterState(2);
+					}
+				} else if (turn == 4) {
+					data.player4.addMoney(50);
+				//	data.setRound(data.getRound() + 1);
+				//	data.turn = 1;
+					data.unluckyUpdated = false;
+					sbg.enterState(5);
+
+				}
+				
 			} else {
 				sbg.enterState(999);
 			}
@@ -208,7 +229,8 @@ public class TownState extends BasicGameState {
 			playerPosX = 300;
 			playerPosY = 200;	// get back
 		}
-				
+		
+		
 				
 		
 		

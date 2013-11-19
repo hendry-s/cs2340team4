@@ -2,7 +2,7 @@ package gfx;
 
 import java.util.Random;
 
-public class Map {
+public class Map implements java.io.Serializable{
 
 	int[][] map;
 	Random r;

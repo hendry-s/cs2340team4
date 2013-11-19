@@ -46,7 +46,7 @@ public class IntroStateOne extends BasicGameState {
 		// loadGame button pressed
 		if ((posX>300 && posX<500) && (posY>300 && posY<400)) {
 			if (Mouse.isButtonDown(0)) {
-//				sbg.enterState(99);
+				sbg.enterState(99);
 			}
 		}
 		

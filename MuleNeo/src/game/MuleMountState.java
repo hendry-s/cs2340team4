@@ -100,7 +100,7 @@ public class MuleMountState extends BasicGameState {
 	@Override
 	public void update(GameContainer container, StateBasedGame sbg, int delta)
 			throws SlickException {
-		 round = GameData.getInstance().round;
+		 round = GameData.getInstance().getRound();
 		 turn = GameData.getInstance().turn;
 		 
 		 if (GameData.getInstance().justFromTownState == true) {
@@ -455,7 +455,7 @@ public class MuleMountState extends BasicGameState {
 					} else if (whichMule == 2) {	// food type
 						g.drawString("[Food]", j*80+5, i*80+60);
 					} else if (whichMule == 3) {	// ore type
-						g.drawString("[Smithore]", j*80+5, i*80+60);
+						g.drawString("[Ore]", j*80+5, i*80+60);
 					}
 				}
 			}
