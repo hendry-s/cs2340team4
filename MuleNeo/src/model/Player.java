@@ -65,7 +65,7 @@ public class Player implements java.io.Serializable {
 			money = 1000;
 		}
 		
-		// here we only allowing 4 color
+		// The game allows the players to select from 4 colors
 		//0 == red, 1 == blue, 2 == yellow, 3 == green
 		switch(color)
 		{

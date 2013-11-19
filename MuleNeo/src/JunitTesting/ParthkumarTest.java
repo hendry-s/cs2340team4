@@ -22,8 +22,12 @@ public class ParthkumarTest {
 	public void storeBuyFood() {
 		
 		s = new Store();
-		s.buyFood(p1, 1);
+		int quantity = 1;
+		s.buyFood(p1, quantity);
 		assertTrue("Successfully bought food from Parth", p1.getFood() == 7);
 		assertTrue("Store food quantity is now 17", s.getFoodNum() == 17);
+		assertFalse("Not able to buy food from Parth",  quantity > p1.getFood());
+		assertFalse("Store food quantity is now 18", p1.getFood() == 18);
+		
 	}
 }
