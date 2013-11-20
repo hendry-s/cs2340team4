@@ -17,6 +17,14 @@ import org.newdawn.slick.gui.TextField;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ *  Class that holds the mule mount state of the game
+ *  Holds necessary images for the map and pertinent information for the tiles
+ *  Knows the round and turn of the game and which player has the mule
+ *  
+ *  @author Jin Sim
+ *  @date November 15, 2013
+ */
 public class MuleMountState extends BasicGameState {
 
 	Map map;
@@ -56,6 +64,15 @@ public class MuleMountState extends BasicGameState {
 */
 	
 	@Override
+	/**
+	 *  Method that intializes the mule mount state of the game
+	 *  Creates the appropriate tiles for the map and collects information
+	 *  for the map and the map layout
+	 *  Collects input from the container and the instance of the game]
+	 *  
+	 *  @param container The container to hold the game
+	 *  @param sbg The state of the game
+	 */
 	public void init(GameContainer container, StateBasedGame sbg)
 			throws SlickException {
 		
@@ -98,6 +115,19 @@ public class MuleMountState extends BasicGameState {
 	
 
 	@Override
+	/**
+	 *  Method that updates the mule mount state of the game
+	 *  Collects the round and turn the game is currently in
+	 *  Moves the player cursor on the container depending on which arrow
+	 *  key was pressed
+	 *  Updates UI on container depending on whether a mule mount was 
+	 *  successful and checks for collision detection so that player cursor
+	 *  stays within the map and to see whether the player exited to town or not
+	 *  
+	 *  @param container The container to hold the game
+	 *  @param sbg The state of the game
+	 *  @param delta The amount to move the position of the mouse cursor of the player
+	 */
 	public void update(GameContainer container, StateBasedGame sbg, int delta)
 			throws SlickException {
 		 round = GameData.getInstance().getRound();
@@ -254,6 +284,20 @@ public class MuleMountState extends BasicGameState {
 	}
 	
 	@Override
+	/**
+	 *  Method that renders the mule mount state of the game
+	 *  Displays all information pertaining to the current player such
+	 *  as quantity of ore, food, energy possessed, etc
+	 *  Draws a circle object for player's land with no mule placed;
+	 *  otherwise, places a letter on the land depending on which mule type
+	 *  was mounted
+	 *  Updates land ownership to the player that bought respective land
+	 *  
+	 *  @param container The container to hold the game
+	 *  @param sbg The state of the game
+	 *  @param g The Graphics object to draw onto the container
+	 *  
+	 */
 	public void render(GameContainer container, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 
@@ -463,6 +507,10 @@ public class MuleMountState extends BasicGameState {
 	}
 
 	@Override
+	/**
+	 *  Method that returns the mule mount state of the game
+	 *  @return The ID of the mule mount state
+	 */
 	public int getID() {
 		// TODO Auto-generated method stub
 		return 4;

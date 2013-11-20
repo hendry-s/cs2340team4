@@ -1,13 +1,19 @@
 package game;
 
 import model.Player;
-
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ *  Class that holds the second intro state of the game
+ *  Allows for the level, map, number of players selections and
+ *  collects information of each of the players
+ *  @author Jin Sim
+ *  @date November 15, 2013
+ */
 public class IntroStateTwo extends BasicGameState {
 
 	boolean levelSelected;
@@ -31,6 +37,15 @@ public class IntroStateTwo extends BasicGameState {
 	PlayerInfoFrame frame;
 	
 	@Override
+	/** 
+	 *  Method that initializes the intro state 2 of the game
+	 * 	Sets level, map, number of players, and player info flags to false 
+	 *  Collects input from the container
+	 *  Sets level and map to 0; sets number of players to 2
+	 *  
+	 *  @param container The container to hold the game
+	 *  @param sbg The state of the game
+	 */
 	public void init(GameContainer container, StateBasedGame sbg)
 			throws SlickException {
 		// TODO Auto-generated method stub
@@ -49,6 +64,16 @@ public class IntroStateTwo extends BasicGameState {
 	}
 
 	@Override
+	/**
+	 *  Method that renders the intro state 2 of the game onto the container
+	 *  Displays all necessary boxes and fields for user input collection
+	 *  Collects user input for the level type, map type, number of players,
+	 *  and player infos
+	 *  
+	 *  @param container The container to hold the game
+	 *  @param sbg The state of the game
+	 *  @param g The Graphics object to draw onto the container
+	 */
 	public void render(GameContainer container, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		g.drawString("Choose Level: ", 100, 100);
@@ -100,6 +125,14 @@ public class IntroStateTwo extends BasicGameState {
 	}
 
 	@Override
+	/**
+	 *  Method that updates the information depending on which settings the
+	 *  user selected such as the level, map, etc
+	 *  
+	 *  @param container The container to hold the game
+	 *  @param sbg The state of the game
+	 *  @param delta The amount to change the coordinates of the UI 
+	 */
 	public void update(GameContainer container, StateBasedGame sbg, int delta)
 			throws SlickException {
 		
@@ -197,6 +230,10 @@ public class IntroStateTwo extends BasicGameState {
 	}
 
 	@Override
+	/**
+	 *  Method that returns the intro state 2 ID
+	 *  @return The ID of the intro state 2 
+	 */
 	public int getID() {
 		return 1;
 	}

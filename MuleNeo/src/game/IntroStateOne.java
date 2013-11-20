@@ -7,6 +7,14 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.Image;
 
+/**
+ *  Class for the introductory state of the game
+ *  Controls what the user will initially see when game is first started
+ *  Creates objects for the images for the new, load and exit game screens
+ *  
+ *  @author Jin Sim
+ *  @date November 15, 2013
+ */
 public class IntroStateOne extends BasicGameState {
 	
 	Image newGame = null;
@@ -18,7 +26,14 @@ public class IntroStateOne extends BasicGameState {
 	int posY;
 	Rectangle rect;
 	
+
 	@Override
+	/**
+	 *  Method that initializes the images for the new, load and exit game screens
+	 *  Collects input from the user
+	 *  @param container The container to hold the game
+	 *  @param sbg The state of the game
+	 */
 	public void init(GameContainer container, StateBasedGame sbg)
 			throws SlickException {
 		
@@ -30,6 +45,13 @@ public class IntroStateOne extends BasicGameState {
 	}
 
 	@Override
+	/**
+	 *  Method that updates the game depending on which button on the container
+	 *  was pressed
+	 *  @param container The container to hold the game
+	 *  @param sbg The state of the game
+	 *  @param delta The change in coordinates for updating the UI
+	 */
 	public void update(GameContainer container, StateBasedGame sbg, int delta)
 			throws SlickException {
 		
@@ -61,6 +83,12 @@ public class IntroStateOne extends BasicGameState {
 	}
 	
 	@Override
+	/**
+	 *  Method that renders the game onto the container
+	 *  @param container The container to hold the game
+	 *  @param sbg The state of the game
+	 *  @param g The Graphics object to draw onto the container
+	 */
 	public void render(GameContainer container, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		
@@ -103,6 +131,10 @@ public class IntroStateOne extends BasicGameState {
 
 
 	@Override
+	/**
+	 *  Method that returns the ID of the intro state
+	 *  @return The ID of the intro state
+	 */
 	public int getID() {
 		return 0;
 	}
