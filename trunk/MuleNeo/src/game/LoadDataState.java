@@ -25,12 +25,23 @@ import org.newdawn.slick.state.StateBasedGame;
 public class LoadDataState extends BasicGameState {
 
 	@Override
+	/**
+	 *  Method that intializes the load data state of the game
+	 *  @param container The container to hold the game
+	 *  @param sbg The state of the game
+	 */
 	public void init(GameContainer container, StateBasedGame sbg)
 			throws SlickException {
 		GameData data = GameData.getInstance();
 	}
 
 	@Override
+	/**
+	 *  Method that renders the state of the game
+	 *  @param container The container to hold the game
+	 *  @param sbg The state of the game
+	 *  @param g The Graphics object to draw onto the container
+	 */
 	public void render(GameContainer container, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		// TODO Auto-generated method stub
@@ -38,6 +49,16 @@ public class LoadDataState extends BasicGameState {
 	}
 
 	@Override
+	/**
+	 *  Method that updates the state of the game
+	 *  Loads all necessary information from serialized files to load back onto the game
+	 *  Collects all necessary instances and loads game state with ID 2 when everthing
+	 *  is completed
+	 *  
+	 *  @param container The container to hold the game
+	 *  @param sbg The state of the game
+	 *  @param delta The amount to move the position of the mouse
+	 */
 	public void update(GameContainer container, StateBasedGame sbg, int delta)
 			throws SlickException {
 		// TODO Auto-generated method stub
@@ -113,6 +134,10 @@ public class LoadDataState extends BasicGameState {
 	}
 
 	@Override
+	/**
+	 *  Method that returns the ID of the load data state of the game
+	 *  @return The ID of the load data state
+	 */
 	public int getID() {
 		// TODO Auto-generated method stub
 		return 99;

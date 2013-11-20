@@ -19,6 +19,16 @@ import org.newdawn.slick.gui.TextField;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ *  Class that holds the land grand state of the game
+ *  Holds all necessary images and map layout for the land grand state
+ *  Holds all other info necessary for the state (such as the width and height
+ *  of each tile, the number of rows and cols, etc)
+ *  
+ *  @author Jin Sim
+ *  @date November 15, 2013
+ *
+ */
 public class LandGrantState extends BasicGameState {
 
 	Map map;
@@ -54,6 +64,15 @@ public class LandGrantState extends BasicGameState {
 	
 	
 	@Override
+	/**
+	 *  Method that initializes the land grand state of the game
+	 *  Creates a new map and the layout of the map and creates
+	 *  the appropriate tiles for the map
+	 *  Collects input from the container and the instance of the game
+	 *  
+	 *  @param container The container to hold the game
+	 *  @param sbg The state of the game
+	 */
 	public void init(GameContainer container, StateBasedGame sbg)
 			throws SlickException {
 		
@@ -79,6 +98,17 @@ public class LandGrantState extends BasicGameState {
 	
 
 	@Override
+	/**
+	 *  Method that updates the land grand state of the game
+	 *  Collects the round and turn of the game and displays the information
+	 *  in a message for the user to see
+	 *  Collects the current position of the mouse on the container
+	 *  Enters state 3 of the game after everything is completed
+	 *  
+	 *  @param container The container to hold the game
+	 *  @param sbg The state of the game
+	 *  @param delta The amount to change the coordinates of the position of the mouse
+	 */
 	public void update(GameContainer container, StateBasedGame sbg, int delta)
 			throws SlickException {
 		round = GameData.getInstance().getRound();
@@ -133,6 +163,17 @@ public class LandGrantState extends BasicGameState {
 	
 	
 	@Override
+	/**
+	 *  Method that renders the map onto the container
+	 *  Displays the proper tiles for the map and utilizes Strings
+	 *  to display relevant information pertaining to the state of the game
+	 *  Updates the position of the mouse; updates map depending on the tile selected
+	 *  and if a mule was mounted successfully
+	 *  
+	 *  @param container The container to hold the game
+	 *  @param sbg The state of the game
+	 *  @param g The Graphics object to draw onto the container
+	 */
 	public void render(GameContainer container, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 
@@ -264,6 +305,10 @@ public class LandGrantState extends BasicGameState {
 
 
 	@Override
+	/**
+	 *  Method that returns the ID of the land grand state
+	 *  @return The ID of the land grand state
+	 */
 	public int getID() {
 		// TODO Auto-generated method stub
 		return 2;

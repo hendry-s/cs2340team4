@@ -22,6 +22,16 @@ import org.newdawn.slick.Color;
 
 import java.util.Vector;
 
+/**
+ *  Class that holds the JFrame to display each player and their corresponding
+ *  data such as their name, information, race, color, etc
+ *  Holds all such information such as race, color, name, etc in the class for
+ *  each of the players (2-4 players)
+ *  
+ *  @author Jin Sim
+ *  @date November 15, 2013
+ *
+ */
 public class PlayerInfoFrame {
 	JFrame frame;
 	PlayerInfoPanel panel1;
@@ -55,7 +65,12 @@ public class PlayerInfoFrame {
 	
 	
 	
-	
+	/**
+	 *  Constructor that initializes the number of players depending on how many
+	 *  players are playing the game
+	 *  Sets the settings for the JFrame
+	 *  Determines how to display the frame depending on the number of players
+	 */
 	public PlayerInfoFrame() {
 		numPlayers = GameData.getInstance().numOfPlayer;
 		
@@ -76,7 +91,14 @@ public class PlayerInfoFrame {
 		}
 		
 	}
-
+	
+	/**
+	 *  Method that displays the frame for games with two players
+	 *  Initializes settings for the panels to be added to the JFrame
+	 *  Adds the submit button to the frame
+	 *  
+	 *  @param frame The frame for the panels and buttons to be added to
+	 */
 	private void TwoPlayerFrame(JFrame frame) {
 		panel1 = new PlayerInfoPanel(1);
 		panel1.setPreferredSize(new Dimension(500,100));
@@ -93,6 +115,13 @@ public class PlayerInfoFrame {
 		
 	}
 
+	/**
+	 *  Method that displays the frame for games with three players
+	 *  Initializes settings for the panels to be added to the JFrame
+	 *  Adds the submit button the frame
+	 *  
+	 *  @param frame The frame for the panels and buttons to be added to
+	 */
 	private void ThreePlayerFrame(JFrame frame) {
 		panel1 = new PlayerInfoPanel(1);
 		panel1.setPreferredSize(new Dimension(500,100));
@@ -112,6 +141,14 @@ public class PlayerInfoFrame {
 		frame.add(submitButton);
 		
 	}
+
+	/**
+	 *  Method that displays the frame for games with four players
+	 *  Initializes settings for the panels to be added to the JFrame
+	 *  Adds the submit button the frame
+	 *  
+	 *  @param frame The frame for the panels and buttons to be added to
+	 */
 	private void FourPlayerFrame(JFrame frame) {
 		panel1 = new PlayerInfoPanel(1);
 		panel1.setPreferredSize(new Dimension(500,100));
@@ -135,10 +172,22 @@ public class PlayerInfoFrame {
 		frame.add(submitButton);
 	}
 
+	/**
+	 *  Method that returns the frame holding the player information
+	 *  
+	 * @return The frame holding the players' information
+	 */
 	public JFrame getFrame() {
 		return frame;
 	}
 	
+	/**
+	 *  Private inner class that is a panel and holds the options for player settings
+	 *  the player can choose from such as the race, color, name, etc
+	 *  
+	 *  @author Jin Sim
+	 *
+	 */
 	private class PlayerInfoPanel extends JPanel {
 		int player;
 		JLabel nameLabel;
@@ -150,6 +199,13 @@ public class PlayerInfoFrame {
 		Vector races;
 		Vector colors;
 		
+		/**
+		 *  Constructor for the private inner class that takes in a player and
+		 *  allows the player to choose from the options to set up their character
+		 *  within the game
+		 *  
+		 *  @param player The player updating their options
+		 */
 		public PlayerInfoPanel(int player) {
 			this.player = player;
 			nameLabel = new JLabel("Player " + player + " (Name, Race, Color)   ", SwingConstants.RIGHT);
@@ -181,14 +237,33 @@ public class PlayerInfoFrame {
 			
 		}
 	}
-
+	/**
+	 *  Private inner action listerner class for the submit button
+	 *  Will set player settings to the appropriate settings the player chose
+	 *  and adds all the information to the panel to be added to the frame
+	 *  
+	 *  @author Jin Sim
+	 *
+	 */
 	private class SubmitButtonHandler implements ActionListener {
 		PlayerInfoFrame fr;
 		
+		/**
+		 *  Constructor for the action listener class
+		 *  @param frame The frame for the panel to be added to
+		 */
 		public SubmitButtonHandler(PlayerInfoFrame frame) {
 			this.fr = frame;
 		}
-
+		
+		/**
+		 *  Method that updates information depending on the inputs given by the user
+		 *  once the submit button is pressed
+		 *  Creates appropriate player classes and updates the information
+		 *  onto the GameData class
+		 *  
+		 *  @param e The ActionEvent object
+		 */
 		public void actionPerformed(ActionEvent e) {
 			
 			// Update Colors
