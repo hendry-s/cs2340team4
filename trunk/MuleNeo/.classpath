@@ -15,7 +15,7 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="libraries/slick/jogg-0.0.7.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MuleNeo/libraries/lwjgl/native/macosx"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="MuleNeo/libraries/lwjgl/native/windows"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
