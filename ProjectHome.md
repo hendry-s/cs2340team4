@@ -1,0 +1,1 @@
+Our group is designing and programming for the MULE game in Java. We are following the Object-Oriented Programming process by dividing virtually every object in separate classes.
